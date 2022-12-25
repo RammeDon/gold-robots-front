@@ -1,5 +1,5 @@
 .header-background {
-  background-image: url("../../public/images/title\ background.jpg");
+  background-image: url("../images/title\ background.jpg");
   background-size: 120vw;
   background-repeat: no-repeat;
 }
@@ -37,7 +37,7 @@
 }
 
 .dollars {
-  background-image: url("../../public/images/dolars.jpg");
+  background-image: url("../images/dolars.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -46,5 +46,9 @@
   background-image: url("../../public/images/reviews.jpg");
   background-size: 200%;
   background-repeat: no-repeat;
-background-position: -00px -500px ;
+  background-position: -00px -500px;
+}
+
+.up {
+  transform: rotate(135deg);
 }

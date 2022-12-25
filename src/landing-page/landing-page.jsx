@@ -5,6 +5,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import NewsPage from "../news/NewsPage.jsx";
+import Investment from "../investment/InvestmentPage.jsx";
+
 import {
   Card,
   Tooltip,

@@ -4,6 +4,7 @@ import LoginSharpIcon from "@mui/icons-material/LoginSharp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import NewsPage from "../news/NewsPage.jsx";
 import {
   Card,
   Tooltip,

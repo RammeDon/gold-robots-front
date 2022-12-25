@@ -1,0 +1,33 @@
+.image {
+    max-width: 30%;
+    max-height: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+img{
+    border-radius: 10px;
+}
+
+.container{
+    /* border: solid red; */
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 100vW;
+    min-height: 500px;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+p{
+    font-size: 30px;
+}
+
+span {
+    min-height: 100px;
+}

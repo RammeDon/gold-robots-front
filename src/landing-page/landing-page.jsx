@@ -1,11 +1,10 @@
-import { render } from "@testing-library/react";
 import React, { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LoginSharpIcon from "@mui/icons-material/LoginSharp";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 import "./landing-page.css";
 
@@ -15,13 +14,31 @@ export class LandingPage extends React.Component {
     this.state = {};
   }
 
+  // scroller() {
+  //   let lastST = 0;
+  //   window.addEventListener("scroll", (event) => {
+  //     const st = window.scrollY || document.documentElement.scrollTop;
+  //     if (st > lastST) {
+  //       window.scrollBy({ behavior: "smooth", top: -100 });
+  //     } else {
+  //       window.scrollBy({ behavior: "smooth", top: 100 });
+  //     }
+  //     console.log(st);
+  //     // lastST = st <= 0 ? 0 : st;
+  //   });
+  // }
+
+  componentDidMount() {
+    // this.scroller();
+  }
+
   render() {
     return (
       <div className="w-[100vw]">
         <Toolbar></Toolbar>
         <Header></Header>
-        <Dollars></Dollars>
-        <Reviwes></Reviwes>
+        <Golds id="golds"></Golds>
+        <Dollars id="dollars"></Dollars>
       </div>
     );
   }
@@ -137,8 +154,8 @@ function Dollars() {
   );
 }
 
-function Reviwes() {
-  return <div className="w-full h-[100vh] reviews"></div>;
+function Golds() {
+  return <div className="w-full h-[100vw]"></div>;
 }
 
 function Footer() {

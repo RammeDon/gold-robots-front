@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LoginSharpIcon from "@mui/icons-material/LoginSharp";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -11,7 +11,17 @@ import {
   CardMedia,
   CardContent,
   Typography,
+  Dialog,
+  TextField,
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel,
+  Box,
+  Button,
+  Link,
 } from "@mui/material";
+import { css } from "@emotion/styled";
 
 import "./landing-page.css";
 
@@ -20,7 +30,6 @@ import logo_sm from "../images/logo small.png";
 import zlato from "../images/zlato.jpg";
 import stribro from "../images/stribro.jpg";
 import kovy from "../images/strategické kovy.jpg";
-import { width } from "@mui/system";
 
 export class LandingPage extends React.Component {
   constructor(props) {
@@ -114,6 +123,8 @@ function Toolbar() {
     },
   ];
 
+  const [open, setOpen] = useState(false);
+
   const [selected, setSelected] = useState();
 
   const navClick = (event) => {
@@ -127,15 +138,26 @@ function Toolbar() {
       setSelected(event.target);
     }
   };
+
+  const openOnClick = () => {
+    setOpen(true);
+  };
+
   return (
     <div className="w-full border-b-[.5px] border-gray-400 p-5 flex justify-between bg-transparent backdrop-blur-sm z-10 absolute top-0">
       <img src={logo_sm} alt="" width={80} />
       <div className="flex justify-around w-2/3 flex-row-reverse px-10">
         <Tooltip title="login/register">
-          <IconButton>
+          <IconButton onClick={openOnClick}>
             <LoginSharpIcon className="text-gray-300"></LoginSharpIcon>
           </IconButton>
         </Tooltip>
+        <Auth
+          open={open}
+          setOpen={(value) => {
+            setOpen(value);
+          }}
+        />
         {navButtons.map((button, i) => {
           return (
             <button className="nav-btn" onClick={navClick} key={i}>
@@ -259,5 +281,166 @@ function Footer() {
         </div>
       </div>
     </div>
+  );
+}
+
+function Auth(props) {
+  const { open, setOpen } = props;
+
+  const [type, setType] = useState("login");
+  const [countriesList, setCountries] = useState([]);
+  const [login, setLogin] = useState({ username: "", password: "" });
+  const [register, setRegister] = useState({
+    title: 0,
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+    password: "",
+    phonenumber: "",
+    country: 0,
+  });
+
+  useEffect(() => {
+    fetch("https://api.countrystatecity.in/v1/countries").then((res) =>
+      setCountries([...res])
+    );
+  });
+
+  const handelSubmission = (type, event) => {
+    if (type === "login") {
+      setLogin(event.target.value);
+    } else {
+      setRegister(event.target.value);
+    }
+  };
+
+  let form;
+  switch (type) {
+    default:
+      form = (
+        <FormControl>
+          <TextField
+            variant="outlined"
+            label="username"
+            className="invisible"
+          />
+          <TextField variant="outlined" label="password" />
+        </FormControl>
+      );
+      break;
+    case "login":
+      form = (
+        <FormControl className="flex flex-col h-[200px] justify-around">
+          <TextField variant="outlined" label="username" />
+          <TextField variant="outlined" label="password" />
+        </FormControl>
+      );
+      break;
+    case "register":
+      form = (
+        <Box>
+          <FormControl className="flex flex-col h-[700px] justify-around w-full">
+            <InputLabel id="title">title</InputLabel>
+            <Select labelId="title" label="title" required={true}>
+              <MenuItem value={0}>Mr.</MenuItem>
+              <MenuItem value={1}>Ms.</MenuItem>
+              <MenuItem value={2}>Co.</MenuItem>
+            </Select>
+            <div className="flex justify-between w-full gap-5">
+              <TextField
+                variant="outlined"
+                label="first name"
+                required={true}
+                className="w-1/2"
+              />
+              <TextField
+                variant="outlined"
+                label="last name"
+                required={true}
+                className="w-1/2"
+              />
+            </div>
+            <TextField variant="outlined" label="username" required={true} />
+            <TextField variant="outlined" label="email" required={true} />
+            <TextField
+              variant="outlined"
+              label="password"
+              required={true}
+              type="password"
+            />
+            <TextField
+              variant="outlined"
+              label="confirm password"
+              required={true}
+              type="password"
+            />
+            <TextField
+              variant="outlined"
+              label="phone number"
+              required={true}
+            />
+            <InputLabel id="country">contry</InputLabel>
+            <Select label="country" labelId="country" required={true}>
+              {countriesList.map((country, i) => {
+                if (country) {
+                  return (
+                    <MenuItem value={country.id} key={i}>
+                      {country.name}
+                    </MenuItem>
+                  );
+                }
+              })}
+            </Select>
+          </FormControl>
+        </Box>
+      );
+      break;
+  }
+
+  return (
+    <Dialog open={open} title={type}>
+      <div className="w-[500px] p-12 flex flex-col justify-around align-middle">
+        <h1 className="self-center">{type}</h1>
+        <form
+          onSubmit={handelSubmission}
+          className="self-center flex flex-col justify-around min-h-max w-full"
+        >
+          {form}
+          <div className="mt-5 flex justify-around align-middle">
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              close
+            </Button>
+            <Button type="submit" variant="contained">
+              submit
+            </Button>
+          </div>
+        </form>
+        <p className="self-center">
+          please{" "}
+          <Link
+            onClick={() => {
+              setType("login");
+            }}
+          >
+            Login
+          </Link>{" "}
+          or{" "}
+          <Link
+            onClick={() => {
+              setType("register");
+            }}
+          >
+            Register
+          </Link>
+        </p>
+      </div>
+    </Dialog>
   );
 }

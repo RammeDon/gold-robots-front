@@ -91,7 +91,7 @@ function Toolbar() {
     }
   };
   return (
-    <div className="w-full border-b-[.5px] border-gray-400 p-5 flex justify-between bg-transparent z-10 absolute top-0">
+    <div className="w-full border-b-[.5px] border-gray-400 p-5 flex justify-between bg-transparent backdrop-blur-sm z-10 absolute top-0">
       <span className="text-3xl text-gray-600">LOGO</span>
       <div className="flex justify-around w-2/3 flex-row-reverse px-10">
         <Tooltip title="login/register">

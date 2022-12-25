@@ -1,0 +1,18 @@
+
+.container{
+    background-image: url("../images/coins2.jpeg");
+    display: block;
+    min-height: 800px;
+    padding-top: 100px;
+    padding-right: 50px;
+    padding-left: 50px;
+    
+}
+
+p, h1{
+    color: aliceblue;
+}
+
+a{
+    text-decoration: underline;
+}

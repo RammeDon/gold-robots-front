@@ -42,13 +42,6 @@
   background-repeat: no-repeat;
 }
 
-.reviews {
-  background-image: url("../../public/images/reviews.jpg");
-  background-size: 200%;
-  background-repeat: no-repeat;
-  background-position: -00px -500px;
-}
-
 .up {
   transform: rotate(135deg);
 }

@@ -6,6 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import NewsPage from "../news/NewsPage.jsx";
 import Investment from "../investment/InvestmentPage.jsx";
+import Contracts from "../contacts/Contracts.jsx";
 
 import {
   Card,
@@ -77,7 +78,7 @@ export class Layout extends React.Component {
         component= <NewsPage/>
         break;
       case "contracts":
-        component= <div>Contracts works!</div>
+        component= <Contracts />
         break;
       case "investment":
         component= <Investment/>
@@ -185,7 +186,7 @@ function Toolbar(props) {
   };
 
   return (
-    <div className="w-full border-b-[.5px] border-gray-400 p-5 flex justify-between bg-transparent backdrop-blur-sm z-10 absolute top-0">
+    <div className="w-full border-b-[.5px] border-gray-400 p-5 flex justify-between bg-transparent backdrop-blur-sm z-10 absolute top-0" id="top-navbar">
       <img src={logo_sm} alt="" width={80} />
       <div className="flex justify-around w-2/3 flex-row-reverse px-10">
         <Tooltip title="login/register">

@@ -45,3 +45,8 @@
 .up {
   transform: rotate(135deg);
 }
+
+#top-navbar{
+  position:fixed;
+  background-color: #1C1702;
+}

@@ -1,0 +1,9 @@
+.contracts-container{
+    margin-top: 110px;
+}
+
+.contracts{
+    border: solid red;
+    display: inline-block;
+    margin-left: 60px;
+}

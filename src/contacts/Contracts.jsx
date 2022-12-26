@@ -44,13 +44,13 @@ export default function Contracts() {
 {            contracts.map((contract, i) => {
                 return (
                     <div className="contracts">
-                        <h1>{contract.name}</h1>
+                        <h1 className="list-title">{contract.name}</h1>
                         <ul>
-                            <li>Minimum duration: {contract.minDuration}</li>
-                            <li>Minimum desposite: {contract.minDeposite}</li>
-                            <li>Garantie percentage: {contract.garantiePercentage}</li>
-                            <li>Admin clients: {contract.adminClients}</li>
-                            <li>Level: {contract.level}</li>
+                            <li className="list-item">Minimum duration: {contract.minDuration}</li>
+                            <li className="list-item">Minimum desposite: {contract.minDeposite}</li>
+                            <li className="list-item">Garantie percentage: {contract.garantiePercentage}</li>
+                            <li className="list-item">Admin clients: {contract.adminClients}</li>
+                            <li className="list-item">Level: {contract.level}</li>
                         </ul>
 
                     </div>

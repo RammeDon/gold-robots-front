@@ -7,8 +7,8 @@ import threeRings from "./../images/threeRings.jpeg"
 import gold from "./../images/gold.jpeg"
 import goldPrice from "./../images/goldPrice.jpg"
 
-export default function NewsPage() {
 
+export default function NewsPage() {
     const newsContent = [
         {
             title: "Indian Gold",
@@ -42,44 +42,49 @@ export default function NewsPage() {
         }
     ]
 
-
-
     return (
         <div className="top-container">
             {
                 newsContent.map((content, i) => {
                     if (i%2 === 0) {
                         return(
-                            <div className="container" key={i}>
-                                <div className="image">
-                                    <img src={content.image} alt="pic" />
+                            <div className="body" key={i}>
+                                <div className="container">
+                                    <div className="image">
+                                        <img src={content.image} alt="pic" />
+                                    </div>
+                                    <div className="text">
+                                        <h1 className="title">{content.title}</h1>
+                                        <p className="body">
+                                            {content.text}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="text">
-                                    <h1 className="title">{content.title}</h1>
-                                    <p className="body">
-                                        {content.text}
-                                    </p>
-                                </div>
+
+                                <hr className="divider"></hr>
                             </div>
                         )
                     }else {
                         return(
-                            <div className="container"key={i}>
+                            <div className="body" key={i}>
 
-                                <div className="text">
-                                    <h1 className="title">{content.title}</h1>
-                                    <p className="body">
-                                        {content.text}
-                                    </p>
-                                </div>
-                                <div className="image">
-                                    <img src={content.image} alt="pic" />
+                                <div className="container">
+
+                                    <div className="text">
+                                        <h1 className="title">{content.title}</h1>
+                                        <p className="body">
+                                            {content.text}
+                                        </p>
+                                    </div>
+                                    <div className="image">
+                                        <img src={content.image} alt="pic" />
+                                    </div>
                                 </div>
 
+                                <hr className="divider"></hr>
                             </div>
                         )
                     }
-
                 })
             }
         </div>

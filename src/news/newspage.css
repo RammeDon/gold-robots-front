@@ -1,0 +1,45 @@
+.image {
+    max-width: 30%;
+    max-height: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+img{
+    border-radius: 10px;
+}
+
+.container{
+    /* border: solid red; */
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 100vW;
+    min-height: 500px;
+    margin-bottom: 50px;
+    
+}
+
+.top-container{
+   background-color: #1C1702;
+   padding-top: 110px;
+}
+
+.title {
+    font-size: 60px;
+    color: aliceblue;
+}
+
+.body{
+    font-size: 30px;
+    color: aliceblue;
+}
+
+.divider {
+    border-top: 8px solid #bbb;
+    border-radius: 5px;
+    margin-left: 200px;
+    margin-right: 200px;
+}

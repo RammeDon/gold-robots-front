@@ -1,0 +1,35 @@
+
+.container-inv{
+    background-image: url("../images/coins2.jpeg");
+    background-size: 100%;
+    display: block;
+    min-height: 1000px;
+    padding-top: 100px;
+    padding-right: 50px;
+    padding-left: 50px;
+    
+}
+
+.p, .h1{
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.5) ;
+}
+
+.h1{
+    margin-top: 50px;
+    font-size: 60px;
+    font-family: Times New Roman;
+    border-top-left-radius: 40px 40px;
+    border-top-right-radius: 40px 40px;
+}
+
+.p{
+    font-size: 30px;
+    font-family: Times New Roman;
+    border-bottom-left-radius: 40px 40px;
+    border-bottom-right-radius: 40px 40px;
+}
+
+a{
+    text-decoration: underline;
+}

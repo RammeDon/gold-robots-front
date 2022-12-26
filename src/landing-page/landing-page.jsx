@@ -34,7 +34,7 @@ import zlato from "../images/zlato.jpg";
 import stribro from "../images/stribro.jpg";
 import kovy from "../images/strategické kovy.jpg";
 
-export class LandingPage extends React.Component {
+export class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -58,17 +58,54 @@ export class LandingPage extends React.Component {
     // this.scroller();
   }
 
+  
+
   render() {
-    return (
-      <div className="w-[100vw]">
-        <Toolbar></Toolbar>
-        <Header></Header>
-        <Golds id="golds"></Golds>
-        <Dollars id="dollars"></Dollars>
-        <Footer></Footer>
-      </div>
-    );
+    let component;
+    switch (this.state.path) {
+      
+      default:
+        component= <LandingPage/>
+        break;
+      case "home":
+        component=  <LandingPage/>
+        break;
+      case "services":
+        component= <div>Servicers works!</div>
+        break;
+      case "news":
+        component= <NewsPage/>
+        break;
+      case "contracts":
+        component= <div>Contracts works!</div>
+        break;
+      case "investment":
+        component= <Investment/>
+        break;
+      case "about":
+        component= <div>About works!</div>
+        break;
+    }
+    return(
+      <>
+        <Toolbar navigate={(path)=> {this.setState({path: path})}}></Toolbar>
+        {component}
+      </>
+    )
+    
   }
+}
+
+function LandingPage() {
+
+  return(
+    <>
+      <Header></Header>
+      <Golds id="golds"></Golds>
+      <Dollars id="dollars"></Dollars>
+      <Footer></Footer>
+    </>
+  )
 }
 
 function Header() {
@@ -97,7 +134,7 @@ function Header() {
   );
 }
 
-function Toolbar() {
+function Toolbar(props) {
   const navButtons = [
     {
       name: "Home",
@@ -129,6 +166,7 @@ function Toolbar() {
   const [open, setOpen] = useState(false);
 
   const [selected, setSelected] = useState();
+
 
   const navClick = (event) => {
     if (selected) {
@@ -163,7 +201,7 @@ function Toolbar() {
         />
         {navButtons.map((button, i) => {
           return (
-            <button className="nav-btn" onClick={navClick} key={i}>
+            <button className="nav-btn" onClick={() => {props.navigate(button.path);} } key={i}>
               <span className="mr-5">{button.name}</span>
             </button>
           );
@@ -383,7 +421,7 @@ function Auth(props) {
               label="phone number"
               required={true}
             />
-            <InputLabel id="country">contry</InputLabel>
+            <InputLabel id="country"></InputLabel>
             <Select label="country" labelId="country" required={true}>
               {countriesList.map((country, i) => {
                 if (country) {

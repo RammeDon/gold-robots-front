@@ -55,8 +55,8 @@ export default function NewsPage() {
                                     <img src={content.image} alt="pic" />
                                 </div>
                                 <div className="text">
-                                    <h1>{content.title}</h1>
-                                    <p>
+                                    <h1 className="title">{content.title}</h1>
+                                    <p className="body">
                                         {content.text}
                                     </p>
                                 </div>
@@ -67,8 +67,8 @@ export default function NewsPage() {
                             <div className="container"key={i}>
 
                                 <div className="text">
-                                    <h1>{content.title}</h1>
-                                    <p>
+                                    <h1 className="title">{content.title}</h1>
+                                    <p className="body">
                                         {content.text}
                                     </p>
                                 </div>

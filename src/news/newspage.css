@@ -18,16 +18,13 @@ img{
     justify-content: flex-end;
     min-width: 100vW;
     min-height: 500px;
+    margin-top: 110px;
 }
 
-h1 {
+.title {
     font-size: 60px;
 }
 
-p{
+.body{
     font-size: 30px;
-}
-
-span {
-    min-height: 100px;
 }

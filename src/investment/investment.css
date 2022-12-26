@@ -1,5 +1,5 @@
 
-.container{
+.container-inv{
     background-image: url("../images/coins2.jpeg");
     display: block;
     min-height: 800px;
@@ -9,8 +9,16 @@
     
 }
 
-p, h1{
+.p, .h1{
     color: aliceblue;
+}
+
+.h1{
+    font-size: 60px;
+}
+
+.p{
+    font-size: 30px;
 }
 
 a{

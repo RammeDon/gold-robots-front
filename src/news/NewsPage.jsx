@@ -3,7 +3,7 @@ import "./newspage.css";
 import woman from "./../images/woman.jpg"
 import goldplate from "./../images/plateofgold.jpg"
 import ringBox from "./../images/ringBox.jpg"
-import threeRings from "./../images/threeRings.jpg"
+import threeRings from "./../images/threeRings.jpeg"
 import gold from "./../images/gold.jpeg"
 import goldPrice from "./../images/goldPrice.jpg"
 
@@ -45,7 +45,7 @@ export default function NewsPage() {
 
 
     return (
-        <div>
+        <div className="top-container">
             {
                 newsContent.map((content, i) => {
                     if (i%2 === 0) {

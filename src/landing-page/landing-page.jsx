@@ -7,6 +7,7 @@ import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import NewsPage from "../news/NewsPage.jsx";
 import Investment from "../investment/InvestmentPage.jsx";
 import Contracts from "../contacts/Contracts.jsx";
+import AboutUs from "../aboutUS/AboutUs.jsx";
 
 import {
   Card,
@@ -84,7 +85,7 @@ export class Layout extends React.Component {
         component= <Investment/>
         break;
       case "about":
-        component= <div>About works!</div>
+        component= <AboutUs />
         break;
     }
     return(

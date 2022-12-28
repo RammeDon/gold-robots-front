@@ -16,6 +16,7 @@ export default function LandingPage() {
       <Header></Header>
       <Golds id="golds"></Golds>
       <Dollars id="dollars"></Dollars>
+      <Reasoning></Reasoning>
     </>
   );
 }
@@ -48,7 +49,7 @@ function Header() {
 
 function Dollars() {
   return (
-    <div className="flex flex-col w-full dollars h-[100vh] justify-center">
+    <div className="flex flex-col w-full dollars h-[100vh] justify-center sm:mt-20 lg:mt-0">
       <h1 className="font-bold text-[3rem] text-white mb-5">
         Weakness of the U.S. Dollar
       </h1>
@@ -71,41 +72,43 @@ function Dollars() {
 function Golds() {
   const Cards = [
     {
-      name: "zlato",
+      name: "1. It's easy to buy, store and sell.",
       Image: zlato,
-      description: "lorem ipsum",
+      description:
+        "Gold can come in a physical form or it can be inserted into a retirement account like a 401(k) or IRA.",
     },
     {
-      name: "stribro",
+      name: "2. It can help with inflation.",
       Image: stribro,
-      description: "lorem ipsum",
+      description:
+        "While gold's ability to battle inflation is inconsistent, with the right amount in your portfolio, it can potentially help and even act as a hedge against rising costs. ",
     },
     {
-      name: "strategické kovy",
+      name: "3. It can diversify your portfolio.",
       Image: kovy,
-      description: "lorem ipsum",
+      description:
+        "Gold can help diversify your portfolio. So, in the current market, your investments may be performing poorly but a small investment in gold could help offset the losses suffered elsewhere.",
     },
   ];
 
   return (
     <div className="w-full h-[30vw] flex flex-col">
       <div className="flex flex-col align-middle">
-        <p className="mt-3 text-[2rem] text-slate-500">Types of Gold</p>
+        <p className="mt-3 text-[2rem] text-slate-500">
+          Reasons to Invest in Gold
+        </p>
         <div className="w-[300px] h-[1px] bg-slate-400 self-center mt-5"></div>
         <div className="flex justify-around w-full p-5">
           {Cards.map((card, i) => {
             return (
               <Card key={i} sx={{ maxHeight: 345 }}>
-                <CardMedia
-                  sx={{ height: 145, width: 300 }}
-                  image={card.Image}
-                />
+                <CardMedia sx={{ height: 145 }} image={card.Image} />
                 <CardContent>
-                  <Typography component="div" variant="h5">
+                  <Typography component="div" variant="h6">
                     {card.name}
                   </Typography>
                   <Typography color="text.secondary">
-                    {card.description}
+                    {card.description.slice(0, 50)}...
                   </Typography>
                 </CardContent>
               </Card>
@@ -113,6 +116,23 @@ function Golds() {
           })}
         </div>
       </div>
+    </div>
+  );
+}
+
+function Reasoning() {
+  return (
+    <div className="reasoning w-full h-[700px] flex">
+      <iframe
+        width="800"
+        height="494"
+        src="https://www.youtube.com/embed/D-rMb9Znfn8"
+        title="Why You Should Buy Gold and Silver - Robert Kiyosaki"
+        frameborder="10"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        className="m-auto"
+      ></iframe>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import LandingPage from "../landing-page/landing-page.jsx";
 import NewsPage from "../news/NewsPage.jsx";
 import Contracts from "../contacts/Contracts.jsx";
 import Investment from "../investment/InvestmentPage.jsx";
+import AboutUs from "../aboutUS/AboutUs.jsx";
 
 import logo_sm from "../images/logo small.png";
 
@@ -21,10 +22,6 @@ function Toolbar(props) {
       name: "Home",
       path: "home",
       selected: true,
-    },
-    {
-      name: "Services",
-      path: "servics",
     },
     {
       name: "Gold News",
@@ -69,7 +66,7 @@ function Toolbar(props) {
       className="w-full border-b-[.5px] border-gray-400 p-5 flex justify-between bg-transparent backdrop-blur-sm z-10 absolute top-0"
       id="top-navbar"
     >
-      <img src={logo_sm} alt="" width={80} />
+      <img src={logo_sm} alt="" width={80}  className="relative bottom-2"/>
       <div className="flex justify-around w-2/3 flex-row-reverse px-10">
         <Tooltip title="login/register">
           <IconButton onClick={openOnClick}>
@@ -112,9 +109,6 @@ export default function Body() {
     case "home":
       component = <LandingPage />;
       break;
-    case "services":
-      component = <div>Servicers works!</div>;
-      break;
     case "news":
       component = <NewsPage />;
       break;
@@ -125,7 +119,7 @@ export default function Body() {
       component = <Investment />;
       break;
     case "about":
-      component = <div>About works!</div>;
+      component = <AboutUs></AboutUs>;
       break;
   }
   return (
@@ -147,9 +141,8 @@ function Footer() {
   };
 
   return (
-    <div className="w-full bg-gray-800 h-[300px] flex flex-col">
-      <div className="w-full h-1/2 bg-slate-200"></div>
-      <div className="w-full h-1/2 flex justify-around align-middle">
+    <div className="w-full bg-gray-800 h-[150px] flex flex-col">
+      <div className="w-full h-full flex justify-around align-middle">
         <div className="flex flex-col w-1/3 justify-center">
           <p className="text-sm text-gray-300">
             © 2022 All Rights Reserved Goldrobots

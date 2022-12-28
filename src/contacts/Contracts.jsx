@@ -1,6 +1,8 @@
 import React from "react";
 import "./contracts.css";
 
+import { Card, CardContent, Typography } from "@mui/material";
+
 export default function Contracts() {
   const contracts = [
     {
@@ -38,29 +40,44 @@ export default function Contracts() {
   ];
 
   return (
-    <div className="contracts-container flex flex-wrap justify-around pt-32 gap-x-6 gap-y-10">
-      {contracts.map((contract, i) => {
-        return (
-          <div key={i} className="contracts w-1/4 h-1/2">
-            <h1 className="list-title">{contract.name}</h1>
-            <ul>
-              <li className="list-item">
-                Minimum duration: {contract.minDuration}
-              </li>
-              <li className="list-item">
-                Minimum desposite: {contract.minDeposite}
-              </li>
-              <li className="list-item">
-                Garantie percentage: {contract.garantiePercentage}
-              </li>
-              <li className="list-item">
-                Admin clients: {contract.adminClients}
-              </li>
-              <li className="list-item">Level: {contract.level}</li>
-            </ul>
-          </div>
-        );
-      })}
+    <div className="contracts-container">
+      <div className="grid grid-cols-2 grid-rows-2 relative top-32 gap-6 p-5">
+        {contracts.map((contract, i) => {
+          return (
+            <Card key={i} className="contracts col-span-1 row-span-1">
+              <CardContent>
+                <Typography component="div" variant="h5">
+                  {contract.name}
+                </Typography>
+              </CardContent>
+              <CardContent>
+                <Typography color="text.secondary" className="px-20 text-left">
+                  <p className="flex">
+                    <b>Minimum duration:</b>{" "}
+                    <span className="ml-auto">{contract.minDuration}</span>
+                  </p>
+                  <p className="flex">
+                    <b>Minimum desposite:</b>{" "}
+                    <span className="ml-auto">{contract.minDeposite}</span>
+                  </p>
+                  <p className="flex">
+                    <b>Garantie percentage:</b>{" "}
+                    <span className="ml-auto">{contract.garantiePercentage}</span>
+                  </p>
+                  <p className="flex">
+                    <b>Admin clients:</b>{" "}
+                    <span className="ml-auto">{contract.adminClients}</span>
+                  </p>
+                  <p className="flex">
+                    <b>Level:</b>{" "}
+                    <span className="ml-auto">{contract.level}</span>
+                  </p>
+                </Typography>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 }

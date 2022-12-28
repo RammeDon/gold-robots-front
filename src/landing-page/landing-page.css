@@ -46,7 +46,8 @@
   transform: rotate(135deg);
 }
 
-/* #top-navbar{
-  position:fixed;
-  background-color: #1C1702;
-} */
+.reasoning {
+  background-image: url("../images/goldbars.webp");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}

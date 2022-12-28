@@ -1,112 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import LoginSharpIcon from "@mui/icons-material/LoginSharp";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
-import NewsPage from "../news/NewsPage.jsx";
-import Investment from "../investment/InvestmentPage.jsx";
-import Contracts from "../contacts/Contracts.jsx";
 
-import {
-  Card,
-  Tooltip,
-  IconButton,
-  CardMedia,
-  CardContent,
-  Typography,
-  Dialog,
-  TextField,
-  FormControl,
-  Select,
-  MenuItem,
-  InputLabel,
-  Box,
-  Button,
-  Link,
-} from "@mui/material";
-import { css } from "@emotion/styled";
+import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 
 import "./landing-page.css";
 
 import logo from "../images/logo.png";
-import logo_sm from "../images/logo small.png";
 import zlato from "../images/zlato.jpg";
 import stribro from "../images/stribro.jpg";
 import kovy from "../images/strategické kovy.jpg";
 
-export class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  // scroller() {
-  //   let lastST = 0;
-  //   window.addEventListener("scroll", (event) => {
-  //     const st = window.scrollY || document.documentElement.scrollTop;
-  //     if (st > lastST) {
-  //       window.scrollBy({ behavior: "smooth", top: -100 });
-  //     } else {
-  //       window.scrollBy({ behavior: "smooth", top: 100 });
-  //     }
-  //     console.log(st);
-  //     // lastST = st <= 0 ? 0 : st;
-  //   });
-  // }
-
-  componentDidMount() {
-    // this.scroller();
-  }
-
-  
-
-  render() {
-    let component;
-    switch (this.state.path) {
-      
-      default:
-        component= <LandingPage/>
-        break;
-      case "home":
-        component=  <LandingPage/>
-        break;
-      case "services":
-        component= <div>Servicers works!</div>
-        break;
-      case "news":
-        component= <NewsPage/>
-        break;
-      case "contracts":
-        component= <Contracts />
-        break;
-      case "investment":
-        component= <Investment/>
-        break;
-      case "about":
-        component= <div>About works!</div>
-        break;
-    }
-    return(
-      <>
-        <Toolbar navigate={(path)=> {this.setState({path: path})}}></Toolbar>
-        {component}
-      </>
-    )
-    
-  }
-}
-
-function LandingPage() {
-
-  return(
+export default function LandingPage() {
+  return (
     <>
       <Header></Header>
       <Golds id="golds"></Golds>
       <Dollars id="dollars"></Dollars>
-      <Footer></Footer>
     </>
-  )
+  );
 }
 
 function Header() {
@@ -131,83 +42,6 @@ function Header() {
           onClick={scrollToBottom}
         ></KeyboardArrowDownIcon>
       </button>
-    </div>
-  );
-}
-
-function Toolbar(props) {
-  const navButtons = [
-    {
-      name: "Home",
-      path: "home",
-      selected: true,
-    },
-    {
-      name: "Services",
-      path: "servics",
-    },
-    {
-      name: "Gold News",
-      path: "news",
-    },
-    {
-      name: "Contracts",
-      path: "contracts",
-    },
-    {
-      name: "Investment",
-      path: "investment",
-    },
-    {
-      name: "About US",
-      path: "about",
-    },
-  ];
-
-  const [open, setOpen] = useState(false);
-
-  const [selected, setSelected] = useState();
-
-
-  const navClick = (event) => {
-    if (selected) {
-      selected.className = "nav-btn";
-      event.target.className = "nav-btn-selected";
-      setSelected(event.target);
-    } else {
-      navButtons[0].selected = false;
-      event.target.className = "nav-btn-selected";
-      setSelected(event.target);
-    }
-  };
-
-  const openOnClick = () => {
-    setOpen(true);
-  };
-
-  return (
-    <div className="w-full border-b-[.5px] border-gray-400 p-5 flex justify-between bg-transparent backdrop-blur-sm z-10 absolute top-0" id="top-navbar">
-      <img src={logo_sm} alt="" width={80} />
-      <div className="flex justify-around w-2/3 flex-row-reverse px-10">
-        <Tooltip title="login/register">
-          <IconButton onClick={openOnClick}>
-            <LoginSharpIcon className="text-gray-300"></LoginSharpIcon>
-          </IconButton>
-        </Tooltip>
-        <Auth
-          open={open}
-          setOpen={(value) => {
-            setOpen(value);
-          }}
-        />
-        {navButtons.map((button, i) => {
-          return (
-            <button className="nav-btn" onClick={() => {props.navigate(button.path);} } key={i}>
-              <span className="mr-5">{button.name}</span>
-            </button>
-          );
-        })}
-      </div>
     </div>
   );
 }
@@ -259,9 +93,9 @@ function Golds() {
         <p className="mt-3 text-[2rem] text-slate-500">Types of Gold</p>
         <div className="w-[300px] h-[1px] bg-slate-400 self-center mt-5"></div>
         <div className="flex justify-around w-full p-5">
-          {Cards.map((card) => {
+          {Cards.map((card, i) => {
             return (
-              <Card sx={{ maxHeight: 345 }}>
+              <Card key={i} sx={{ maxHeight: 345 }}>
                 <CardMedia
                   sx={{ height: 145, width: 300 }}
                   image={card.Image}
@@ -280,209 +114,5 @@ function Golds() {
         </div>
       </div>
     </div>
-  );
-}
-
-function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ behavior: "smooth", top: -9999 });
-  };
-
-  return (
-    <div className="w-full bg-gray-800 h-[300px] flex flex-col">
-      <div className="w-full h-1/2 bg-slate-200"></div>
-      <div className="w-full h-1/2 flex justify-around align-middle">
-        <div className="flex flex-col w-1/3 justify-center">
-          <p className="text-sm text-gray-300">
-            © 2022 All Rights Reserved Goldrobots
-          </p>
-          <p className="text-gray-400">
-            {" "}
-            Mon-Fri 9:00AM - 5:00PM | No: 200, Floor: 25, Burj Khalifa Dubai,
-            United Arab Emirate | +1-206-905-7657{" "}
-          </p>
-        </div>
-        <div className="w-1/3 flex justify-center align-middle">
-          <button className="header-btn self-center" onClick={scrollToTop}>
-            <KeyboardArrowDownIcon className="up"></KeyboardArrowDownIcon>
-          </button>
-        </div>
-        <div className="w-1/3 flex justify-around align-middle">
-          <InstagramIcon
-            className="text-gray-200 self-center"
-            fontSize="large"
-          ></InstagramIcon>
-          <FacebookOutlinedIcon
-            className="text-gray-200 self-center"
-            fontSize="large"
-          ></FacebookOutlinedIcon>
-          <TwitterIcon
-            className="text-gray-200 self-center"
-            fontSize="large"
-          ></TwitterIcon>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Auth(props) {
-  const { open, setOpen } = props;
-
-  const [type, setType] = useState("login");
-  const [countriesList, setCountries] = useState([]);
-  const [login, setLogin] = useState({ username: "", password: "" });
-  const [register, setRegister] = useState({
-    title: 0,
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-    password: "",
-    phonenumber: "",
-    country: 0,
-  });
-
-  useEffect(() => {
-    fetch("https://api.countrystatecity.in/v1/countries").then((res) =>
-      setCountries([...res])
-    );
-  });
-
-  const handelSubmission = (type, event) => {
-    if (type === "login") {
-      setLogin(event.target.value);
-    } else {
-      setRegister(event.target.value);
-    }
-  };
-
-  let form;
-  switch (type) {
-    default:
-      form = (
-        <FormControl>
-          <TextField
-            variant="outlined"
-            label="username"
-            className="invisible"
-          />
-          <TextField variant="outlined" label="password" />
-        </FormControl>
-      );
-      break;
-    case "login":
-      form = (
-        <FormControl className="flex flex-col h-[200px] justify-around">
-          <TextField variant="outlined" label="username" />
-          <TextField variant="outlined" label="password" />
-        </FormControl>
-      );
-      break;
-    case "register":
-      form = (
-        <Box>
-          <FormControl className="flex flex-col h-[700px] justify-around w-full">
-            <InputLabel id="title">title</InputLabel>
-            <Select labelId="title" label="title" required={true}>
-              <MenuItem value={0}>Mr.</MenuItem>
-              <MenuItem value={1}>Ms.</MenuItem>
-              <MenuItem value={2}>Co.</MenuItem>
-            </Select>
-            <div className="flex justify-between w-full gap-5">
-              <TextField
-                variant="outlined"
-                label="first name"
-                required={true}
-                className="w-1/2"
-              />
-              <TextField
-                variant="outlined"
-                label="last name"
-                required={true}
-                className="w-1/2"
-              />
-            </div>
-            <TextField variant="outlined" label="username" required={true} />
-            <TextField variant="outlined" label="email" required={true} />
-            <TextField
-              variant="outlined"
-              label="password"
-              required={true}
-              type="password"
-            />
-            <TextField
-              variant="outlined"
-              label="confirm password"
-              required={true}
-              type="password"
-            />
-            <TextField
-              variant="outlined"
-              label="phone number"
-              required={true}
-            />
-            <InputLabel id="country"></InputLabel>
-            <Select label="country" labelId="country" required={true}>
-              {countriesList.map((country, i) => {
-                if (country) {
-                  return (
-                    <MenuItem value={country.id} key={i}>
-                      {country.name}
-                    </MenuItem>
-                  );
-                }
-              })}
-            </Select>
-          </FormControl>
-        </Box>
-      );
-      break;
-  }
-
-  return (
-    <Dialog open={open} title={type}>
-      <div className="w-[500px] p-12 flex flex-col justify-around align-middle">
-        <h1 className="self-center">{type}</h1>
-        <form
-          onSubmit={handelSubmission}
-          className="self-center flex flex-col justify-around min-h-max w-full"
-        >
-          {form}
-          <div className="mt-5 flex justify-around align-middle">
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              close
-            </Button>
-            <Button type="submit" variant="contained">
-              submit
-            </Button>
-          </div>
-        </form>
-        <p className="self-center">
-          please{" "}
-          <Link
-            onClick={() => {
-              setType("login");
-            }}
-          >
-            Login
-          </Link>{" "}
-          or{" "}
-          <Link
-            onClick={() => {
-              setType("register");
-            }}
-          >
-            Register
-          </Link>
-        </p>
-      </div>
-    </Dialog>
   );
 }

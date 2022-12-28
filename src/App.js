@@ -1,4 +1,4 @@
-import { Layout } from "./landing-page/landing-page";
+import Body from "./Layout/layout";
 
 import "./App.css";
 
@@ -10,7 +10,7 @@ import "@fontsource/roboto/700.css";
 function App() {
   return (
     <div className="App">
-      <Layout></Layout>
+      <Body></Body>
     </div>
   );
 }

@@ -23,13 +23,14 @@ img{
 }
 
 .top-container{
-   background-color: #1C1702;
-   padding-top: 110px;
+    background: linear-gradient(120deg, rgba(163,146,60,1) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(107,96,39,1) 100%);
+    padding-top: 100px;
 }
 
 .title {
     font-size: 60px;
     color: aliceblue;
+    
 }
 
 .body{

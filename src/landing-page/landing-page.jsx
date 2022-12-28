@@ -92,7 +92,7 @@ function Golds() {
   ];
 
   return (
-    <div className="w-full h-[30vw] flex flex-col">
+    <div className="w-full h-[370px] flex flex-col">
       <div className="flex flex-col align-middle">
         <p className="mt-3 text-[2rem] text-slate-500">
           Reasons to Invest in Gold
@@ -122,17 +122,20 @@ function Golds() {
 
 function Reasoning() {
   return (
-    <div className="reasoning w-full h-[700px] flex">
-      <iframe
-        width="800"
-        height="494"
-        src="https://www.youtube.com/embed/D-rMb9Znfn8"
-        title="Why You Should Buy Gold and Silver - Robert Kiyosaki"
-        frameborder="10"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        className="m-auto"
-      ></iframe>
-    </div>
+    <>
+      <p className="text-[3rem] font-semibold text-[#a17a2d]">Why Should You Invest In Gold.</p>
+      <div className="reasoning w-full h-[700px] flex mt-22">
+        <iframe
+          width="800"
+          height="494"
+          src="https://www.youtube.com/embed/D-rMb9Znfn8"
+          title="Why You Should Buy Gold and Silver - Robert Kiyosaki"
+          frameborder="10"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          className="m-auto"
+        ></iframe>
+      </div>
+    </>
   );
 }

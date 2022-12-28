@@ -1,0 +1,35 @@
+.aboutus-container {
+    margin-top: 110px;
+    background-image: url("../images/goldback.jpg");
+    height: 100vh;
+    color: aliceblue;
+    
+}
+.about-content {
+    display: flex;
+
+}
+
+.khalifa-image{
+    height: 60vh;
+    margin-left: 30px;
+    margin-right: auto;
+    box-shadow: 0 0 8px 8px white inset;
+}
+
+.about{
+    width: 35vw;
+    height: 60vh;
+    margin-left: auto;
+    border: solid white;
+    border-radius: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    padding: 25px;
+    
+}
+
+.about-title{
+    font-size: 80px;
+    font-family: 'Times New Roman', Times, serif;
+}

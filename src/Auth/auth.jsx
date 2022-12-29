@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import create from "../CRUD/create";
+
 import {
   FormControl,
   Box,
@@ -15,38 +17,45 @@ export default function Auth(props) {
   const { open, setOpen } = props;
   const [type, setType] = useState("login");
   const [countriesList, setCountries] = useState([]);
-  const [login, setLogin] = useState({ username: "", password: "" });
-  const [register, setRegister] = useState({
+  const [loginState, setLoginState] = useState({ username: "", password: "" });
+  const [registerState, setRegisterState] = useState({
     title: 0,
     firstname: "",
     lastname: "",
     username: "",
     email: "",
     password: "",
-    phonenumber: "",
+    phone: "",
+    birthDay: "",
     country: 0,
+    language: 0,
   });
 
   /** Waiting for API key */
-  // useEffect(() => {
-  //   const headers = new Headers();
-  //   headers.append("X-CSCAPI-KEY", "API_KEY");
-  //   fetch("https://api.countrystatecity.in/v1/countries", {
-  //     method: "GET",
-  //     headers: headers,
-  //     redirect: "follow",
-  //   })
-  //     .then((res) => setCountries([...res]))
-  //     .catch((err) => console.error(err));
-  // });
+  useEffect(() => {
+    const headers = new Headers();
+    headers.append(
+      "X-CSCAPI-KEY",
+      "UGZ5bnVweUloZ1lKWTZBYjk3U3VuQ2VRTDl2aUY5UTQzenJieVRLSw=="
+    );
+    fetch("https://api.countrystatecity.in/v1/countries", {
+      method: "GET",
+      headers: headers,
+      redirect: "follow",
+    })
+      .then((res) =>
+        res.json().then((countries) => setCountries(() => countries))
+      )
+      .catch((err) => console.error(err));
+  }, []);
 
-  const handelSubmission = (type, event) => {
+  const handelSubmission = () => {
     if (type === "login") {
-      setLogin(event.target.value);
-      console.log(event);
-    } else {
-      setRegister(event.target.value);
+      console.log(loginState);
+    } else if (type === "register") {
+      create.createUser(registerState).then((res) => console.log(res));
     }
+    setOpen(false);
   };
 
   let form;
@@ -66,8 +75,27 @@ export default function Auth(props) {
     case "login":
       form = (
         <FormControl className="flex flex-col h-[200px] justify-around">
-          <TextField variant="outlined" label="username" />
-          <TextField variant="outlined" label="password" type="password" />
+          <TextField
+            value={loginState.username}
+            onChange={(e) =>
+              setLoginState((current) => {
+                return { ...current, username: e.target.value };
+              })
+            }
+            variant="outlined"
+            label="username"
+          />
+          <TextField
+            value={loginState.password}
+            onChange={(e) =>
+              setLoginState((current) => {
+                return { ...current, password: e.target.value };
+              })
+            }
+            variant="outlined"
+            label="password"
+            type="password"
+          />
         </FormControl>
       );
       break;
@@ -82,7 +110,16 @@ export default function Auth(props) {
           }}
         >
           <InputLabel id="title">title</InputLabel>
-          <Select labelId="title" label="title" required={true}>
+          <Select
+            labelId="title"
+            required={true}
+            value={registerState.title}
+            onChange={(e) =>
+              setRegisterState((current) => {
+                return { ...current, title: e.target.value };
+              })
+            }
+          >
             <MenuItem value={0}>Mr.</MenuItem>
             <MenuItem value={1}>Ms.</MenuItem>
             <MenuItem value={2}>Co.</MenuItem>
@@ -93,21 +130,59 @@ export default function Auth(props) {
               label="first name"
               required={true}
               className="w-1/2"
+              value={registerState.firstname}
+              onChange={(e) =>
+                setRegisterState((current) => {
+                  return { ...current, firstname: e.target.value };
+                })
+              }
             />
             <TextField
               variant="outlined"
               label="last name"
               required={true}
               className="w-1/2"
+              value={registerState.lastname}
+              onChange={(e) =>
+                setRegisterState((current) => {
+                  return { ...current, lastname: e.target.value };
+                })
+              }
             />
           </div>
-          <TextField variant="outlined" label="username" required={true} />
-          <TextField variant="outlined" label="email" required={true} />
+          <TextField
+            variant="outlined"
+            label="username"
+            required={true}
+            value={registerState.username}
+            onChange={(e) =>
+              setRegisterState((current) => {
+                return { ...current, username: e.target.value };
+              })
+            }
+          />
+          <TextField
+            variant="outlined"
+            label="email"
+            required={true}
+            value={registerState.email}
+            onChange={(e) =>
+              setRegisterState((current) => {
+                return { ...current, email: e.target.value };
+              })
+            }
+          />
           <TextField
             variant="outlined"
             label="password"
             required={true}
             type="password"
+            value={registerState.password}
+            onChange={(e) =>
+              setRegisterState((current) => {
+                return { ...current, password: e.target.value };
+              })
+            }
           />
           <TextField
             variant="outlined"
@@ -115,21 +190,60 @@ export default function Auth(props) {
             required={true}
             type="password"
           />
-          <TextField variant="outlined" label="phone number" required={true} />
+          <TextField
+            variant="outlined"
+            label="phone number"
+            required={true}
+            value={registerState.phone}
+            onChange={(e) =>
+              setRegisterState((current) => {
+                return { ...current, phone: e.target.value };
+              })
+            }
+          />
+          <InputLabel id="birth-day">birth day</InputLabel>
+          <TextField
+            variant="outlined"
+            labelId="birth-day"
+            required={true}
+            type="date"
+            value={registerState.birthDay}
+            onChange={(e) =>
+              setRegisterState((current) => {
+                return { ...current, birthDay: e.target.value };
+              })
+            }
+          />
           <InputLabel id="country">country</InputLabel>
-          <Select label="country" labelId="country" required={true}>
+          <Select
+            labelId="country"
+            required={true}
+            value={"1"}
+            onChange={(e) =>
+              setRegisterState((current) => {
+                return { ...current, country: e.target.value };
+              })
+            }
+          >
             {countriesList.map((country, i) => {
-              if (country) {
-                return (
-                  <MenuItem value={country.id} key={i}>
-                    {country.name}
-                  </MenuItem>
-                );
-              }
+              return (
+                <MenuItem value={country.id} key={i}>
+                  {country.name}
+                </MenuItem>
+              );
             })}
           </Select>
           <InputLabel id="language">language</InputLabel>
-          <Select label="language" labelId="language" required={false}>
+          <Select
+            labelId="language"
+            required={false}
+            value={0}
+            onChange={(e) =>
+              setRegisterState((current) => {
+                return { ...current, language: e.target.value };
+              })
+            }
+          >
             <MenuItem value={0}>english</MenuItem>
             <MenuItem value={1}>arrabic</MenuItem>
           </Select>
@@ -142,10 +256,7 @@ export default function Auth(props) {
     <Dialog open={open} title={type === "login" ? "Login" : "Register"}>
       <div className="p-12 flex flex-col justify-around align-middle">
         <h1 className="self-center">{type}</h1>
-        <form
-          onSubmit={(event)=>handelSubmission(type,event)}
-          className="self-center flex flex-col justify-around min-h-max w-full"
-        >
+        <form className="self-center flex flex-col justify-around min-h-max w-full">
           {form}
           <div className="mt-5 flex justify-around align-middle">
             <Button
@@ -157,7 +268,7 @@ export default function Auth(props) {
             >
               close
             </Button>
-            <Button type="submit" variant="contained">
+            <Button onClick={handelSubmission} variant="contained">
               submit
             </Button>
           </div>
@@ -168,6 +279,7 @@ export default function Auth(props) {
             role="button"
             onClick={() => {
               setType("login");
+              console.log(type);
             }}
           >
             Login
@@ -177,6 +289,7 @@ export default function Auth(props) {
             role="button"
             onClick={() => {
               setType("register");
+              console.log(type);
             }}
           >
             Register

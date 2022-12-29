@@ -1,3 +1,5 @@
+import { env } from "../environment/environment";
+
 
 const createUser = async (user) => {
     const createDetails = {
@@ -18,7 +20,7 @@ const createUser = async (user) => {
         profilePictureID: user.profilePictureID,
         language: user.language
     };
-    fetch(`/api/users/`, {
+    fetch(`${env.baseUrl}/api/users/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

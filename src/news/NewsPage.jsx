@@ -3,12 +3,12 @@ import "./newspage.css";
 
 import { Divider } from "@mui/material";
 
-import woman from "./../images/woman.jpg";
-import goldplate from "./../images/plateofgold.jpg";
-import ringBox from "./../images/ringBox.jpg";
-import threeRings from "./../images/threeRings.jpeg";
-import gold from "./../images/gold.jpeg";
-import goldPrice from "./../images/goldPrice.jpg";
+import woman from "./../assets/images/woman.jpg";
+import goldplate from "./../assets/images/plateofgold.jpg";
+import ringBox from "./../assets/images/ringBox.jpg";
+import threeRings from "./../assets/images/threeRings.jpeg";
+import gold from "./../assets/images/gold.jpeg";
+import goldPrice from "./../assets/images/goldPrice.jpg";
 
 export default function NewsPage() {
   const newsContent = [

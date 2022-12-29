@@ -5,10 +5,10 @@ import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 
 import "./landing-page.css";
 
-import logo from "../images/logo.png";
-import zlato from "../images/zlato.jpg";
-import stribro from "../images/stribro.jpg";
-import kovy from "../images/strategické kovy.jpg";
+import logo from "../assets/images/logo.png";
+import zlato from "../assets/images/zlato.jpg";
+import stribro from "../assets/images/stribro.jpg";
+import kovy from "../assets/images/strategické kovy.jpg";
 
 export default function LandingPage() {
   return (

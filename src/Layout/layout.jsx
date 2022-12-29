@@ -6,7 +6,7 @@ import Contracts from "../contacts/Contracts.jsx";
 import Investment from "../investment/InvestmentPage.jsx";
 import AboutUs from "../aboutUS/AboutUs.jsx";
 
-import logo_sm from "../images/logo small.png";
+import logo_sm from "../assets/images/logo small.png";
 
 import {
   Tooltip,

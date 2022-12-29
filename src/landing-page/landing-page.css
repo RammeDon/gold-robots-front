@@ -1,5 +1,5 @@
 .header-background {
-  background-image: url("../images/title\ background.jpg");
+  background-image: url("../assets/images/title\ background.jpg");
   background-size: 120vw;
   background-repeat: no-repeat;
 }
@@ -37,7 +37,7 @@
 }
 
 .dollars {
-  background-image: url("../images/dolars.jpg");
+  background-image: url("../assets/images/dolars.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -47,7 +47,7 @@
 }
 
 .reasoning {
-  background-image: url("../images/goldbars.webp");
+  background-image: url("../assets/images/goldbars.webp");
   background-size: 100%;
   background-repeat: no-repeat;
 }

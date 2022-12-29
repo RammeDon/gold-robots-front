@@ -1,6 +1,6 @@
 import React from "react";
 import "./aboutUs.css";
-import khalifa from "./../images/khalifa.jpg";
+import khalifa from "./../assets/images/khalifa.jpg";
 
 export default function AboutUs() {
   if (window.innerWidth > 420) {

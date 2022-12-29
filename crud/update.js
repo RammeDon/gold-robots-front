@@ -1,15 +1,19 @@
 const updateUser = async (updateDetails, id) => {
     const userDetails = {
+        title: updateDetails.title,
+        userID: updateDetails.userID,
         username: updateDetails.username,
         firstname: updateDetails.firstname,
         lastname: updateDetails.lastname,
-        title: updateDetails.title,
-        password: updateDetails.password,
-        admin: updateDetails.admin,
+        birthDay: updateDetails.birthDay,
         phone: updateDetails.phone,
         email: updateDetails.email,
         country: updateDetails.country,
-        language: updateDetails.language
+        language: updateDetails.language,
+        accoutID: updateDetails.accountID,
+        contractID: updateDetails.contractID,
+        personalSettings: updateDetails.personalSettings,
+        profilePictureID: updateDetails.profilePictureID
     };
 
     fetch(`/api/users/${id}`, {
@@ -27,4 +31,23 @@ const updateUser = async (updateDetails, id) => {
         });
 }
 
-export default updateUser
+const updateContract = async (updateDetails, id) => {
+    const contractDetails = {
+        title: updateDetails.title,
+        userID: updateDetails.userID,
+        username: updateDetails.username,
+        firstname: updateDetails.firstname,
+        lastname: updateDetails.lastname,
+        birthDay: updateDetails.birthDay,
+        phone: updateDetails.phone,
+        email: updateDetails.email,
+        country: updateDetails.country,
+        language: updateDetails.language,
+        accoutID: updateDetails.accountID,
+        contractID: updateDetails.contractID,
+        personalSettings: updateDetails.personalSettings,
+        profilePictureID: updateDetails.profilePictureID
+    };
+}
+
+export default {updateUser, updateContract}

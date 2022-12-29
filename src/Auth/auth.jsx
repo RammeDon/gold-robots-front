@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import create from "../CRUD/create";
+import read from "../CRUD/read";
 
 import {
   FormControl,
@@ -34,29 +35,18 @@ export default function Auth(props) {
   });
   const [openAlert, setOpenAlert] = useState();
 
-  /** Waiting for API key */
   useEffect(() => {
-    const headers = new Headers();
-    headers.append(
-      "X-CSCAPI-KEY",
-      "UGZ5bnVweUloZ1lKWTZBYjk3U3VuQ2VRTDl2aUY5UTQzenJieVRLSw=="
-    );
-    fetch("https://api.countrystatecity.in/v1/countries", {
-      method: "GET",
-      headers: headers,
-      redirect: "follow",
-    })
-      .then((res) =>
-        res.json().then((countries) => setCountries(() => countries))
-      )
-      .catch((err) => console.error(err));
+    read.fetchCountries().then((res) => setCountries(res));
   }, []);
 
   const handelSubmission = () => {
     if (type === "login") {
       console.log(loginState);
     } else if (type === "register") {
-      create.createUser(registerState).then((res) => setOpenAlert(true));
+      create.createUser(registerState).then((res) => {
+        setOpenAlert(true);
+        console.log(res);
+      });
     }
     setOpen(false);
   };
@@ -291,7 +281,6 @@ export default function Auth(props) {
               role="button"
               onClick={() => {
                 setType("login");
-                console.log(type);
               }}
             >
               Login
@@ -301,7 +290,6 @@ export default function Auth(props) {
               role="button"
               onClick={() => {
                 setType("register");
-                console.log(type);
               }}
             >
               Register

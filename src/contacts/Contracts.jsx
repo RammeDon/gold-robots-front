@@ -42,7 +42,7 @@ export default function Contracts() {
   if (window.innerWidth > 420) {
     return (
       <div className="contracts-container">
-        <div className="grid grid-cols-2 grid-rows-2 relative top-32 gap-6 p-5">
+        <div className="grid grid-cols-2 grid-rows-2 pt-32 gap-6 p-5 h-full">
           {contracts.map((contract, i) => {
             return (
               <Card key={i} className="contracts col-span-1 row-span-1">

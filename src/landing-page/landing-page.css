@@ -51,3 +51,16 @@
   background-size: 100%;
   background-repeat: no-repeat;
 }
+
+
+@media screen and (min-device-width:300px) and (max-device-width:420px) {
+  .header-background{
+    background-size: 100vw 100%;
+  }
+  .dollars{
+    background-size: 383% 100%;
+  }
+  .reasoning{
+    background-size: 115% 100%;
+  }
+}

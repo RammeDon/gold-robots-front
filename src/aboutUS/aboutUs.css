@@ -4,10 +4,6 @@
     color: aliceblue;
 }
 
-.about-content {
-    display: flex;
-
-}
 
 .khalifa-image{
     height: 60vh;
@@ -28,7 +24,8 @@
     
 }
 
-.about-title{
-    font-size: 80px;
-    font-family: 'Times New Roman', Times, serif;
+@media screen and (min-device-width:300px) and (max-device-width:420px) {
+    .aboutus-container{
+        height: max-content;
+    }
 }

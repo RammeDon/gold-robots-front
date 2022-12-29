@@ -43,6 +43,7 @@ export default function Auth(props) {
   const handelSubmission = (type, event) => {
     if (type === "login") {
       setLogin(event.target.value);
+      console.log(event);
     } else {
       setRegister(event.target.value);
     }
@@ -66,7 +67,7 @@ export default function Auth(props) {
       form = (
         <FormControl className="flex flex-col h-[200px] justify-around">
           <TextField variant="outlined" label="username" />
-          <TextField variant="outlined" label="password" />
+          <TextField variant="outlined" label="password" type="password" />
         </FormControl>
       );
       break;
@@ -138,11 +139,11 @@ export default function Auth(props) {
   }
 
   return (
-    <Dialog open={open} title={type}>
-      <div className="w-[500px] p-12 flex flex-col justify-around align-middle">
+    <Dialog open={open} title={type === "login" ? "Login" : "Register"}>
+      <div className="p-12 flex flex-col justify-around align-middle">
         <h1 className="self-center">{type}</h1>
         <form
-          onSubmit={handelSubmission}
+          onSubmit={(event)=>handelSubmission(type,event)}
           className="self-center flex flex-col justify-around min-h-max w-full"
         >
           {form}

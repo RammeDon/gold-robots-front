@@ -31,3 +31,14 @@
 a {
   text-decoration: underline;
 }
+
+@media screen and (min-device-width: 300px) and (max-device-width: 420px) {
+  .container-inv {
+    padding-top: 30px;
+    height: max-content;
+    background-size: 260% 100%;
+  }
+  .p {
+    font-size: large;
+  }
+}

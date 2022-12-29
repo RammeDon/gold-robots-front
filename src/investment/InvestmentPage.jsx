@@ -6,7 +6,7 @@ export default function Investment() {
     return(
         <div className="container-inv">
             <h1 className="h1">Investment</h1>
-            <p className="p">
+            <p className="p pb-12">
                 Investing is the process of buying assets that increase in value over time and
                 provide returns in the form of income payments or capital gains. In a larger
                 sense, investing can also be about spending time or money to improve your own

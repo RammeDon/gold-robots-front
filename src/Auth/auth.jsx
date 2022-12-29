@@ -229,7 +229,7 @@ export default function Auth(props) {
           <Select
             labelId="country"
             required={true}
-            value={"1"}
+            value={registerState.country}
             onChange={(e) =>
               setRegisterState((current) => {
                 return { ...current, country: e.target.value };
@@ -248,7 +248,7 @@ export default function Auth(props) {
           <Select
             labelId="language"
             required={false}
-            value={0}
+            value={registerState.language}
             onChange={(e) =>
               setRegisterState((current) => {
                 return { ...current, language: e.target.value };

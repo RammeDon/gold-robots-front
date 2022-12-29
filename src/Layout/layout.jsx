@@ -279,10 +279,12 @@ function Footer() {
               className="text-gray-200 self-center"
               fontSize="large"
             ></FacebookOutlinedIcon>
-            <WhatsAppIcon
-              className="text-gray-200 self-center"
-              fontSize="large"
-            ></WhatsAppIcon>
+            <IconButton onClick={()=>window.open("https://wa.me/message/PKZ4I7ELXFTAH1")}>
+              <WhatsAppIcon
+                className="text-gray-200 self-center"
+                fontSize="large"
+              ></WhatsAppIcon>
+            </IconButton>
           </div>
         </div>
       </div>
@@ -305,11 +307,7 @@ function Footer() {
               className="text-gray-200 self-center"
               fontSize="large"
             ></FacebookOutlinedIcon>
-            <IconButton
-              onClick={() =>
-                window.open("https://wa.me/message/PKZ4I7ELXFTAH1")
-              }
-            >
+            <IconButton onClick={() => window.open("https://wa.me/message/PKZ4I7ELXFTAH1")}>
               <WhatsAppIcon
                 className="text-gray-200 self-center"
                 fontSize="large"

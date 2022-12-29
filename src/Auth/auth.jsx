@@ -11,6 +11,8 @@ import {
   InputLabel,
   Dialog,
   Link,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 
 export default function Auth(props) {
@@ -30,6 +32,7 @@ export default function Auth(props) {
     country: 0,
     language: 0,
   });
+  const [openAlert, setOpenAlert] = useState();
 
   /** Waiting for API key */
   useEffect(() => {
@@ -53,9 +56,17 @@ export default function Auth(props) {
     if (type === "login") {
       console.log(loginState);
     } else if (type === "register") {
-      create.createUser(registerState).then((res) => console.log(res));
+      create.createUser(registerState).then((res) => setOpenAlert(true));
     }
     setOpen(false);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenAlert(false);
   };
 
   let form;
@@ -253,49 +264,60 @@ export default function Auth(props) {
   }
 
   return (
-    <Dialog open={open} title={type === "login" ? "Login" : "Register"}>
-      <div className="p-12 flex flex-col justify-around align-middle">
-        <h1 className="self-center">{type}</h1>
-        <form className="self-center flex flex-col justify-around min-h-max w-full">
-          {form}
-          <div className="mt-5 flex justify-around align-middle">
-            <Button
-              variant="outlined"
-              color="secondary"
+    <>
+      <Dialog open={open} title={type === "login" ? "Login" : "Register"}>
+        <div className="p-12 flex flex-col justify-around align-middle">
+          <h1 className="self-center">{type}</h1>
+          <form className="self-center flex flex-col justify-around min-h-max w-full">
+            {form}
+            <div className="mt-5 flex justify-around align-middle">
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                close
+              </Button>
+              <Button onClick={handelSubmission} variant="contained">
+                submit
+              </Button>
+            </div>
+          </form>
+          <p className="self-center">
+            please{" "}
+            <Link
+              role="button"
               onClick={() => {
-                setOpen(false);
+                setType("login");
+                console.log(type);
               }}
             >
-              close
-            </Button>
-            <Button onClick={handelSubmission} variant="contained">
-              submit
-            </Button>
-          </div>
-        </form>
-        <p className="self-center">
-          please{" "}
-          <Link
-            role="button"
-            onClick={() => {
-              setType("login");
-              console.log(type);
-            }}
-          >
-            Login
-          </Link>{" "}
-          or{" "}
-          <Link
-            role="button"
-            onClick={() => {
-              setType("register");
-              console.log(type);
-            }}
-          >
-            Register
-          </Link>
-        </p>
-      </div>
-    </Dialog>
+              Login
+            </Link>{" "}
+            or{" "}
+            <Link
+              role="button"
+              onClick={() => {
+                setType("register");
+                console.log(type);
+              }}
+            >
+              Register
+            </Link>
+          </p>
+        </div>
+      </Dialog>
+      <Snackbar open={openAlert} onClose={handleClose} autoHideDuration={4000}>
+        <Alert
+          severity="success"
+          onClose={handleClose}
+          sx={{ width: "100%", position: "relative", top: "80vh" }}
+        >
+          Registration successful welcome to GoldRobots!
+        </Alert>
+      </Snackbar>
+    </>
   );
 }

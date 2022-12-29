@@ -25,7 +25,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LoginSharpIcon from "@mui/icons-material/LoginSharp";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -305,10 +305,16 @@ function Footer() {
               className="text-gray-200 self-center"
               fontSize="large"
             ></FacebookOutlinedIcon>
-            <WhatsAppIcon
-              className="text-gray-200 self-center"
-              fontSize="large"
-            ></WhatsAppIcon>
+            <IconButton
+              onClick={() =>
+                window.open("https://wa.me/message/PKZ4I7ELXFTAH1")
+              }
+            >
+              <WhatsAppIcon
+                className="text-gray-200 self-center"
+                fontSize="large"
+              ></WhatsAppIcon>
+            </IconButton>
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-gray-400 text-[0.5rem]">

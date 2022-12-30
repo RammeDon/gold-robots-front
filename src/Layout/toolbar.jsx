@@ -89,6 +89,8 @@ export function Toolbar(props) {
             </IconButton>
           </Tooltip>
           <Auth
+            setPath={props.navigate}
+            setToken={props.setToken}
             open={open}
             setOpen={(value) => {
               setOpen(value);

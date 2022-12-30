@@ -4,6 +4,11 @@ import ringBox from "./../assets/images/ringBox.jpg";
 import threeRings from "./../assets/images/threeRings.jpeg";
 import gold from "./../assets/images/gold.jpeg";
 import goldPrice from "./../assets/images/goldPrice.jpg";
+import {
+  WhatsApp,
+  EmailOutlined,
+  LocalPhone,
+} from "@mui/icons-material";
 
 export const newsContent = [
     {
@@ -35,5 +40,21 @@ export const newsContent = [
       title: "Gold dips",
       text: "The dollar index rose 0.3%. A stronger greenback makes dollar-priced bullion more expensive for overseas buyers.",
       image: goldPrice,
+    },
+  ];
+
+  export const buttonList = [
+    { name: "call", icon: <LocalPhone></LocalPhone>, onClick: () => {} },
+    {
+      name: "E-mail",
+      icon: <EmailOutlined></EmailOutlined>,
+      onClick: () => {},
+    },
+    {
+      name: "whatsapp",
+      icon: <WhatsApp></WhatsApp>,
+      onClick: () => {
+        window.open("https://wa.me/message/PKZ4I7ELXFTAH1");
+      },
     },
   ];

@@ -3,6 +3,7 @@ import NewspaperOutlinedIcon from "@mui/icons-material/NewspaperOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { WhatsApp, EmailOutlined, LocalPhone } from "@mui/icons-material";
 
 export const navButtons = [
   {
@@ -34,5 +35,21 @@ export const navButtons = [
     name: "About US",
     path: "about",
     icon: <InfoOutlinedIcon className="text-gray-200"></InfoOutlinedIcon>,
+  },
+];
+
+export const hoverButtons = [
+  { name: "call", icon: <LocalPhone></LocalPhone>, onClick: () => {} },
+  {
+    name: "E-mail",
+    icon: <EmailOutlined></EmailOutlined>,
+    onClick: () => {},
+  },
+  {
+    name: "whatsapp",
+    icon: <WhatsApp></WhatsApp>,
+    onClick: () => {
+      window.open("https://wa.me/message/PKZ4I7ELXFTAH1");
+    },
   },
 ];

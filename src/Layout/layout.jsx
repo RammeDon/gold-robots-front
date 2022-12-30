@@ -9,9 +9,12 @@ import { Toolbar } from "./toolbar";
 import { Tooltip, cardActionAreaClasses } from "@mui/material";
 import { SupportAgent } from "@mui/icons-material";
 import { hoverButtons } from "../data/layout";
+import useToken from "../token/useToken";
+import AdminPanel from "../pages/adminPage/AdminPanel.jsx"
 
 export default function Body() {
   const [path, setPath] = useState("home");
+  const { token, setToken } = useToken();
 
   const hoverButton = useRef();
 
@@ -21,31 +24,52 @@ export default function Body() {
 
   let component;
 
-  switch (path) {
-    default:
-      component = <LandingPage />;
-      break;
-    case "home":
-      component = <LandingPage />;
-      break;
-    case "news":
-      component = <NewsPage />;
-      break;
-    case "contracts":
-      component = <Contracts />;
-      break;
-    case "investment":
-      component = <Investment />;
-      break;
-    case "about":
-      component = <AboutUs />;
-      break;
+  if (!token) {
+        switch (path) {
+      default:
+        component = <LandingPage />;
+        break;
+      case "home":
+        component = <LandingPage />;
+        break;
+      case "news":
+        component = <NewsPage />;
+        break;
+      case "contracts":
+        component = <Contracts />;
+        break;
+      case "investment":
+        component = <Investment />;
+        break;
+      case "about":
+        component = <AboutUs />;
+        break;
+    }
+  } else {
+    switch (path) {
+      default:
+        component = "default"
+        break;
+      case "login":
+        component = <AdminPanel />
+        break;
+      case "viewEdit":
+        component = "viewEdit"
+        break;
+      case "payment":
+        component = "payment"
+        break;
+
+    }
   }
+
+
 
   return (
     <>
       <div className="overflow-x-hidden">
         <Toolbar
+        setToken= {setToken}
           navigate={(path) => {
             setPath(path);
           }}

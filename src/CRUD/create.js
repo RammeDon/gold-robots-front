@@ -34,6 +34,18 @@ const createUser = async (user) => {
     });
 };
 
+async function loginUser(credentials) {
+  console.log(credentials)
+  return fetch(`${env.baseUrl}/api/users/login`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+  })
+      .then(res => res.json())
+}
+
 const createAdmin = async (admin) => {
   const createDetails = {
     adminID: admin.adminID,
@@ -42,7 +54,7 @@ const createAdmin = async (admin) => {
     email: admin.email,
     password: admin.password,
   };
-  fetch(`/api/admins/`, {
+  fetch(`${env.baseUrl}/api/admins/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -73,7 +85,7 @@ const createAccount = async (account) => {
     todayMoney: account.todayMoney,
     percentageInTrades: account.percentageInTrades,
   };
-  fetch(`/api/accounts/`, {
+  fetch(`${env.baseUrl}/api/accounts/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -100,7 +112,7 @@ const createContract = async (contract) => {
     maxTradeDays: contract.maxTradeDays,
     adminClient: contract.adminClient,
   };
-  fetch(`/api/contracts/`, {
+  fetch(`${env.baseUrl}/api/contracts/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -125,7 +137,7 @@ const createPaymentHistory = async (paymentHistory) => {
     paymentSystem: paymentHistory.paymentSystem,
     status: paymentHistory.status,
   };
-  fetch(`/api/contracts/`, {
+  fetch(`${env.baseUrl}/api/paymenthistories/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -146,6 +158,7 @@ const exports = {
   createAccount,
   createContract,
   createPaymentHistory,
+  loginUser
 };
 
 export default exports;

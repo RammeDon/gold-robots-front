@@ -21,32 +21,26 @@ export default function Body() {
 
   let component;
 
-  // if (!token) {
-  //     switch (path) {
-  //   default:
-  //     component = <LandingPage />;
-  //     break;
-  //   case "home":
-  //     component = <LandingPage />;
-  //     break;
-  //   case "news":
-  //     component = <NewsPage />;
-  //     break;
-  //   case "contracts":
-  //     component = <Contracts />;
-  //     break;
-  //   case "investment":
-  //     component = <Investment />;
-  //     break;
-  //   case "about":
-  //     component = <AboutUs />;
-  //     break;
-  // }
-  // } else {
-  //   component = <AdminPanel />
-  // }
-
-
+  switch (path) {
+    default:
+      component = <LandingPage />;
+      break;
+    case "home":
+      component = <LandingPage />;
+      break;
+    case "news":
+      component = <NewsPage />;
+      break;
+    case "contracts":
+      component = <Contracts />;
+      break;
+    case "investment":
+      component = <Investment />;
+      break;
+    case "about":
+      component = <AboutUs />;
+      break;
+  }
 
   return (
     <>

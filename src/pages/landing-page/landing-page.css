@@ -1,0 +1,66 @@
+.header-background {
+  background-image: url("../../assets/images/title\ background.jpg");
+  background-size: 120vw;
+  background-repeat: no-repeat;
+}
+
+.nav-btn {
+  color: rgb(209 213 219);
+  transition: all 200ms ease;
+  font-weight: 600;
+}
+
+.nav-btn-selected {
+  color: goldenrod;
+  transform: scale(1.2);
+  font-weight: 700;
+}
+
+.nav-btn:hover {
+  color: goldenrod;
+  transform: scale(1.3);
+}
+
+.header-btn {
+  color: goldenrod;
+  border: 1px goldenrod solid;
+  transform: rotate(45deg);
+  width: 60px;
+  height: 60px;
+  transition: all 200ms ease;
+}
+
+.header-btn:hover {
+  border-color: white;
+  background-color: goldenrod;
+  color: white;
+}
+
+.dollars {
+  background-image: url("../../assets/images/dolars.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.up {
+  transform: rotate(135deg);
+}
+
+.reasoning {
+  background-image: url("../../assets/images/goldbars.webp");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+
+@media screen and (min-device-width:300px) and (max-device-width:420px) {
+  .header-background{
+    background-size: 100vw 100%;
+  }
+  .dollars{
+    background-size: 383% 100%;
+  }
+  .reasoning{
+    background-size: 115% 100%;
+  }
+}

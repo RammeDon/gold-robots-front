@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Auth from "../Auth/auth.jsx";
-import LandingPage from "../landing-page/landing-page.jsx";
-import NewsPage from "../news/NewsPage.jsx";
-import Contracts from "../contacts/Contracts.jsx";
-import Investment from "../investment/InvestmentPage.jsx";
-import AboutUs from "../aboutUS/AboutUs.jsx";
+import Auth from "../contexts/Auth/auth";
+import LandingPage from "../pages/landing-page/landing-page";
+import NewsPage from "../pages/news/NewsPage.jsx";
+import Contracts from "../pages/contacts/Contracts.jsx";
+import Investment from "../pages/investment/InvestmentPage.jsx";
+import AboutUs from "../pages/aboutUS/AboutUs.jsx";
 
 import logo_sm from "../assets/images/logo small.png";
 
@@ -279,7 +279,11 @@ function Footer() {
               className="text-gray-200 self-center"
               fontSize="large"
             ></FacebookOutlinedIcon>
-            <IconButton onClick={()=>window.open("https://wa.me/message/PKZ4I7ELXFTAH1")}>
+            <IconButton
+              onClick={() =>
+                window.open("https://wa.me/message/PKZ4I7ELXFTAH1")
+              }
+            >
               <WhatsAppIcon
                 className="text-gray-200 self-center"
                 fontSize="large"
@@ -307,7 +311,11 @@ function Footer() {
               className="text-gray-200 self-center"
               fontSize="large"
             ></FacebookOutlinedIcon>
-            <IconButton onClick={() => window.open("https://wa.me/message/PKZ4I7ELXFTAH1")}>
+            <IconButton
+              onClick={() =>
+                window.open("https://wa.me/message/PKZ4I7ELXFTAH1")
+              }
+            >
               <WhatsAppIcon
                 className="text-gray-200 self-center"
                 fontSize="large"

@@ -6,6 +6,7 @@ export const contracts = [
       garantiePercentage: 25,
       adminClients: 3,
       level: "Basic, Inter",
+      color:'gray'
     },
     {
       name: "Contract B",
@@ -14,6 +15,7 @@ export const contracts = [
       garantiePercentage: 35,
       adminClients: 3,
       level: "Basic, Inter, High",
+      color:'silver'
     },
     {
       name: "Contract C",
@@ -22,6 +24,7 @@ export const contracts = [
       garantiePercentage: 45,
       adminClients: 2,
       level: "Inter, High",
+      color:'#864c1c'
     },
     {
       name: "Contract D",
@@ -30,5 +33,6 @@ export const contracts = [
       garantiePercentage: 60,
       adminClients: 1,
       level: "VIP",
+      color:'#f3cf08'
     },
   ];

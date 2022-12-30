@@ -7,10 +7,10 @@ export default function AboutUs() {
     return (
       <div className="aboutus-container">
         <div className="flex pt-32 px-10 justify-between align-middle">
-          <div className="flex flex-col justify-around w-1/2">
-            <h1 className="about-title self-center mr-20">About us</h1>
+          <div className="flex flex-col justify-center w-1/2">
+            <h1 className="about-title self-center text-[5rem] mr-20 mb-12">About us</h1>
             <div className="about-content">
-              <p className="text-left text-lg mr-10">
+              <p className="text-left text-[1.5vw] mr-10">
                 {" "}
                 Welcome to gold robots ! We aim to offer our customers a variety
                 of the latest robots . We’ve come a long way, so we know exactly
@@ -27,8 +27,7 @@ export default function AboutUs() {
             </div>
           </div>
           <img
-            className="h-full m-auto"
-            width={300}
+            className="h-[75vh] w-[25vw] m-auto"
             src={khalifa}
             alt="khalifa"
           />

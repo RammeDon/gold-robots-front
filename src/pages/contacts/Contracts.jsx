@@ -12,7 +12,7 @@ export default function Contracts() {
         <div className="grid grid-cols-2 grid-rows-2 pt-32 gap-6 p-5">
           {contracts.map((contract, i) => {
             return (
-              <Card key={i} className="contracts col-span-1 row-span-1">
+              <Card key={i} className="contracts col-span-1 row-span-1"style={{backgroundColor:contract.color}}>
                 <CardContent>
                   <Typography component="div" variant="h5">
                     {contract.name}

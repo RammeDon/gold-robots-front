@@ -21,8 +21,21 @@ export default function Auth(props) {
   });
   const [openAlert, setOpenAlert] = useState();
 
-  const handelSubmission = () => {
+  const handelSubmission = async () => {
     if (type === "login") {
+        const token = await create.loginUser({
+          username : loginState.username,
+          password : loginState.password
+        });
+        if (token){
+          props.setToken(token);
+          props.setPath("login")
+          console.log("token")
+        }
+        
+
+        document.location.reload();
+
       console.log(loginState);
     } else if (type === "register") {
       create.createUser(registerState).then((res) => {

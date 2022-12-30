@@ -5,6 +5,7 @@ import NewsPage from "../pages/news/NewsPage.jsx";
 import Contracts from "../pages/contacts/Contracts.jsx";
 import Investment from "../pages/investment/InvestmentPage.jsx";
 import AboutUs from "../pages/aboutUS/AboutUs.jsx";
+import ProfilePage from "../pages/profilePage/ProfilePage.jsx";
 
 import logo_sm from "../assets/images/logo small.png";
 
@@ -33,6 +34,7 @@ import NewspaperOutlinedIcon from "@mui/icons-material/NewspaperOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import useToken from "../token/useToken.js";
 
 function Toolbar(props) {
   const navButtons = [
@@ -73,6 +75,7 @@ function Toolbar(props) {
   const [selected, setSelected] = useState();
 
   const [toggle, setToggle] = useState(false);
+
 
   const navClick = (event) => {
     if (selected) {
@@ -126,6 +129,7 @@ function Toolbar(props) {
             setOpen={(value) => {
               setOpen(value);
             }}
+            setToken = {props.setToken}
           />
           {navButtons.map((button, i) => {
             return (
@@ -165,9 +169,11 @@ function Toolbar(props) {
         </div>
         <Auth
           open={open}
+          setPath={props.navigate}
           setOpen={(value) => {
             setOpen(value);
           }}
+          
         />
         <ThemeProvider theme={DrawerTheme}>
           <Drawer
@@ -210,9 +216,12 @@ function Toolbar(props) {
 
 export default function Body() {
   const [path, setPath] = useState("home");
+  const { token, setToken } = useToken();
 
   let component;
-  switch (path) {
+
+  if (!token) {
+      switch (path) {
     default:
       component = <LandingPage />;
       break;
@@ -232,6 +241,11 @@ export default function Body() {
       component = <AboutUs />;
       break;
   }
+  } else {
+    component = <ProfilePage />
+  }
+
+
 
   return (
     <div className="overflow-x-hidden">
@@ -239,6 +253,8 @@ export default function Body() {
         navigate={(path) => {
           setPath(path);
         }}
+        setToken= {setToken}
+
       ></Toolbar>
       {component}
       <Footer></Footer>

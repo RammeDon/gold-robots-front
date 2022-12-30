@@ -5,7 +5,7 @@ import NewsPage from "../pages/news/NewsPage.jsx";
 import Contracts from "../pages/contacts/Contracts.jsx";
 import Investment from "../pages/investment/InvestmentPage.jsx";
 import AboutUs from "../pages/aboutUS/AboutUs.jsx";
-import ProfilePage from "../pages/profilePage/ProfilePage.jsx";
+import AdminPanel from "../pages/adminPage/AdminPanel.jsx";
 
 import logo_sm from "../assets/images/logo small.png";
 
@@ -242,7 +242,7 @@ export default function Body() {
       break;
   }
   } else {
-    component = <ProfilePage />
+    component = <AdminPanel />
   }
 
 

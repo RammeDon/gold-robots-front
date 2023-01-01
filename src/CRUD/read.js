@@ -2,12 +2,24 @@ import { env } from "../environment/environment";
 
 const fetchCollection = async (collection) => {
   let data = [];
-  await fetch(`/api/${collection}`)
+  await fetch(`${env.baseUrl}/api/${collection}`)
     .then((response) => response.json())
     .then((res) => (data = res)) // either this or data.push(res)
     .catch((error) => console.log(error.message));
   return data[0];
 };
+
+
+const fetchOne = async (collection, id) => {
+  let data = []
+  await fetch(`${env.baseUrl}/api/${collection}/${id}`)
+      .then(response => response.json())
+      .then(res => data.push(res))
+      .catch(error => console.log(error.message))
+  //console.log(data[0])
+  return data[0]
+}
+
 
 const fetchCountries = async () => {
   const headers = new Headers();
@@ -24,6 +36,6 @@ const fetchCountries = async () => {
     .catch((err) => console.error(err));
 };
 
-const exports = { fetchCollection, fetchCountries };
+const exports = { fetchCollection, fetchCountries, fetchOne };
 
 export default exports;

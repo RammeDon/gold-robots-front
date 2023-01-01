@@ -100,6 +100,17 @@ const createAccount = async (account) => {
     });
 };
 
+const createImage = async (imageForm) => {
+
+  fetch(`${env.baseUrl}/api/images`, {
+    method: "POST",
+    body: imageForm
+  })
+    .then(res => res.text())
+    .then(resBody => console.log(resBody))
+
+}
+
 const createContract = async (contract) => {
   const createDetails = {
     userID: contract.userID,
@@ -158,7 +169,8 @@ const exports = {
   createAccount,
   createContract,
   createPaymentHistory,
-  loginUser
+  loginUser,
+  createImage
 };
 
 export default exports;

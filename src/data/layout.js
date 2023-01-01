@@ -3,6 +3,7 @@ import NewspaperOutlinedIcon from "@mui/icons-material/NewspaperOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { WhatsApp, EmailOutlined, LocalPhone } from "@mui/icons-material";
 
 export const navButtons = [
@@ -51,5 +52,24 @@ export const hoverButtons = [
     onClick: () => {
       window.open("https://wa.me/message/PKZ4I7ELXFTAH1");
     },
+  },
+];
+
+export const dashboardButtons = [
+  { name: "Home", icon: <HomeOutlinedIcon></HomeOutlinedIcon>, path: "home" },
+  {
+    name: "Bank",
+    icon: <AccountBalanceOutlinedIcon></AccountBalanceOutlinedIcon>,
+    path: "bank",
+  },
+  {
+    name: "Contracts",
+    icon: <FeedOutlinedIcon></FeedOutlinedIcon>,
+    path: "contracts",
+  },
+  {
+    name: "Settings",
+    icon: <SettingsIcon></SettingsIcon>,
+    path: "settings",
   },
 ];

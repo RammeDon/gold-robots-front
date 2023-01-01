@@ -24,7 +24,7 @@ export default function Auth(props) {
   const handelSubmission = async () => {
     if (type === "login") {
         const token = await create.loginUser({
-          username : loginState.username,
+        username : loginState.username,
           password : loginState.password
         });
         if (token){

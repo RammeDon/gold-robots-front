@@ -74,6 +74,21 @@ export default function Body() {
         break;
     }
   } else {
+    switch (path) {
+      default:
+        component = "default"
+        break;
+      case "login":
+        component = <AdminPanel />
+        break;
+      case "viewEdit":
+        component = "viewEdit"
+        break;
+      case "payment":
+        component = "payment"
+        break;
+
+    }
   }
 
   if (!token) {
@@ -113,20 +128,7 @@ export default function Body() {
             </Tooltip>
           );
         })}
-      </div> */
-      <>
-        <DashboardToolbar
-          setPath={(path) => {
-            setPath(path);
-          }}
-          path={path}
-        ></DashboardToolbar>
-        <div className="bg-[#0b0f19] min-h-[100vh] max-h-max pt-12 text-white">
-          {component}
-        </div>
-      </>
-    );
-  } else {
-    return;
-  }
+      </div>
+    </>
+  );
 }

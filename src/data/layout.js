@@ -73,6 +73,7 @@ export const dashboardButtons = [
     path: "settings",
   },
 ];
+
 export const adminButtons = [
   {
     name: "viewUsers",

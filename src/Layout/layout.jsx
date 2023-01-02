@@ -18,7 +18,7 @@ import { PersonalSetting } from "../pages/personal-settings/presonal-settings";
 import { ContactUS } from "../pages/contactUS/contactUs";
 
 export default function Body() {
-  const [path, setPath] = useState("home");
+  const [path, setPath] = useState();
   const { token, setToken } = useToken();
 
   const hoverButton = useRef();
@@ -52,7 +52,7 @@ export default function Body() {
     // }
     switch (path) {
       default:
-        component = <DashboardHome></DashboardHome>;
+        component = <Profile></Profile>;
         break;
       case "home":
         component = <DashboardHome></DashboardHome>;
@@ -76,18 +76,17 @@ export default function Body() {
   } else {
     switch (path) {
       default:
-        component = "default"
+        component = "default";
         break;
       case "login":
-        component = <AdminPanel />
+        component = <AdminPanel />;
         break;
       case "viewEdit":
-        component = "viewEdit"
+        component = "viewEdit";
         break;
       case "payment":
-        component = "payment"
+        component = "payment";
         break;
-
     }
   }
 
@@ -133,7 +132,12 @@ export default function Body() {
         })}
       </div> */
       <>
-        <DashboardToolbar setPath={(path)=>{setPath(path)}} path={path}></DashboardToolbar>
+        <DashboardToolbar
+          setPath={(path) => {
+            setPath(path);
+          }}
+          path={path}
+        ></DashboardToolbar>
         <div className="bg-[#0b0f19] min-h-[100vh] max-h-max pt-12 text-white">
           {component}
         </div>

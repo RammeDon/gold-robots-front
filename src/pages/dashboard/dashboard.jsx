@@ -26,6 +26,15 @@ const Balance = () => (
   >
     <Card sx={{ backgroundColor: "#111827", color: "#cbd1d7" }}>
       <Grid container>
+        <Grid md={12} sm={12}>
+            <Typography fontSize={30} sx={{ color: "white" }}>
+              Welcome Back !
+            </Typography>
+            <div className="flex gap-5 justify-center text-2xl text-[#9ca3af]">
+              <span>username</span>
+              <span>ID</span>
+            </div>
+        </Grid>
         <Grid
           item
           md={3}
@@ -162,7 +171,7 @@ const Balance = () => (
 
 const Charts = () => (
   <div className="w-full mt-12 pb-12 px-5">
-    <Grid container sx={{ justifyContent: "space-between",rowGap:5 }}>
+    <Grid container sx={{ justifyContent: "space-between", rowGap: 5 }}>
       <Grid md={4} sm={12}>
         <Card
           sx={{
@@ -203,6 +212,7 @@ const Charts = () => (
             justifyContent: "center",
           }}
         >
+          <Typography sx={{ color: "white" }}>Remaning days</Typography>
           <CounterChart></CounterChart>
         </Card>
       </Grid>

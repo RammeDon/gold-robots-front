@@ -22,9 +22,21 @@ import {
 } from "@mui/material";
 import { borderColor } from "@mui/system";
 import { useState } from "react";
+import bitcion from "../../assets/icons/bitcion.png";
+import paypal from "../../assets/icons/paypal.png";
+import skrill from "../../assets/icons/skrill.png";
+import perfect_money from "../../assets/icons/perfect-money.png";
+import visa from "../../assets/icons/visa.png";
+import binance from "../../assets/icons/binance.png";
 
 export function Bank() {
   const [action, setAction] = useState(1);
+
+  const seprate = () => {
+    if (window.innerWidth > 420) {
+      return <div className="w-[1px] bg-[#cbd1d7]"></div>;
+    }
+  };
 
   let component;
 
@@ -52,7 +64,6 @@ export function Bank() {
       <Card
         sx={{
           width: "100%",
-          height: "300px",
           mb: 4,
           backgroundColor: "#111827",
           color: "white",
@@ -60,85 +71,117 @@ export function Bank() {
       >
         <Grid container sx={{ justifyContent: "center" }}>
           <Grid md={5} sm={12} sx={{ p: 3 }}>
-            <Typography fontSize={30} sx={{ mb: "12px   " }}>
-              Bank 1
-            </Typography>
+            <Card
+              sx={{
+                backgroundColor: "#0b0f19",
+                color: "white",
+                p: 1.5,
+                mb: "12px",
+              }}
+            >
+              <Typography fontSize={30}>Bank name</Typography>
+            </Card>
             <div className="flex flex-col gap-3">
-              <div className="flex gap-3">
+              <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
+                <Typography fontSize={15}>
+                  <b className="mr-2">Account number:</b> 0000 0000 0000 0000
+                </Typography>
+              </Card>
+              <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
+                <Typography>
+                  <b>Swift code:</b> 0000 0000
+                </Typography>
+              </Card>
+
+              <div className="flex justify-around gap-3">
                 <Card
-                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
-                >
-                  <Typography fontSize={15}>
-                    <b className="mr-2">Account number:</b> 0000 0000 0000 0000
-                  </Typography>
-                </Card>
-                <Card
-                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
-                >
-                  <Typography>Bank name</Typography>
-                </Card>
-              </div>
-              <div className="flex gap-3">
-                <Card
-                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
+                  sx={{
+                    backgroundColor: "#0b0f19",
+                    color: "white",
+                    p: 1.5,
+                    width: "80%",
+                  }}
                 >
                   <Typography>
                     <b>Country:</b> Turkey
                   </Typography>
                 </Card>
                 <Card
-                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
+                  sx={{
+                    backgroundColor: "#0b0f19",
+                    color: "white",
+                    p: 1.5,
+                    w: "20%",
+                  }}
                 >
                   <Typography>Currency</Typography>
                 </Card>
               </div>
+            </div>
+            <Button
+              color="secondary"
+              sx={{ color: "white", mt: "12px" }}
+              variant="contained"
+            >
+              Submit
+            </Button>
+          </Grid>
+          {seprate()}
+          <Grid md={5} sm={12} sx={{ p: 3 }}>
+            <Card
+              sx={{
+                backgroundColor: "#0b0f19",
+                color: "white",
+                p: 1.5,
+                mb: "12px",
+              }}
+            >
+              <Typography fontSize={30}>Bank name</Typography>
+            </Card>
+            <div className="flex flex-col gap-3">
+              <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
+                <Typography fontSize={15}>
+                  <b className="mr-2">Account number:</b> 0000 0000 0000 0000
+                </Typography>
+              </Card>
               <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
                 <Typography>
                   <b>Swift code:</b> 0000 0000
                 </Typography>
               </Card>
-            </div>
-          </Grid>
-          <div className="w-[1px] bg-[#8d94a1] h-[300px]"></div>
-          <Grid md={5} sm={12} sx={{ p: 3 }}>
-            <Typography fontSize={30} sx={{ mb: "12px" }}>
-              Bank 2
-            </Typography>
-            <div className="flex flex-col gap-3">
-              <div className="flex gap-3">
+
+              <div className="flex justify-around gap-3">
                 <Card
-                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
+                  sx={{
+                    backgroundColor: "#0b0f19",
+                    color: "white",
+                    p: 1.5,
+                    width: "80%",
+                  }}
                 >
                   <Typography>
-                    <b>Account number:</b> 0000 0000 0000 0000
+                    <b>Country:</b> Turkey
                   </Typography>
                 </Card>
                 <Card
-                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
-                >
-                  <Typography>Bank name</Typography>
-                </Card>
-              </div>
-              <div className="flex gap-3">
-                <Card
-                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
-                >
-                  <Typography>
-                    <b>Country:</b>Turkey
-                  </Typography>
-                </Card>
-                <Card
-                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
+                  sx={{
+                    backgroundColor: "#0b0f19",
+                    color: "white",
+                    p: 1.5,
+                    w: "20%",
+                  }}
                 >
                   <Typography>Currency</Typography>
                 </Card>
               </div>
-              <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
-                <Typography>
-                  <b>Swift code:</b>0000 0000
-                </Typography>
-              </Card>
             </div>
+            <Button
+              color="secondary"
+              sx={{ color: "white", mt: "12px" }}
+              variant="contained"
+            >
+              Submit
+            </Button>
           </Grid>
         </Grid>
       </Card>
@@ -150,7 +193,7 @@ export function Bank() {
             setAction(0);
           }}
         >
-          Diposit
+          Deposit
         </p>
         <div className="w-[1px] bg-[#8d94a1] h-[30px] relative bottom-1"></div>
         <p
@@ -303,30 +346,50 @@ function Action(props) {
 
   return (
     <ThemeProvider theme={ButtonTheme}>
-      <p className="mb-10">{props.action === 0 ? "Diposit" : "Withdraw"}</p>
+      <p className="mb-10">{props.action === 0 ? "Deposit" : "Withdraw"}</p>
       <form className="flex justify-center gap-2 pb-5">
         <FormControl>
           <InputLabel id="type" sx={{ color: "white" }} color="warning">
             Type
           </InputLabel>
           <Select
-            sx={{ width: 100,color:'white' }}
+            sx={{ width: 200, color: "white" }}
             labelId="type"
             label="type"
             color="warning"
           >
-            <MenuItem value={0}>Crypto</MenuItem>
-            <MenuItem value={1}>Paypal</MenuItem>
-            <MenuItem value={2}>Visa/Master</MenuItem>
-            <MenuItem value={3}>Skrill</MenuItem>
-            <MenuItem value={4}>Perfect Money</MenuItem>
-            <MenuItem value={5}>Binance Pay</MenuItem>
+            <MenuItem value={0}>
+              <img src={bitcion} width={25} className="mr-2" alt="" />
+              Crypto
+            </MenuItem>
+            <MenuItem value={1}>
+              {" "}
+              <img src={paypal} width={25} className="mr-2" alt="" />
+              Paypal{" "}
+            </MenuItem>
+            <MenuItem value={2}>
+              <img src={visa} width={25} className="mr-2" alt="" />
+              Visa/Master
+            </MenuItem>
+            <MenuItem value={3}>
+              <img src={skrill} width={25} className="mr-2" alt="" />
+              Skrill
+            </MenuItem>
+            <MenuItem value={4}>
+              <img src={perfect_money} width={25} className="mr-2" alt="" />
+              Perfect Money
+            </MenuItem>
+            <MenuItem value={5}>
+              <img src={binance} width={25} className="mr-2" alt="" />
+              Binance Pay
+            </MenuItem>
           </Select>
         </FormControl>
         <TextField
           label="ammount"
           variant={props.variant}
           color={props.color}
+          sx={{ width: "300px" }}
           InputProps={{
             sx: { color: "white", borderColor: "white" },
           }}

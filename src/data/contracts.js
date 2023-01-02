@@ -1,7 +1,7 @@
 export const contracts = [
   {
     name: "Contract A",
-    minDuration: "45 days",
+    minDuration: 45,
     minDeposite: "2,500,000 $",
     minProfit: 3,
     profitSharing: 40,
@@ -13,7 +13,7 @@ export const contracts = [
   },
   {
     name: "Contract B",
-    minDuration: "60 days",
+    minDuration: 60,
     minProfit: 4,
     profitSharing: 50,
     maxTradeDays: 85,
@@ -25,7 +25,7 @@ export const contracts = [
   },
   {
     name: "Contract C",
-    minDuration: "45 days",
+    minDuration: 45,
     minDeposite: "5,000,000 $",
     minProfit: 6,
     profitSharing: 60,
@@ -37,7 +37,7 @@ export const contracts = [
   },
   {
     name: "Contract D",
-    minDuration: "90 days",
+    minDuration: 90,
     minDeposite: "8,000,000 $",
     minProfit: 8,
     profitSharing: 65,

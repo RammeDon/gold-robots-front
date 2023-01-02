@@ -49,5 +49,12 @@ export function CounterChart() {
     labels: ["Days"],
   };
 
-  return <Chart options={options} type="radialBar" series={[45]} height={350}></Chart>;
+  return (
+    <Chart
+      options={options}
+      type="radialBar"
+      series={[45]}
+      height={350}
+    ></Chart>
+  );
 }

@@ -106,7 +106,7 @@ export function DurationChart(props) {
   return (
     <Chart
       height={300}
-      series={[...props.data]}
+      series={props.data}
       options={chartOptions}
       type="radialBar"
       className="relative "

@@ -1,10 +1,16 @@
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import NewspaperOutlinedIcon from "@mui/icons-material/NewspaperOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { WhatsApp, EmailOutlined, LocalPhone } from "@mui/icons-material";
+import {
+  WhatsApp,
+  EmailOutlined,
+  LocalPhone,
+  AccountCircle,
+} from "@mui/icons-material";
 
 export const navButtons = [
   {
@@ -56,7 +62,8 @@ export const hoverButtons = [
 ];
 
 export const dashboardButtons = [
-  { name: "Home", icon: <HomeOutlinedIcon></HomeOutlinedIcon>, path: "home" },
+  { name: "Profile", icon: <AccountCircle></AccountCircle>, path: "profile" },
+  { name: "Dashboard", icon: <DashboardIcon></DashboardIcon>, path: "home" },
   {
     name: "Bank",
     icon: <AccountBalanceOutlinedIcon></AccountBalanceOutlinedIcon>,

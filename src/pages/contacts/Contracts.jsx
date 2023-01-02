@@ -12,10 +12,7 @@ import {
 } from "@mui/material";
 import { DurationChart, MinimumProfitChart } from "../../components/ui/charts";
 import { ProfitSharingChart } from "../../components/ui/charts/pie";
-import {
-  ChevronLeft,
-  ChevronRight,
-} from "@mui/icons-material";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 export default function Contracts() {
   if (window.innerWidth > 420) {
@@ -132,8 +129,8 @@ export function DashboardContracts() {
           pt: "12px",
           mx: "auto",
           px: "12px",
-          pb:'20px',
-          mb:'12px',
+          pb: "20px",
+          mb: "12px",
           minHeight: "500px",
         }}
       >
@@ -147,13 +144,16 @@ export function DashboardContracts() {
             onClick={() => {
               setContractIndex((perv) => (perv === 0 ? 0 : perv - 1));
             }}
-            sx={{ color: "white" }}
+            sx={{ color: "white", height: "50", my: "auto" }}
           >
             <ChevronLeft fontSize="large"></ChevronLeft>
           </Button>
 
           <div>
-            <Grid container sx={{ width: "100%", justifyContent: "center",mb:5 }}>
+            <Grid
+              container
+              sx={{ width: "100%", justifyContent: "center", mb: 5 }}
+            >
               <Grid md={4} sm={12}>
                 <div className="flex flex-col justify-between text-white">
                   <MinimumProfitChart
@@ -171,7 +171,9 @@ export function DashboardContracts() {
                 </div>
               </Grid>
               <Grid md={4} sm={12}>
-                <DurationChart data={[contract.maxTradeDays,contract.minDuration]}></DurationChart>
+                <DurationChart
+                  data={[contract.maxTradeDays, contract.minDuration]}
+                ></DurationChart>
               </Grid>
             </Grid>
             <Grid container>
@@ -188,17 +190,26 @@ export function DashboardContracts() {
                 </div>
               </Grid>
               <Grid md={6}>
-                <div className="w-max mr-auto">
+                <div className="w-max mt-3 mr-auto flex">
                   <TextField
                     InputLabelProps={{ sx: { color: "white" } }}
                     InputProps={{ sx: { color: "white" } }}
                     type="date"
                   ></TextField>
+                  <span className="text-[#9096a3] mt-auto mb-2 ml-3">
+                    Amdin Clients: {contract.adminClients}
+                  </span>
                 </div>
               </Grid>
               <Grid md={6}>
                 <Button
-                  sx={{ color: "white" ,height:60}}
+                  sx={{
+                    color: "white",
+                    height: 60,
+                    position: "relative",
+                    left: "160px",
+                    top: "10px",
+                  }}
                   color="secondary"
                   variant="contained"
                 >
@@ -211,7 +222,7 @@ export function DashboardContracts() {
             onClick={() => {
               setContractIndex((perv) => (perv === 3 ? 3 : perv + 1));
             }}
-            sx={{ color: "white" }}
+            sx={{ color: "white", height: "50px", my: "auto" }}
           >
             <ChevronRight fontSize="large"></ChevronRight>
           </Button>

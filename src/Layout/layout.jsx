@@ -11,7 +11,7 @@ import { SupportAgent } from "@mui/icons-material";
 import { hoverButtons } from "../data/layout";
 import useToken from "../token/useToken";
 import AdminPanel from "../pages/adminPage/AdminPanel.jsx";
-import { DashboardHome } from "../pages/dashboard/dashboard";
+import DashboardHome from "../pages/dashboard/dashboard.jsx";
 import { Profile } from "../pages/profile/profile";
 import { Bank } from "../pages/bank/bank";
 import { PersonalSetting } from "../pages/personal-settings/presonal-settings";
@@ -20,6 +20,7 @@ import { ContactUS } from "../pages/contactUS/contactUs";
 export default function Body() {
   const [path, setPath] = useState();
   const { token, setToken } = useToken();
+  const [loggedUser, setLoggedUser] = useState({})
 
   const hoverButton = useRef();
 
@@ -30,26 +31,41 @@ export default function Body() {
   let component;
 
   if (!token) {
+    switch (path) {
+      default:
+        component = <LandingPage />;
+        break;
+      case "home":
+        component = <LandingPage />;
+        break;
+      case "news":
+        component = <NewsPage />;
+        break;
+      case "contracts":
+        component = <Contracts />;
+        break;
+      case "investment":
+        component = <Investment />;
+        break;
+      case "about":
+        component = <AboutUs />;
+        break;
+    }
+
+  } else {
     // switch (path) {
     //   default:
-    //     component = <LandingPage />;
+    //     component = "default"
     //     break;
-    //   case "home":
-    //     component = <LandingPage />;
+    //   case "login":
+    //     component = <AdminPanel />
     //     break;
-    //   case "news":
-    //     component = <NewsPage />;
+    //   case "viewEdit":
+    //     component = "viewEdit"
     //     break;
-    //   case "contracts":
-    //     component = <Contracts />;
+    //   case "payment":
+    //     component = "payment"
     //     break;
-    //   case "investment":
-    //     component = <Investment />;
-    //     break;
-    //   case "about":
-    //     component = <AboutUs />;
-    //     break;
-    // }
     switch (path) {
       default:
         component = <Profile></Profile>;
@@ -73,27 +89,15 @@ export default function Body() {
         component = <PersonalSetting></PersonalSetting>;
         break;
     }
-  } else {
-    switch (path) {
-      default:
-        component = "default";
-        break;
-      case "login":
-        component = <AdminPanel />;
-        break;
-      case "viewEdit":
-        component = "viewEdit";
-        break;
-      case "payment":
-        component = "payment";
-        break;
     }
-  }
+  
 
   if (!token) {
     return (
-      /* <div className="overflow-x-hidden">
+      <>
+       <div className="overflow-x-hidden">
         <Toolbar
+          setLoggedUser={setLoggedUser}
           setToken={setToken}
           navigate={(path) => {
             setPath(path);
@@ -130,7 +134,11 @@ export default function Body() {
             </Tooltip>
           );
         })}
-      </div> */
+      </div>
+      </>
+    );
+  } else {
+    return(
       <>
         <DashboardToolbar
           setPath={(path) => {
@@ -142,8 +150,7 @@ export default function Body() {
           {component}
         </div>
       </>
-    );
-  } else {
-    return;
+    )
   }
+
 }

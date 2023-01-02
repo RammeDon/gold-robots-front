@@ -4,9 +4,11 @@ import { Box, Select, TextField, MenuItem, InputLabel } from "@mui/material";
 
 export function Register(props) {
   const [countriesList, setCountries] = useState([]);
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     read.fetchCountries().then((res) => setCountries(res));
+    read.fetchCollection("users").then((res) => setUsers(res)) // check if the username already exists
   }, []);
 
   return (

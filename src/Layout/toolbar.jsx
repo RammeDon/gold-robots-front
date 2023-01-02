@@ -98,6 +98,7 @@ export function Toolbar(props) {
             </IconButton>
           </Tooltip>
           <Auth
+            setLoggedUser={props.setLoggedUser}
             setPath={props.navigate}
             setToken={props.setToken}
             open={open}
@@ -176,6 +177,14 @@ export function DashboardToolbar(props) {
   const [open, setOpen] = useState(false);
   const [avatarEl, setAvatarEl] = useState(null);
   const [langEl, setLangEl] = useState(null);
+
+  const logout = () => {
+    console.log("call me")
+    sessionStorage.clear()
+    
+    window.location.href = '/';
+  
+  }
 
   const DrawerTheme = createTheme({
     components: {
@@ -322,7 +331,7 @@ export function DashboardToolbar(props) {
                 Profile
               </Button>
               <Divider className="bg-[#9ca3af]"></Divider>
-              <Button>
+              <Button onClick={() => {logout()}}>
                 <LogoutIcon></LogoutIcon>
                 Logout
               </Button>

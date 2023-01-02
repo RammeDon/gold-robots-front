@@ -71,7 +71,7 @@ const createAdmin = async (admin) => {
 
 const createAccount = async (account) => {
   const createDetails = {
-    userID: account.userID,
+    username: account.username,
     bankNames: account.bankNames,
     accountNumbers: account.accountNumbers,
     swiftCode: account.swiftCode,

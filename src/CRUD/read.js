@@ -12,13 +12,14 @@ const fetchCollection = async (collection) => {
 
 
 const fetchOne = async (collection, id) => {
-  let data = []
+  let data = {}
   await fetch(`${env.baseUrl}/api/${collection}/${id}`)
       .then(response => response.json())
-      .then(res => data.push(res))
+      // .then(response => console.log(response))
+      .then(res => data = res)
       .catch(error => console.log(error.message))
-  //console.log(data[0])
-  return data[0]
+  console.log("This is fetch: " + data.username)
+  return data
 }
 
 

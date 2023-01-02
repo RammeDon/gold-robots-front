@@ -55,6 +55,7 @@ export default function Body() {
     // switch (path) {
     //   default:
     //     component = "default"
+<<<<<<< HEAD
     //     break;
     //   case "login":
     //     component = <AdminPanel />
@@ -68,6 +69,21 @@ export default function Body() {
     switch (path) {
       default:
         component = <Profile></Profile>;
+=======
+    //     break;
+    //   case "login":
+    //     component = <AdminPanel />
+    //     break;
+    //   case "viewEdit":
+    //     component = "viewEdit"
+    //     break;
+    //   case "payment":
+    //     component = "payment"
+    //     break;
+    switch (path) {
+      default:
+        component = <DashboardHome loggedUser={loggedUser} />;
+>>>>>>> e7cb044c00028e1c4ed11d8434b0c9dde0bdea93
         break;
       case "home":
         component = <DashboardHome loggedUser={loggedUser}></DashboardHome>;

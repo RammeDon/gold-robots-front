@@ -21,7 +21,10 @@ export default function DashboardHome(props) {
     console.log(props.loggedUser);
     read
       .fetchOne("accounts", props.loggedUser.username)
-      .then((res) => console.log(res));
+      .then((res) => setAccount({ ...res }))
+      .finally(() => {
+        console.log(account);
+      });
   };
 
   if (account) {

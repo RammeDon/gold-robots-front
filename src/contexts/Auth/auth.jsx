@@ -37,14 +37,13 @@ export default function Auth(props) {
             props.setToken(token);
             props.setPath("login");
             console.log("token");
-
-            read
-              .fetchOne("users", "ramme")
-              .then((res) => props.setLoggedUser({ ...res }))
-              .then((res) => console.log("asd", res));
           }
+        })
+        .finally(() => {
+          read.fetchOne("users", loginState.username).then((res) => {
+            props.setLoggedUser(res);
+          });
           console.log("mmd", loginState);
-          document.location.reload();
         });
     } else if (type === "register") {
       create.createUser(registerState).then((res) => {

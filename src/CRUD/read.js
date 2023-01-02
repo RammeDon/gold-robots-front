@@ -1,16 +1,12 @@
 import { env } from "../environment/environment";
 
 const fetchCollection = async (collection) => {
-  let data = [];
-  await fetch(`${env.baseUrl}/api/${collection}`)
+  return await fetch(`${env.baseUrl}/api/${collection}`)
     .then((response) => response.json())
-    .then((res) => (data = res)) // either this or data.push(res)
     .catch((error) => console.log(error.message));
-  return data;
 };
 
 const fetchOne = async (collection, id) => {
-
   return await fetch(`${env.baseUrl}/api/${collection}/${id}`)
     .then((response) => response.json())
     .catch((error) => console.log(error.message));

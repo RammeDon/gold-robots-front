@@ -108,8 +108,11 @@ export default function Body() {
         className="bg-gray-800 w-16 h-16 rounded-full fixed bottom-12 right-12 z-10 hover:bg-gray-900 hover:-translate-y-3 transition-all"
       >
         <SupportAgent
+         
           className="text-gray-200"
+         
           fontSize="large"
+        
         ></SupportAgent>
       </button>
       <div

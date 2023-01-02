@@ -1,7 +1,8 @@
-import LeftPanel from "./LeftPanel.jsx";
 import { useState } from "react";
 
 import "./adminPanel.css";
+import LeftDrawer from "./LeftDrawer.jsx";
+import ViewUsers from "./viewUsers/ViewUsers.jsx"
 
 
 export default function ProflePage() {
@@ -16,9 +17,9 @@ export default function ProflePage() {
     const pageSelector = () => {
         switch(activePanel) {
             default:
-                return "viewUsers"
+                return <ViewUsers />
             case "viewUsers":
-                return "viewUsers"
+                return <ViewUsers />
             case "editUsers":
                 return "editUsers"
             case "payments":
@@ -30,8 +31,9 @@ export default function ProflePage() {
         <div className="profile">
             <div className="profile-content">
                 <section>
-                    <LeftPanel setActivePanel= {setActivePanel} />
+                    {/* <LeftPanel setActivePanel= {setActivePanel} /> */}
                     {pageSelector()}
+                    <LeftDrawer setActivePanel={setActivePanel} />
                 </section>
 
             </div>

@@ -53,3 +53,18 @@ export const hoverButtons = [
     },
   },
 ];
+
+export const adminButtons = [
+  {
+    name: "viewUsers",
+    path: "viewusers"
+  },
+  {
+    name: "editUsers",
+    path: "editusers"
+  },
+  {
+    name: "payments",
+    path: "payments"
+  }
+]

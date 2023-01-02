@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #9ca3af !important;
+}

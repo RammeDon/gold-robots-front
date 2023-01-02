@@ -162,7 +162,7 @@ const Balance = () => (
 
 const Charts = () => (
   <div className="w-full mt-12 pb-12 px-5">
-    <Grid container sx={{ justifyContent: "space-between" }}>
+    <Grid container sx={{ justifyContent: "space-between",rowGap:5 }}>
       <Grid md={4} sm={12}>
         <Card
           sx={{

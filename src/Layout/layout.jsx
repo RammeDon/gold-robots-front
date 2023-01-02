@@ -128,7 +128,15 @@ export default function Body() {
             </Tooltip>
           );
         })}
-      </div>
-    </>
-  );
+      </div> */
+      <>
+        <DashboardToolbar setPath={(path)=>{setPath(path)}} path={path}></DashboardToolbar>
+        <div className="bg-[#0b0f19] min-h-[100vh] max-h-max pt-12 text-white">
+          {component}
+        </div>
+      </>
+    );
+  } else {
+    return;
+  }
 }

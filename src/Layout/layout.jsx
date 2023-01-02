@@ -54,8 +54,7 @@ export default function Body() {
   } else {
     // switch (path) {
     //   default:
-    //     component = "default"
-<<<<<<< HEAD
+    //     component = <LandingPage />;
     //     break;
     //   case "login":
     //     component = <AdminPanel />
@@ -66,24 +65,16 @@ export default function Body() {
     //   case "payment":
     //     component = "payment"
     //     break;
+    //   case "investment":
+    //     component = <Investment />;
+    //     break;
+    //   case "about":
+    //     component = <AboutUs />;
+    //     break;
+    // }
     switch (path) {
       default:
         component = <Profile></Profile>;
-=======
-    //     break;
-    //   case "login":
-    //     component = <AdminPanel />
-    //     break;
-    //   case "viewEdit":
-    //     component = "viewEdit"
-    //     break;
-    //   case "payment":
-    //     component = "payment"
-    //     break;
-    switch (path) {
-      default:
-        component = <DashboardHome loggedUser={loggedUser} />;
->>>>>>> e7cb044c00028e1c4ed11d8434b0c9dde0bdea93
         break;
       case "home":
         component = <DashboardHome loggedUser={loggedUser}></DashboardHome>;

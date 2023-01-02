@@ -6,7 +6,8 @@ import Investment from "../pages/investment/InvestmentPage.jsx";
 import AboutUs from "../pages/aboutUS/AboutUs.jsx";
 import { Footer } from "./footer";
 import { Toolbar, DashboardToolbar } from "./toolbar";
-import { Tooltip, cardActionAreaClasses } from "@mui/material";
+import { cardActionAreaClasses } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import { SupportAgent } from "@mui/icons-material";
 import { hoverButtons } from "../data/layout";
 import useToken from "../token/useToken";
@@ -76,7 +77,7 @@ export default function Body() {
   } else {
     switch (path) {
       default:
-        component = "default"
+        component = <AdminPanel />
         break;
       case "login":
         component = <AdminPanel />

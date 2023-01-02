@@ -9,6 +9,7 @@ import {
 import read from "../../CRUD/read.js";
 import { useState, useEffect } from "react";
 import { dollar } from "../../utils/dollar";
+import jwt from "jwt-decode";
 
 export default function DashboardHome(props) {
   const [account, setAccount] = useState();
@@ -18,13 +19,24 @@ export default function DashboardHome(props) {
   }, account);
 
   const getData = async () => {
-    console.log(props.loggedUser);
-    read
-      .fetchOne("accounts", props.loggedUser.username)
-      .then((res) => setAccount({ ...res }))
-      .finally(() => {
-        console.log(account);
-      });
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      console.log("mmd", props.loggedUser);
+      read
+        .fetchOne("accounts", props.loggedUser.username)
+        .then((res) => setAccount({ ...res }))
+        .finally(() => {
+          console.log(account);
+        });
+    } else {
+      const loggedUser = jwt(token);
+      read
+        .fetchOne("accounts", loggedUser.username)
+        .then((res) => setAccount({ ...res }))
+        .finally(() => {
+          console.log(account);
+        });
+    }
   };
 
   if (account) {

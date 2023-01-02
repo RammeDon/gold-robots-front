@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import create from "../../CRUD/create";
 import read from "../../CRUD/read";
 import { Button, Dialog, Link, Snackbar, Alert } from "@mui/material";
@@ -24,6 +24,10 @@ export default function Auth(props) {
     username: "",
   });
   const [openAlert, setOpenAlert] = useState();
+
+  useEffect(() => {
+    console.log(1);
+  });
 
   const handelSubmission = async () => {
     if (type === "login") {

@@ -19,8 +19,12 @@ export default function DashboardHome(loggedUser) {
   });
 
   const getData = async () => {
-    setAccount(await read.fetchOne("accounts", loggedUser.username)) 
-    console.log("loaded: " + loggedUser.username)
+    // setAccount(await read.fetchOne("accounts", "ramme")) 
+    read.fetchOne("accounts", "ramme")
+    .then(res => console.log("OBJECT" , res))
+    .then(res => setAccount((perv) => {if(res) Object.assign(perv, res)}))
+    .then(res => console.log(account))
+    // console.log("loaded: " , account)
   }
 
 

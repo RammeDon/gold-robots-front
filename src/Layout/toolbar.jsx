@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import LoginSharpIcon from "@mui/icons-material/LoginSharp";
 import MenuIcon from "@mui/icons-material/Menu";
-import { navButtons, dashboardButtons } from "../data/layout";
+import { navButtons, dashboardButtons, adminButtons } from "../data/layout";
 import logo_sm from "../assets/images/logo small.png";
 import arabic from "../assets/icons/arabic.png";
 import english from "../assets/icons/english.png";
@@ -264,6 +264,19 @@ export function DashboardToolbar(props) {
 
   return (
     <>
+
+
+<div className="h-16 bg-[#111827] flex justify-between px-3 border-b-[1px] border-[#1d2636]">
+        <Button
+          onClick={() => {
+            setOpen(true);
+          }}
+          className="relative top-3 h-9 w-9"
+        >
+          <MenuIcon fontSize="small" className="text-[#9ca3af]"></MenuIcon>
+        </Button>
+      </div>
+
       <div className="h-16 bg-[#111827] flex justify-between px-3 border-b-[1px] border-[#1d2636]">
         <Button
           onClick={() => {
@@ -412,4 +425,148 @@ export function DashboardToolbar(props) {
       </ThemeProvider>
     </>
   );
+}
+
+
+export function AdminToolbar(props) {
+  const [open, setOpen] = useState(false);
+  const DrawerTheme = createTheme({
+    components: {
+      MuiDrawer: {
+        styleOverrides: {
+          paperAnchorLeft: {
+            backgroundColor: "#111827",
+            fontSize: "2rem",
+            color: "#d1d5db",
+            minWidth: "280px",
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          text: {
+            width: "80%",
+            alignSelf: "center",
+            marginTop: "12px",
+            display: "flex",
+            justifyContent: "flex-start",
+            alignContent: "flex-start",
+            paddingRight: "30%",
+            height: "50px",
+          },
+          selected: {
+            backgroundColor: "#242a38",
+          },
+        },
+      },
+    },
+    palette: {
+      primary: {
+        main: "#9ca3af",
+      },
+      success: {
+        main: "#10b981",
+      },
+    },
+  });
+
+  const PopoverTheme = createTheme({
+    components: {
+      MuiPopover: {
+        styleOverrides: {
+          paper: {
+            backgroundColor: "#111827",
+            color: "#d1d5db",
+            width: "max-content",
+          },
+        },
+      },
+      MuiList: {
+        styleOverrides: {
+          root: {
+            padding: "0px",
+            width: "100%",
+          },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            display: "flex",
+            justifyContent: "flex-start",
+            gap: "12px",
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          text: {
+            display: "flex",
+            justifyContent: "flex-start",
+            gap: "12px",
+            color: "#e5eaf0",
+            paddingTop: "13px",
+            paddingBottom: "13px",
+            paddingLeft: "20px",
+            width: "100%",
+          },
+        },
+      },
+    },
+  });
+
+  return (
+    <>
+      <ThemeProvider theme={DrawerTheme}>
+        <Drawer
+          open={open}
+          anchor="left"
+          onClose={() => {
+            setOpen(false);
+          }}
+        >
+          <div className="w-full h-[100px] px-5 py-3 flex justify-between">
+            <img src={logo_sm} width={80} alt="" />
+            <p className="text-[#9ca3af]  pt-6 self-center">Gold Robots</p>
+          </div>
+          <Divider className="bg-[#4b4e54]"></Divider>
+          <div className="flex flex-col h-full pb-5">
+            {adminButtons.map((button) => {
+              return (
+                <ThemeProvider>
+                  <Button
+                    variant="text"
+                    onClick={() => {
+                      props.setPath(button.path);
+                    }}
+                    color={props.path === button.path ? "success" : "primary"}
+                    disableRipple={true}
+                  >
+                    <span className="mr-3">{button.icon}</span>
+                    <span>{button.name}</span>
+                  </Button>
+                </ThemeProvider>
+              );
+            })}
+            <Button
+              onClick={() => {
+                props.setPath("mail");
+              }}
+              color={props.path === "mail" ? "success" : "primary"}
+              disableRipple={true}
+              className="!mt-auto "
+            >
+              <span className="mr-3">
+                <EmailIcon></EmailIcon>
+              </span>
+              <span>Contact us</span>
+            </Button>
+          </div>
+        </Drawer>
+      </ThemeProvider>
+    </>
+  );
+
+
+
 }

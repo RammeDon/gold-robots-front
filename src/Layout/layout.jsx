@@ -5,7 +5,7 @@ import Contracts, { DashboardContracts } from "../pages/contacts/Contracts.jsx";
 import Investment from "../pages/investment/InvestmentPage.jsx";
 import AboutUs from "../pages/aboutUS/AboutUs.jsx";
 import { Footer } from "./footer";
-import { Toolbar, DashboardToolbar } from "./toolbar";
+import { Toolbar, DashboardToolbar, AdminToolbar } from "./toolbar";
 import { cardActionAreaClasses } from "@mui/material";
 import { Tooltip } from "@mui/material";
 import { SupportAgent } from "@mui/icons-material";
@@ -30,7 +30,7 @@ export default function Body() {
 
   let component;
 
-  if (!token) {
+  if (token) {
     // switch (path) {
     //   default:
     //     component = <LandingPage />;
@@ -134,7 +134,7 @@ export default function Body() {
         })}
       </div> */
       <>
-        <DashboardToolbar setPath={(path)=>{setPath(path)}} path={path}></DashboardToolbar>
+        <AdminToolbar setPath={(path)=>{setPath(path)}} path={path}></AdminToolbar>
         <div className="bg-[#0b0f19] min-h-[100vh] max-h-max pt-12 text-white">
           {component}
         </div>

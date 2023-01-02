@@ -10,7 +10,7 @@ import { adminButtons } from "../../data/layout";
 import logo_sm from "../../assets/images/logo small.png";
 
 export default function LeftDrawer(props) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const PopoverTheme = createTheme({
     components: {

@@ -12,16 +12,16 @@ const fetchCollection = async (collection) => {
 
 
 const fetchOne = async (collection, id) => {
-  let data = {}
-  await fetch(`${env.baseUrl}/api/${collection}/${id}`)
-      .then(response => response.json())
+  // let data;
+  
+   return await fetch(`${env.baseUrl}/api/${collection}/${id}`)
+      .then(response => response.json().then(response => {return response}) )
       // .then(response => console.log(response))
-      .then(res => data = res)
+      // .then(res => console.log("This is fetch: " + ))
       .catch(error => console.log(error.message))
-  console.log("This is fetch: " + data.username)
-  return data
+  // 
+    
 }
-
 
 const fetchCountries = async () => {
   const headers = new Headers();

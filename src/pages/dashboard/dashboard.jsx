@@ -8,36 +8,34 @@ import {
 } from "../../components/ui/charts";
 import read from "../../CRUD/read.js";
 import { useState, useEffect } from "react";
+import { dollar } from "../../utils/dollar";
 
-export default function DashboardHome(loggedUser) {
-
-  const [account, setAccount] = useState({})
+export default function DashboardHome(props) {
+  const [account, setAccount] = useState();
 
   useEffect(() => {
-    getData()
-    
-  });
+    getData().then(() => console.log(account));
+  }, account);
 
   const getData = async () => {
-    // setAccount(await read.fetchOne("accounts", "ramme")) 
-    read.fetchOne("accounts", "ramme")
-    .then(res => console.log("OBJECT" , res))
-    .then(res => setAccount((perv) => {if(res) Object.assign(perv, res)}))
-    .then(res => console.log(account))
-    // console.log("loaded: " , account)
+    console.log(props.loggedUser);
+    read
+      .fetchOne("accounts", props.loggedUser.username)
+      .then((res) => console.log(res));
+  };
+
+  if (account) {
+    return (
+      <div className="">
+        <Balance account={account}></Balance>
+        <Charts></Charts>
+        <Trades></Trades>
+      </div>
+    );
   }
-
-
-  return (
-    <div className="">
-      <Balance account={account}></Balance>
-      <Charts></Charts>
-      <Trades></Trades>
-    </div>
-  );
 }
 
-const Balance = (account) => (
+const Balance = (props) => (
   <Box
     sx={{
       backgroundColor: "#0b0f19",
@@ -72,7 +70,7 @@ const Balance = (account) => (
             >
               Today's money
             </Typography>
-            <Typography variant="h5">{account.todayMoney}</Typography>
+            <Typography variant="h5">{props.account.todayMoney}</Typography>
           </div>
         </Grid>
         <Grid
@@ -98,7 +96,7 @@ const Balance = (account) => (
               Today's trades
             </Typography>
             <Typography sx={{ color: "#cbd1d7" }} variant="h5">
-              230
+              {props.account.todayTrades}
             </Typography>
           </div>
           <Box
@@ -135,7 +133,7 @@ const Balance = (account) => (
               New trades
             </Typography>
             <Typography sx={{ color: "#cbd1d7" }} variant="h5">
-              10
+              {props.account.newTrades}
             </Typography>
           </div>
           <Box
@@ -171,7 +169,7 @@ const Balance = (account) => (
               sx={{ color: "#cbd1d7", textAlign: "center" }}
               variant="h5"
             >
-              $3,452,423.00
+              {dollar(props.account.balance)}
             </Typography>
           </div>
         </Grid>
@@ -182,7 +180,7 @@ const Balance = (account) => (
 
 const Charts = () => (
   <div className="w-full mt-12 pb-12 px-5">
-    <Grid container sx={{ justifyContent: "space-between",rowGap:5 }}>
+    <Grid container sx={{ justifyContent: "space-between", rowGap: 5 }}>
       <Grid md={4} sm={12}>
         <Card
           sx={{

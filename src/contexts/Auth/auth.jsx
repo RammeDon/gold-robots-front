@@ -1,5 +1,6 @@
 import { useState } from "react";
 import create from "../../CRUD/create";
+import read from "../../CRUD/read"
 import { Button, Dialog, Link, Snackbar, Alert } from "@mui/material";
 import { Login, Register } from "../../components/forms";
 
@@ -19,6 +20,9 @@ export default function Auth(props) {
     country: 0,
     language: 0,
   });
+  const [accountState, setAccountState] = useState({
+    username: ""
+  })
   const [openAlert, setOpenAlert] = useState();
 
   const handelSubmission = async () => {
@@ -31,6 +35,10 @@ export default function Auth(props) {
           props.setToken(token);
           props.setPath("login")
           console.log("token")
+          
+          // const user = await read.fetchOne("users", loginState.username)
+          props.setLoggedUser(await read.fetchOne("users", loginState.username))
+          // console.log(user)
         }
         
 
@@ -39,9 +47,12 @@ export default function Auth(props) {
       console.log(loginState);
     } else if (type === "register") {
       create.createUser(registerState).then((res) => {
+        setAccountState({username: registerState.username})
         setOpenAlert(true);
         console.log(res);
       });
+      
+      create.createAccount(accountState)
     }
     setOpen(false);
   };

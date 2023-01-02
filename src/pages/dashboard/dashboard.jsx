@@ -6,18 +6,34 @@ import {
   CounterChart,
   BarChart,
 } from "../../components/ui/charts";
+import read from "../../CRUD/read.js";
+import { useState, useEffect } from "react";
 
-export function DashboardHome() {
+export default function DashboardHome(loggedUser) {
+
+  const [account, setAccount] = useState({})
+
+  useEffect(() => {
+    getData()
+    
+  });
+
+  const getData = async () => {
+    setAccount(await read.fetchOne("accounts", loggedUser.username)) 
+    console.log("loaded: " + loggedUser.username)
+  }
+
+
   return (
     <div className="">
-      <Balance></Balance>
+      <Balance account={account}></Balance>
       <Charts></Charts>
       <Trades></Trades>
     </div>
   );
 }
 
-const Balance = () => (
+const Balance = (account) => (
   <Box
     sx={{
       backgroundColor: "#0b0f19",
@@ -52,7 +68,7 @@ const Balance = () => (
             >
               Today's money
             </Typography>
-            <Typography variant="h5">$100,000.00</Typography>
+            <Typography variant="h5">{account.todayMoney}</Typography>
           </div>
         </Grid>
         <Grid

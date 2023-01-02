@@ -50,7 +50,7 @@ export default function ViewUsers() {
             <div className="users-list">
                 {dummyUsers.map((user, i) => {
                     return(
-                        <button className="user-button">
+                        <button key={i} className="user-button" onClick={() => {setSelectedUser(user)}}>
                             <p className="button-text">{user.username}</p>
                         </button>
                     )
@@ -59,7 +59,7 @@ export default function ViewUsers() {
 
             </div>
             <div className="selected-user">
-
+                
             </div>
 
         </div>

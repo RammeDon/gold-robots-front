@@ -7,21 +7,14 @@ const fetchCollection = async (collection) => {
     .then((res) => (data = res)) // either this or data.push(res)
     .catch((error) => console.log(error.message));
   return data;
-  
 };
 
-
 const fetchOne = async (collection, id) => {
-  // let data;
-  
-   return await fetch(`${env.baseUrl}/api/${collection}/${id}`)
-      .then(response => response.json().then(response => {return response}) )
-      // .then(response => console.log(response))
-      // .then(res => console.log("This is fetch: " + ))
-      .catch(error => console.log(error.message))
-  // 
-    
-}
+
+  return await fetch(`${env.baseUrl}/api/${collection}/${id}`)
+    .then((response) => response.json())
+    .catch((error) => console.log(error.message));
+};
 
 const fetchCountries = async () => {
   const headers = new Headers();

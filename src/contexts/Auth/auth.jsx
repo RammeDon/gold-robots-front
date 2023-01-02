@@ -1,6 +1,6 @@
 import { useState } from "react";
 import create from "../../CRUD/create";
-import read from "../../CRUD/read"
+import read from "../../CRUD/read";
 import { Button, Dialog, Link, Snackbar, Alert } from "@mui/material";
 import { Login, Register } from "../../components/forms";
 
@@ -21,38 +21,39 @@ export default function Auth(props) {
     language: 0,
   });
   const [accountState, setAccountState] = useState({
-    username: ""
-  })
+    username: "",
+  });
   const [openAlert, setOpenAlert] = useState();
 
   const handelSubmission = async () => {
     if (type === "login") {
-        const token = await create.loginUser({
-        username : loginState.username,
-          password : loginState.password
+      await create
+        .loginUser({
+          username: loginState.username,
+          password: loginState.password,
+        })
+        .then((token) => {
+          if (token) {
+            props.setToken(token);
+            props.setPath("login");
+            console.log("token");
+
+            read
+              .fetchOne("users", "ramme")
+              .then((res) => props.setLoggedUser({ ...res }))
+              .then((res) => console.log("asd", res));
+          }
+          console.log("mmd", loginState);
+          document.location.reload();
         });
-        if (token){
-          props.setToken(token);
-          props.setPath("login")
-          console.log("token")
-          
-          // const user = await read.fetchOne("users", loginState.username)
-          props.setLoggedUser(await read.fetchOne("users", loginState.username))
-          // console.log(user)
-        }
-        
-
-        document.location.reload();
-
-      console.log(loginState);
     } else if (type === "register") {
       create.createUser(registerState).then((res) => {
-        setAccountState({username: registerState.username})
+        setAccountState({ username: registerState.username });
         setOpenAlert(true);
         console.log(res);
       });
-      
-      create.createAccount(accountState)
+
+      create.createAccount(accountState);
     }
     setOpen(false);
   };

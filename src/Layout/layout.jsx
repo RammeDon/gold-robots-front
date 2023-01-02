@@ -70,7 +70,7 @@ export default function Body() {
         component = <DashboardHome loggedUser={loggedUser} />;
         break;
       case "home":
-        component = <DashboardHome></DashboardHome>;
+        component = <DashboardHome loggedUser={loggedUser}></DashboardHome>;
         break;
       case "profile":
         component = <Profile></Profile>;

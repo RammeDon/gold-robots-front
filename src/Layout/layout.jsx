@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import LandingPage from "../pages/landing-page/landing-page";
 import NewsPage from "../pages/news/NewsPage.jsx";
-import Contracts from "../pages/contacts/Contracts.jsx";
+import Contracts, { DashboardContracts } from "../pages/contacts/Contracts.jsx";
 import Investment from "../pages/investment/InvestmentPage.jsx";
 import AboutUs from "../pages/aboutUS/AboutUs.jsx";
 import { Footer } from "./footer";
@@ -12,6 +12,10 @@ import { hoverButtons } from "../data/layout";
 import useToken from "../token/useToken";
 import AdminPanel from "../pages/adminPage/AdminPanel.jsx";
 import { DashboardHome } from "../pages/dashboard/dashboard";
+import { Profile } from "../pages/profile/profile";
+import { Bank } from "../pages/bank/bank";
+import { PersonalSetting } from "../pages/personal-settings/presonal-settings";
+import { ContactUS } from "../pages/contactUS/contactUs";
 
 export default function Body() {
   const [path, setPath] = useState("home");
@@ -54,19 +58,19 @@ export default function Body() {
         component = <DashboardHome></DashboardHome>;
         break;
       case "profile":
-        component = <p>profile</p>;
+        component = <Profile></Profile>;
         break;
       case "mail":
-        component = <p>contact us</p>;
+        component = <ContactUS></ContactUS>;
         break;
       case "bank":
-        component = <p>bank</p>;
+        component = <Bank></Bank>;
         break;
       case "contracts":
-        component = <div>contracts</div>;
+        component = <DashboardContracts></DashboardContracts>;
         break;
       case "settings":
-        component = <p>settings</p>;
+        component = <PersonalSetting></PersonalSetting>;
         break;
     }
   } else {
@@ -111,7 +115,12 @@ export default function Body() {
         })}
       </div> */
       <>
-        <DashboardToolbar setPath={(path)=>{setPath(path)}} path={path}></DashboardToolbar>
+        <DashboardToolbar
+          setPath={(path) => {
+            setPath(path);
+          }}
+          path={path}
+        ></DashboardToolbar>
         <div className="bg-[#0b0f19] min-h-[100vh] max-h-max pt-12 text-white">
           {component}
         </div>

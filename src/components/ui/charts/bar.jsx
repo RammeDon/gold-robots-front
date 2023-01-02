@@ -1,5 +1,6 @@
 import Chart from "react-apexcharts";
 import { useTheme } from "@mui/material/styles";
+import { PropaneSharp } from "@mui/icons-material";
 
 export function BarChart() {
   const theme = useTheme();
@@ -28,7 +29,7 @@ export function BarChart() {
     },
     legend: {
       labels: {
-        colors: 'lightgray',
+        colors: "lightgray",
       },
       show: true,
     },
@@ -48,31 +49,31 @@ export function BarChart() {
     xaxis: {
       axisBorder: {
         show: true,
-        color: ['white'],
+        color: ["white"],
       },
       axisTicks: {
         show: false,
-        color: 'white',
+        color: "white",
       },
       categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       labels: {
         style: {
-          colors: 'lightgray',
+          colors: "lightgray",
         },
       },
     },
     yaxis: {
       axisBorder: {
-        color: 'white',
+        color: "white",
         show: true,
       },
       axisTicks: {
-        color: 'white',
+        color: "white",
         show: true,
       },
       labels: {
         style: {
-          colors: 'lightgray',
+          colors: "lightgray",
         },
       },
     },
@@ -94,6 +95,89 @@ export function BarChart() {
       options={chartOptions}
       series={chartSeries}
       type="bar"
+    />
+  );
+}
+
+export function MinimumProfitChart(props) {
+  const chartOptions = {
+    chart: {
+      background: "transparent",
+      toolbar: {
+        show: false,
+      },
+    },
+    colors: ["#d14343"],
+    dataLabels: {
+      enabled: false,
+    },
+    fill: {
+      opacity: 1,
+    },
+    grid: {
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
+    },
+    legend: {
+      labels: {
+        customLegendItems: ["minimum profit"],
+        colors: "lightgray",
+      },
+      show: true,
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: "30%",
+      },
+    },
+    stroke: {
+      colors: ["transparent"],
+      show: true,
+      width: 2,
+    },
+    xaxis: {
+      axisBorder: {
+        show: false,
+        categories: [],
+      },
+      axisTicks: {
+        show: false,
+      },
+      labels: {
+        show: false,
+      },
+    },
+    yaxis: {
+      tickAmount: 8,
+      axisBorder: {
+        color: "white",
+        show: true,
+      },
+      axisTicks: {
+        color: "white",
+        show: true,
+      },
+      labels: {
+        style: {
+          colors: "lightgray",
+        },
+      },
+    },
+    tooltip: {
+      enabled: false,
+    },
+  };
+
+  return (
+    <Chart
+      type="bar"
+      width={160}
+      height={250}
+      options={chartOptions}
+      series={[{ data: [0, props.data], name: "minim profit" }]}
     />
   );
 }

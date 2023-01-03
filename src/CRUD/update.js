@@ -1,3 +1,6 @@
+import { env } from "../environment/environment";
+
+
 const updateUser = async (updateDetails, id) => {
     const userDetails = {
         title: updateDetails.title,
@@ -16,7 +19,7 @@ const updateUser = async (updateDetails, id) => {
         profilePictureID: updateDetails.profilePictureID
     };
 
-    fetch(`/api/users/${id}`, {
+    fetch(`${env.baseUrl}/api/users/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -32,29 +35,16 @@ const updateUser = async (updateDetails, id) => {
 }
 
 const updateAccount = async (updateDetails, id) => {
+    console.log("details", updateDetails)
     const accountDetails = {
         bankNames: updateDetails.bankNames,
         accountNumbers: updateDetails.accountNumbers,
-        username: updateDetails.username,
         swiftCode: updateDetails.swiftCode,
         country: updateDetails.country,
         currency: updateDetails.currency,
-        balance: updateDetails.balance,
-        depositeAccount: updateDetails.depositeAccount,
-        paymentHistory: updateDetails.paymentHistory,
-        contractType: updateDetails.contractType,
-        todayTrades: updateDetails.todayTrades,
-        newTrades: updateDetails.newTrades,
-        todayMoney: updateDetails.todayMoney,
-        profilePictureID: updateDetails.profilePictureID,
-        days: updateDetails.days,
-        percentageInTrades: updateDetails.percentageInTrades,
-        balanceOverView: updateDetails.balanceOverView,
-        activeTradesToday: updateDetails.activeTradesToday,
-        activeTradesLastWeek: updateDetails.activeTradesLastWeek
     };
 
-    fetch(`/api/accounts/${id}`, {
+    fetch(`${env.baseUrl}/api/accounts/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

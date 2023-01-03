@@ -1,5 +1,6 @@
 import { env } from "../environment/environment";
 
+
 const updateUser = async (updateDetails, id) => {
   const userDetails = {
     title: updateDetails.title,
@@ -34,42 +35,29 @@ const updateUser = async (updateDetails, id) => {
 };
 
 const updateAccount = async (updateDetails, id) => {
-  const accountDetails = {
-    bankNames: updateDetails.bankNames,
-    accountNumbers: updateDetails.accountNumbers,
-    username: updateDetails.username,
-    swiftCode: updateDetails.swiftCode,
-    country: updateDetails.country,
-    currency: updateDetails.currency,
-    balance: updateDetails.balance,
-    depositeAccount: updateDetails.depositeAccount,
-    paymentHistory: updateDetails.paymentHistory,
-    contractType: updateDetails.contractType,
-    todayTrades: updateDetails.todayTrades,
-    newTrades: updateDetails.newTrades,
-    todayMoney: updateDetails.todayMoney,
-    profilePictureID: updateDetails.profilePictureID,
-    days: updateDetails.days,
-    percentageInTrades: updateDetails.percentageInTrades,
-    balanceOverView: updateDetails.balanceOverView,
-    activeTradesToday: updateDetails.activeTradesToday,
-    activeTradesLastWeek: updateDetails.activeTradesLastWeek,
-  };
+    console.log("details", updateDetails)
+    const accountDetails = {
+        bankNames: updateDetails.bankNames,
+        accountNumbers: updateDetails.accountNumbers,
+        swiftCode: updateDetails.swiftCode,
+        country: updateDetails.country,
+        currency: updateDetails.currency,
+    };
 
-  fetch(`/api/accounts/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(accountDetails),
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      if (response.message) {
-        console.log(response.message);
-      }
-    });
-};
+    fetch(`${env.baseUrl}/api/accounts/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(accountDetails)
+    })
+        .then(res => res.json())
+        .then(response => {
+            if (response.message) {
+                console.log(response.message);
+            }
+        });
+}
 
 const updateContract = async (updateDetails, id) => {
   const contractDetails = {

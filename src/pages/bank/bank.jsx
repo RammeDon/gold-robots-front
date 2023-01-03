@@ -44,44 +44,44 @@ export function Bank(props) {
   //   currency: [props.account.currency[0], props.account.currency[1]],
   // }
 
-  const [bank1, setBank1] = useState()
-  const [bank2, setBank2] = useState()
-  const [accoutN1, SetAccoutN1] = useState()
-  const [accoutN2, SetAccoutN2] = useState()
-  const [swiftCode1, setSwiftCode1] = useState()
-  const [swiftCode2, setSwiftCode2] = useState()
-  const [country1, setCountry1] = useState()
-  const [country2, setCountry2] = useState()
-  const [currency1, setCurrency1] = useState()
-  const [currency2, setCurrency2] = useState()
+  const [bank1, setBank1] = useState(props.account.bankNames[0])
+  const [bank2, setBank2] = useState(props.account.bankNames[1])
+  const [accoutN1, setAccoutN1] = useState(props.account.accountNumbers[0])
+  const [accoutN2, setAccoutN2] = useState(props.account.accountNumbers[1])
+  const [swiftCode1, setSwiftCode1] = useState(props.account.swiftCode[0])
+  const [swiftCode2, setSwiftCode2] = useState(props.account.swiftCode[1])
+  const [country1, setCountry1] = useState(props.account.country[0])
+  const [country2, setCountry2] = useState(props.account.country[1])
+  const [currency1, setCurrency1] = useState(props.account.currency[0])
+  const [currency2, setCurrency2] = useState(props.account.currency[1])
 
   const submit1 = () => {
 
     const updateDetails = {
-      bankNames: [bank1, props.account.bankNames[0]],
-      accountNumbers: [accoutN1, props.account.accountNumbers[0]],
-      swiftCode: [swiftCode1, props.account.swiftCode[0]],
-      country: [country1, props.account.country[0]],
-      currency: [currency1, props.account.currency[0]]
+      bankNames: [bank1, props.account.bankNames[1]] ,
+      accountNumbers: [accoutN1, props.account.accountNumbers[1]],
+      swiftCode: [swiftCode1, props.account.swiftCode[1]],
+      country: [ country1,  props.account.country[1]],
+      currency: [currency1,  props.account.currency[1] ]
     }
 
     update.updateAccount(updateDetails, props.account.username)
 
-    console.log("updating...")
+    console.log("updating...", updateDetails)
   }
 
   const submit2 = () => {
     const updateDetails = {
-      bankNames: [bank2, props.account.bankNames[1]],
-      accountNumbers: [accoutN2, props.account.accountNumbers[1]],
-      swiftCode: [swiftCode2, props.account.swiftCode[1]],
-      country: [country2, props.account.country[1]],
-      currency: [currency2, props.account.currency[1]]
+      bankNames: [props.account.bankNames[0], bank2],
+      accountNumbers: [props.account.accountNumbers[0], accoutN2],
+      swiftCode: [props.account.swiftCode[0],  swiftCode2],
+      country: [props.account.country[0], country2],
+      currency: [props.account.currency[0], currency2]
     }
 
     update.updateAccount(updateDetails, props.account.username)
 
-    console.log("updating 2...")
+    console.log("updating 2..." , props.account.username)
   }
 
 
@@ -138,7 +138,7 @@ export function Bank(props) {
                 <Typography fontSize={20}>
                   Bank Name
                 </Typography>
-                <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.bankNames[0]} variant="filled" />
+                <TextField onChange={e => setBank1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.bankNames[0]} variant="filled" />
 
               </Card>
               <div className="flex flex-col gap-3">
@@ -148,7 +148,7 @@ export function Bank(props) {
                   <Typography fontSize={15}>
                     <b className="mr-2">Account number:</b>{" "}
                   </Typography>
-                  <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.accountNumbers[0]} variant="filled" />
+                  <TextField onChange={e => setAccoutN1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.accountNumbers[0]} variant="filled" />
 
                 </Card>
                 <Card
@@ -157,7 +157,7 @@ export function Bank(props) {
                   <Typography>
                     <b>Swift code</b>
                   </Typography>
-                  <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.swiftCode[0]} variant="filled" />
+                  <TextField onChange={e => setSwiftCode1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.swiftCode[0]} variant="filled" />
                 </Card>
 
                 <div className="flex justify-around gap-3">
@@ -172,7 +172,7 @@ export function Bank(props) {
                     <Typography>
                       <b>Country</b>
                     </Typography>
-                    <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.country[0]} variant="filled" />
+                    <TextField onChange={e => setCountry1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.country[0]} variant="filled" />
                   </Card>
                   <Card
                     sx={{
@@ -183,7 +183,7 @@ export function Bank(props) {
                     }}
                   >
                     <Typography>Currency</Typography>
-                    <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.currency[0]} variant="filled" />
+                    <TextField onChange={e => setCurrency1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.currency[0]} variant="filled" />
                   </Card>
                 </div>
               </div>
@@ -210,7 +210,7 @@ export function Bank(props) {
                   
                   Bank Name
                 </Typography>
-                <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.bankNames[1]} variant="filled" />
+                <TextField onChange={e => setBank2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.bankNames[1]} variant="filled" />
 
               </Card>
               <div className="flex flex-col gap-3">
@@ -220,7 +220,7 @@ export function Bank(props) {
                   <Typography fontSize={15}>
                     <b className="mr-2">Account number:</b>{" "}
                   </Typography>
-                  <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.accountNumbers[1]} variant="filled" />
+                  <TextField onChange={e => setAccoutN2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.accountNumbers[1]} variant="filled" />
                 </Card>
                 <Card
                   sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
@@ -228,7 +228,7 @@ export function Bank(props) {
                   <Typography>
                     <b>Swift code:</b>
                   </Typography>
-                  <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.swiftCode[1]} variant="filled" />
+                  <TextField onChange={e => setSwiftCode2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.swiftCode[1]} variant="filled" />
                 </Card>
 
                 <div className="flex justify-around gap-3">
@@ -243,7 +243,7 @@ export function Bank(props) {
                     <Typography>
                       <b>Country:</b>
                     </Typography>
-                    <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.country[1]} variant="filled" />
+                    <TextField onChange={e => setCountry2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.country[1]} variant="filled" />
                   </Card>
                   <Card
                     sx={{
@@ -254,7 +254,7 @@ export function Bank(props) {
                     }}
                   >
                     <Typography>Currency</Typography>
-                    <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.currency[1]} variant="filled" />
+                    <TextField onChange={e => setCurrency2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.currency[1]} variant="filled" />
                   </Card>
                 </div>
               </div>

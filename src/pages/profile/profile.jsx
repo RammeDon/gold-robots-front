@@ -7,8 +7,9 @@ import {useState, useEffect } from "react";
 
 
 function ProfilePicture (props){
-  const {data} = props.data.image.data
-  console.log(data)
+  // const {data} = props.data.file
+  // console.log(data)
+  console.log(process.env.PUBLIC_URL)
 
   if (props.user.profilePictureID === "No photo") {
     return (
@@ -23,21 +24,24 @@ function ProfilePicture (props){
     )
   }
   else {
-    data.map((singleData) => {
-      const base64String = btoa(
-        String.fromCharCode(...new Uint8Array(singleData.img.data.data))
-      );
+      // console.log(data)
       return (
-        <Avatar
-        src={`data:image/png;base64,${base64String}`}
-        sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
-      ></Avatar>)
-    })
+        <img
+        src={"/uploads" + props.data.file}
+        alt={"alt"}
+       />)
+        
   }
 }
 
 export function Profile(props) {
+  // const [data, setData] = useState()
 
+  // useEffect(() => {
+  //   read.fetchImage(props.user.username).then(res => setData({...res}))
+    
+  // })
+  // console.log("here " , data)
   const [image, setImage] = useState({})
   console.log(props.data)
 
@@ -64,9 +68,14 @@ export function Profile(props) {
   const upload = () => {
 
     let formData = new FormData()
-    formData.append("testImage", image)
+    formData.append("filename", image)
     formData.append("username", props.account.username)
+    formData.append("file", image.name)
+    console.log(image.name)
+
     create.createImage(formData)
+
+    
   }
 
 

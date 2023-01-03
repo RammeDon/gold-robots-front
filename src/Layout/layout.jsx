@@ -23,9 +23,9 @@ export default function Body() {
   const [path, setPath] = useState();
   const [loggedUser, setLoggedUser] = useState();
   const [userAccount, setUserAccount] = useState();
-  const [data, setData] = useState();
   const [contracts, setContracts] = useState();
   const { token, setToken } = useToken();
+  const [data, setData] = useState()
 
   const hoverButton = useRef();
 
@@ -60,7 +60,7 @@ export default function Body() {
         });
     } else {
     }
-  }, [loggedUser, userAccount, token]);
+  },[]);
 
   let component;
 
@@ -201,7 +201,7 @@ export default function Body() {
         </div>
       </>
     );
-  } else if (userAccount) {
+  } else if(data) {
     return (
       <>
         <DashboardToolbar

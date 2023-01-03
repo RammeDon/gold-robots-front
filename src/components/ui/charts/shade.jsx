@@ -1,25 +1,46 @@
 import { useTheme } from "@mui/material/styles";
 import Chart from "react-apexcharts";
 
-const data = {
-  series: [{ data: [10, 5, 11, 20, 13, 28, 18, 30, 33, 32, 30, 35] }],
-  categories: [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ],
-};
+// const data = {
+//   series: [{ data: [10, 5, 11, 20, 13, 28, 18, 30, 33, 32, 30, 35] }],
+//   categories: [
+//     "Jan",
+//     "Feb",
+//     "Mar",
+//     "Apr",
+//     "May",
+//     "Jun",
+//     "Jul",
+//     "Aug",
+//     "Sep",
+//     "Oct",
+//     "Nov",
+//     "Dec",
+//   ],
+// };
 
-export const PerformanceChart = () => {
+export const PerformanceChart = (props) => {
+
+
+  const data = {
+    series: [{ data: props.account.balanceOverView }],
+    categories: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+  };
+
+
   const theme = useTheme();
 
   const chartOptions = {

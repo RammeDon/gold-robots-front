@@ -2,7 +2,7 @@ import Chart from "react-apexcharts";
 import { useTheme } from "@mui/material/styles";
 import { PropaneSharp } from "@mui/icons-material";
 
-export function BarChart() {
+export function BarChart(props) {
   const theme = useTheme();
 
   const chartOptions = {
@@ -80,11 +80,11 @@ export function BarChart() {
   };
   const chartSeries = [
     {
-      data: [30, 40, 25, 50, 49, 21, 70, 51],
+      data: props.account.activeTradesToday,
       name: "This week",
     },
     {
-      data: [23, 12, 54, 61, 32, 56, 81, 19],
+      data: props.account.activeTradesLastWeek,
       name: "Last week",
     },
   ];

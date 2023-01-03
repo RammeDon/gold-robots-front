@@ -7,13 +7,28 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import read from "../../CRUD/read";
+import update from "../../CRUD/update";
 
-export function PersonalSetting() {
-  const [chosenContracts, setChosenContracts] = useState([]);
+export function PersonalSetting(props) {
+  const [selectedContract, setSelectedContract] = useState();
   const [settings, setSettings] = useState({
-    levrage:''
+    leverage: "",
+    timeframe: "",
+    timerange: "",
+    extraDays: "",
+    maxUsage: "",
   });
+
+  const handelSubmission = () => {
+    update
+      .updateContract(
+        { ...selectedContract, personalSettings: settings },
+        selectedContract._id
+      )
+      .then(console.log("personal settings", selectedContract));
+  };
 
   return (
     <Grid container sx={{ justifyContent: "start", gap: "12px" }}>
@@ -23,12 +38,21 @@ export function PersonalSetting() {
             Chosen contract
           </InputLabel>
           <Select
-            sx={{ color: "white", width: "300px" }}
+            sx={{ width: "300px" }}
+            inputProps={{ sx: { color: "white" } }}
             labelId="contract"
             label="Chosen contract"
+            value={selectedContract}
+            onChange={(e) => {
+              setSelectedContract(props.contracts[e.target.value]);
+            }}
           >
-            {chosenContracts.map((contracts) => {
-              return <MenuItem>{contracts}</MenuItem>;
+            {props.contracts.map((contract, i) => {
+              return (
+                <MenuItem value={i} key={contract._id} sx={{}}>
+                  {contract.name}
+                </MenuItem>
+              );
             })}
           </Select>
         </FormControl>
@@ -54,14 +78,21 @@ export function PersonalSetting() {
           >
             <Grid md={5} sm={12}>
               <FormControl>
-                <InputLabel sx={{ color: "white" }} id="levrage">
-                  Levrage
+                <InputLabel sx={{ color: "white" }} id="leverage">
+                  Leverage
                 </InputLabel>
                 <Select
                   inputProps={{ sx: { color: "white" } }}
                   sx={{ width: 300 }}
-                  label="Levrage"
-                  labelId="levrage"
+                  label="Leverage"
+                  labelId="leverage"
+                  value={settings.leverage}
+                  onChange={(e) => {
+                    setSettings((current) => ({
+                      ...current,
+                      leverage: e.target.value,
+                    }));
+                  }}
                 >
                   <MenuItem value={0}>1:100</MenuItem>
                   <MenuItem value={1}>1:200</MenuItem>
@@ -80,6 +111,13 @@ export function PersonalSetting() {
                   sx={{ width: 300 }}
                   label="Add Extra Day"
                   labelId="days"
+                  value={settings.extraDays}
+                  onChange={(e) => {
+                    setSettings((current) => ({
+                      ...current,
+                      extraDays: e.target.value,
+                    }));
+                  }}
                 >
                   <MenuItem value={0}>5 Days</MenuItem>
                   <MenuItem value={1}>10 Days</MenuItem>
@@ -98,6 +136,13 @@ export function PersonalSetting() {
                   label="Trading timeframe"
                   labelId="timeframe"
                   inputProps={{ sx: { color: "white" } }}
+                  value={settings.timeframe}
+                  onChange={(e) => {
+                    setSettings((current) => ({
+                      ...current,
+                      timeframe: e.target.value,
+                    }));
+                  }}
                 >
                   <MenuItem value={0}>1 min</MenuItem>
                   <MenuItem value={1}>5 min</MenuItem>
@@ -118,6 +163,13 @@ export function PersonalSetting() {
                   label="Time range"
                   labelId="timerange"
                   inputProps={{ sx: { color: "white" } }}
+                  value={settings.timerange}
+                  onChange={(e) => {
+                    setSettings((current) => ({
+                      ...current,
+                      timerange: e.target.value,
+                    }));
+                  }}
                 >
                   <MenuItem value={0}>London time</MenuItem>
                   <MenuItem value={1}>Tokyo time</MenuItem>
@@ -135,6 +187,13 @@ export function PersonalSetting() {
                   label="Max usage deposite"
                   labelId="MUD"
                   inputProps={{ sx: { color: "white" } }}
+                  value={settings.maxUsage}
+                  onChange={(e) => {
+                    setSettings((current) => ({
+                      ...current,
+                      maxUsage: e.target.value,
+                    }));
+                  }}
                 >
                   <MenuItem value={0}>35 %</MenuItem>
                   <MenuItem value={1}>50 %</MenuItem>
@@ -148,6 +207,7 @@ export function PersonalSetting() {
                 sx={{ color: "white", width: 200, height: 60 }}
                 color="secondary"
                 variant="contained"
+                onClick={handelSubmission}
               >
                 Submit
               </Button>

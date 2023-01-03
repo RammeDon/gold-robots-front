@@ -23,6 +23,7 @@ export default function Body() {
   const [path, setPath] = useState();
   const [loggedUser, setLoggedUser] = useState();
   const [userAccount, setUserAccount] = useState();
+  const [contracts, setContracts] = useState();
   const { token, setToken } = useToken();
 
   const hoverButton = useRef();
@@ -32,7 +33,7 @@ export default function Body() {
   };
 
   useEffect(() => {
-    if (token && !userAccount) {
+    if (token && !contracts) {
       const username = jwt(token).username;
       read
         .fetchOne("users", username)
@@ -40,13 +41,15 @@ export default function Body() {
         .finally(() => {
           read
             .fetchOne("accounts", username)
-            .then((res) => setUserAccount({ ...res }));
+            .then((res) => setUserAccount({ ...res }))
+            .finally(() => {
+              read
+                .fetchOne("contracts", username)
+                .then((res) => setContracts([...res]));
+            });
         });
-    } else {
-      console.log("user", loggedUser);
-      console.log("account", userAccount);
     }
-  }, [loggedUser, userAccount, token]);
+  }, []);
 
   let component;
 
@@ -97,7 +100,12 @@ export default function Body() {
         component = <Profile user={loggedUser} account={userAccount}></Profile>;
         break;
       case "home":
-        component = <DashboardHome loggedUser={loggedUser} account={userAccount}></DashboardHome>;
+        component = (
+          <DashboardHome
+            loggedUser={loggedUser}
+            account={userAccount}
+          ></DashboardHome>
+        );
         break;
       case "profile":
         component = <Profile user={loggedUser} account={userAccount}></Profile>;
@@ -113,11 +121,21 @@ export default function Body() {
           <DashboardContracts
             user={loggedUser}
             account={userAccount}
+            contracts={contracts}
+            setContracts={setContracts}
           ></DashboardContracts>
         );
         break;
       case "settings":
-        component = <PersonalSetting user={loggedUser}></PersonalSetting>;
+        component = (
+          <PersonalSetting
+            user={loggedUser}
+            contracts={contracts}
+            setContracts={(setter) => {
+              setContracts(setter);
+            }}
+          ></PersonalSetting>
+        );
         break;
     }
   }
@@ -166,7 +184,7 @@ export default function Body() {
         </div>
       </>
     );
-  } else if(userAccount) {
+  } else if (userAccount) {
     return (
       <>
         <DashboardToolbar

@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import { useState } from "react";
 
 export function ContactUS() {
   return (
@@ -80,26 +81,33 @@ export function ContactUS() {
           <Typography fontSize={30} fontWeight={800} sx={{ mb: "20px" }}>
             Any questions ?
           </Typography>
-          <TextField
-            sx={{ w: "300px", mb: "20px" }}
-            InputProps={{ sx: { color: "white" } }}
-            InputLabelProps={{ sx: { color: "white" } }}
-            label="Name"
-          ></TextField>
-          <TextField
-            sx={{ w: "300px", mb: "20px" }}
-            InputProps={{ sx: { color: "white" } }}
-            InputLabelProps={{ sx: { color: "white" } }}
-            label="Email"
-          ></TextField>
-          <TextField
-            multiline
-            rows={4}
-            sx={{ w: "300px", mb: "20px" }}
-            InputProps={{ sx: { color: "white" } }}
-            InputLabelProps={{ sx: { color: "white" } }}
-            label="Message"
-          ></TextField>
+          <Box>
+            <TextField
+              sx={{ w: "300px", mb: "20px" }}
+              InputProps={{ sx: { color: "white" } }}
+              InputLabelProps={{ sx: { color: "white" } }}
+              label="Name"
+            ></TextField>
+          </Box>
+          <Box>
+            <TextField
+              sx={{ w: "300px", mb: "20px" }}
+              InputProps={{ sx: { color: "white" } }}
+              InputLabelProps={{ sx: { color: "white" } }}
+              label="Email"
+            ></TextField>
+          </Box>
+          <Box>
+            <TextField
+              multiline
+              rows={4}
+              sx={{ w: "300px", mb: "20px" }}
+              InputProps={{ sx: { color: "white" } }}
+              InputLabelProps={{ sx: { color: "white" } }}
+              label="Message"
+            ></TextField>
+          </Box>
+
           <Box>
             <Button
               variant="contained"

@@ -33,7 +33,8 @@ export function ProfitSharingChart(props) {
       type="pie"
       series={[props.data, 100 - props.data]}
       options={chartOptions}
-      className="relative top-16"
+      width={280}
+      className="relative top-12 self-center"
     ></Chart>
   );
 }

@@ -72,7 +72,7 @@ export function DurationChart(props) {
     fill: {
       opacity: 1,
     },
-    labels: ["Duration"],
+    labels: ["Duration","Max Trade Days"],
     plotOptions: {
       radialBar: {
         startAngle: -120,
@@ -109,7 +109,7 @@ export function DurationChart(props) {
       series={props.data}
       options={chartOptions}
       type="radialBar"
-      className="relative "
+      className="relative top-8"
     />
   );
 }

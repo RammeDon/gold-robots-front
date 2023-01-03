@@ -177,6 +177,7 @@ export function MinimumProfitChart(props) {
       width={160}
       height={250}
       options={chartOptions}
+      className="self-center"
       series={[{ data: [0, props.data], name: "minim profit" }]}
     />
   );

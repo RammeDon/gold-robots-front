@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./contracts.css";
 import { contracts } from "../../data/contracts";
 import {
+  Alert,
+  AlertTitle,
   Button,
   Card,
   CardContent,
   Divider,
   Grid,
+  Pagination,
+  Snackbar,
   TextField,
   Typography,
 } from "@mui/material";
@@ -116,16 +120,28 @@ export default function Contracts() {
   }
 }
 
-export function DashboardContracts() {
+
+export function DashboardContracts(props) {
   const [contractIndex, setContractIndex] = useState(0);
   const contract = contracts[contractIndex];
+  const [details, setDetails] = useState({ ammount: 0, date: "" });
+  const [opneAlert, setOpenAlert] = useState(false);
+
+  const chooseContracts = (e) => {
+    if (props.contracts.length < 2) {
+      props.setContracts((current) => [...current, contract]);
+    } else if (props.contracts.length === 2) {
+      setOpenAlert(true);
+    }
+  };
 
   return (
     <div className="w-[100vw] flex flex-col">
       <Card
         sx={{
           backgroundColor: "#111827",
-          minWidth: "70vw",
+          minWidth: "80vw",
+          maxWidth: "80vw",
           pt: "12px",
           mx: "auto",
           px: "12px",
@@ -171,9 +187,12 @@ export function DashboardContracts() {
                 </div>
               </Grid>
               <Grid md={4} sm={12}>
-                <DurationChart
-                  data={[contract.maxTradeDays, contract.minDuration]}
-                ></DurationChart>
+                <div className="flex flex-col justify-between h-[290px] text-white">
+                  <DurationChart
+                    data={[contract.maxTradeDays, contract.minDuration]}
+                  ></DurationChart>
+                  Duration
+                </div>
               </Grid>
             </Grid>
             <Grid container>
@@ -183,6 +202,13 @@ export function DashboardContracts() {
                     InputLabelProps={{ sx: { color: "white" } }}
                     InputProps={{ sx: { color: "white" } }}
                     label="ammount"
+                    value={details.ammount}
+                    onChange={(e) =>
+                      setDetails((current) => ({
+                        ...current,
+                        ammount: e.target.value,
+                      }))
+                    }
                   ></TextField>
                   <span className="text-[#9096a3] mt-auto mb-2 ml-3">
                     Min {contract.minDeposite}
@@ -195,6 +221,13 @@ export function DashboardContracts() {
                     InputLabelProps={{ sx: { color: "white" } }}
                     InputProps={{ sx: { color: "white" } }}
                     type="date"
+                    value={details.date}
+                    onChange={(e) =>
+                      setDetails((current) => ({
+                        ...current,
+                        date: e.target.value,
+                      }))
+                    }
                   ></TextField>
                   <span className="text-[#9096a3] mt-auto mb-2 ml-3">
                     Amdin Clients: {contract.adminClients}
@@ -212,6 +245,7 @@ export function DashboardContracts() {
                   }}
                   color="secondary"
                   variant="contained"
+                  onClick={chooseContracts}
                 >
                   Chose contract
                 </Button>
@@ -228,6 +262,18 @@ export function DashboardContracts() {
           </Button>
         </div>
       </Card>
+      <Snackbar
+        open={opneAlert}
+        autoHideDuration={2000}
+        onClose={() => {
+          setOpenAlert(false);
+        }}
+      >
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          ammount exceeded
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

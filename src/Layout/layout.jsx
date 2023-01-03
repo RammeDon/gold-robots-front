@@ -23,6 +23,7 @@ export default function Body() {
   const [path, setPath] = useState();
   const [loggedUser, setLoggedUser] = useState();
   const [userAccount, setUserAccount] = useState();
+  const [data, setData] = useState();
   const [contracts, setContracts] = useState();
   const { token, setToken } = useToken();
 
@@ -33,7 +34,7 @@ export default function Body() {
   };
 
   useEffect(() => {
-    if (token && !contracts) {
+    if (token) {
       const username = jwt(token).username;
       read
         .fetchOne("users", username)
@@ -44,12 +45,22 @@ export default function Body() {
             .then((res) => setUserAccount({ ...res }))
             .finally(() => {
               read
-                .fetchOne("contracts", username)
-                .then((res) => setContracts([...res]));
+                .fetchImage(username)
+                .then((res) => setData({ ...res }))
+                .then((res) => setUserAccount({ ...res }))
+                .finally(() => {
+                  read
+                    .fetchOne("contracts", username)
+                    .then((res) => setContracts([...res]));
+                });
             });
+          console.log("user", loggedUser);
+          console.log("account", userAccount);
+          console.log("image", data);
         });
+    } else {
     }
-  }, []);
+  }, [loggedUser, userAccount, token]);
 
   let component;
 
@@ -97,7 +108,13 @@ export default function Body() {
     // }
     switch (path) {
       default:
-        component = <Profile user={loggedUser} account={userAccount}></Profile>;
+        component = (
+          <Profile
+            user={loggedUser}
+            account={userAccount}
+            data={data}
+          ></Profile>
+        );
         break;
       case "home":
         component = (
@@ -184,7 +201,7 @@ export default function Body() {
         </div>
       </>
     );
-  } else if (contracts) {
+  } else if (userAccount) {
     return (
       <>
         <DashboardToolbar

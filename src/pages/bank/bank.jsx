@@ -21,13 +21,15 @@ import {
   styled,
 } from "@mui/material";
 import { borderColor } from "@mui/system";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import bitcion from "../../assets/icons/bitcion.png";
 import paypal from "../../assets/icons/paypal.png";
 import skrill from "../../assets/icons/skrill.png";
 import perfect_money from "../../assets/icons/perfect-money.png";
 import visa from "../../assets/icons/visa.png";
 import binance from "../../assets/icons/binance.png";
+import create from "../../CRUD/create.js"
+import read from "../../CRUD/read.js"
 
 export function Bank(props) {
   const [action, setAction] = useState(1);
@@ -42,19 +44,19 @@ export function Bank(props) {
 
   switch (action) {
     default:
-      component = <History></History>;
+      component = <History user={props.user}></History>;
       break;
     case 1:
-      component = <History></History>;
+      component = <History user={props.user}></History>;
       break;
     case 0:
       component = (
-        <Action action={action} color="success" variant="filled"></Action>
+        <Action user={props.user} action={action} color="success" variant="filled"></Action>
       );
       break;
     case 2:
       component = (
-        <Action action={action} color="error" variant="outlined"></Action>
+        <Action user={props.user} action={action} color="error" variant="outlined"></Action>
       );
       break;
   }
@@ -111,7 +113,7 @@ export function Bank(props) {
                     }}
                   >
                     <Typography>
-                      <b>Country:</b> {props.account.country}
+                      <b>Country:</b> {props.account.country[0]}
                     </Typography>
                   </Card>
                   <Card
@@ -237,10 +239,16 @@ export function Bank(props) {
   }
 }
 
-function History() {
+function History(props) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [rows, setRows] = useState([]);
+  const [pH, setPH] = useState([])
+
+
+  useEffect(() => {
+    read.fetchOne("paymenthistories", props.user.username).then(res => setPH([...res]))
+  }, [])
 
   const columns = [
     { id: "ammount", name: "Ammount" },
@@ -272,7 +280,7 @@ function History() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {pH
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((rows) => {
                 return (
@@ -286,7 +294,7 @@ function History() {
                             return (
                               <TableCell align="center">{value}</TableCell>
                             );
-                          case 0:
+                          case "accepted":
                             return (
                               <TableCell
                                 align="center"
@@ -295,7 +303,7 @@ function History() {
                                 {value}
                               </TableCell>
                             );
-                          case 1:
+                          case "pending":
                             return (
                               <TableCell
                                 align="center"
@@ -304,7 +312,7 @@ function History() {
                                 {value}
                               </TableCell>
                             );
-                          case 2:
+                          case "rejected":
                             return (
                               <TableCell
                                 align="center"
@@ -347,6 +355,17 @@ function History() {
 }
 
 function Action(props) {
+  // deposite and withdraw
+
+  const [details, setDetails] = useState({
+    username: props.user.username,
+    paymentSystem: "",
+    amount: "0",
+    paymentType: props.action === 0 ? "Deposit" : "Withdraw"
+
+  })
+
+
   const ButtonTheme = createTheme({
     components: {
       MuiButton: {
@@ -359,6 +378,24 @@ function Action(props) {
       },
     },
   });
+
+  const handleSubmit = () => {
+    // if (props.action === 0) {
+    //   setDetails((current) => ({
+    //     ...current,
+    //     paymentType: "deposite"
+    //   }))
+    // } else if (props.action === 2) {
+    //   setDetails((current) => ({
+    //     ...current,
+    //     paymentType: "withdraw"
+    //   }))
+    // }
+
+    console.log(details)
+
+     create.createPaymentHistory(details)
+  }
 
   return (
     <ThemeProvider theme={ButtonTheme}>
@@ -373,6 +410,12 @@ function Action(props) {
             labelId="type"
             label="type"
             color="warning"
+            onChange={(e)=> {
+              setDetails((current) => ({
+                ...current,
+                paymentSystem: e.target.value
+              }))
+            }}
           >
             <MenuItem value={0}>
               <img src={bitcion} width={25} className="mr-2" alt="" />
@@ -410,8 +453,14 @@ function Action(props) {
             sx: { color: "white", borderColor: "white" },
           }}
           InputLabelProps={{ sx: { color: "white" } }}
+          onChange={(e)=> {
+            setDetails((current) => ({
+              ...current,
+              amount: e.target.value
+            }))
+          }}
         />
-        <Button variant="contained">Submit</Button>
+        <Button variant="contained" onClick={handleSubmit}>Submit</Button>
       </form>
     </ThemeProvider>
   );

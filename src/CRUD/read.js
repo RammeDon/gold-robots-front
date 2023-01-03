@@ -12,6 +12,17 @@ const fetchOne = async (collection, id) => {
     .catch((error) => console.log(error.message));
 };
 
+
+const fetchImage = async (username) => {
+  let data;
+  await fetch(`${env.baseUrl}/api/images/${username}`)
+    .then((response) => response.json())
+    .then((response) => data=response)
+    .catch((error) => console.log(error.message));
+
+  return data
+};
+
 const fetchCountries = async () => {
   const headers = new Headers();
   headers.append(
@@ -27,6 +38,6 @@ const fetchCountries = async () => {
     .catch((err) => console.error(err));
 };
 
-const exports = { fetchCollection, fetchCountries, fetchOne };
+const exports = { fetchCollection, fetchCountries, fetchOne, fetchImage };
 
 export default exports;

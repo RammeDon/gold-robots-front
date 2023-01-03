@@ -1,8 +1,77 @@
-import { Avatar, Card, Divider, Grid, Typography } from "@mui/material";
+import { Avatar, Button, Card, Divider, Grid, Typography } from "@mui/material";
 import avatar from "../../assets/icons/account.png";
 import { dollar } from "../../utils/dollar";
+import create from "../../CRUD/create.js"
+import read from "../../CRUD/read.js"
+import {useState, useEffect } from "react";
+
+
+function ProfilePicture (props){
+  const {data} = props.data.image.data
+  console.log(data)
+
+  if (props.user.profilePictureID === "No photo") {
+    return (
+      <Avatar
+          src={
+            props.user.profilePictureID !== "No photo"
+              ? props.profile
+              : avatar
+          }
+          sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
+        ></Avatar>
+    )
+  }
+  else {
+    data.map((singleData) => {
+      const base64String = btoa(
+        String.fromCharCode(...new Uint8Array(singleData.img.data.data))
+      );
+      return (
+        <Avatar
+        src={`data:image/png;base64,${base64String}`}
+        sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
+      ></Avatar>)
+    })
+  }
+}
 
 export function Profile(props) {
+
+  const [image, setImage] = useState({})
+  console.log(props.data)
+
+
+  // useEffect( ()  => {
+  //   setData(read.fetchImage(props.account.username))
+
+  // },[props.account.username])
+
+  const fileOnChange = (event) => {
+    setImage(event.target.files[0])
+  }
+
+  // useEffect(() => {
+  //   const values = Object.values(props.data)
+
+  //   dummyData = props.data.image.map(image => {
+  //     return Object.keys(image.data)
+  //   })
+
+  // }, [props.data])
+
+
+  const upload = () => {
+
+    let formData = new FormData()
+    formData.append("testImage", image)
+    formData.append("username", props.account.username)
+    create.createImage(formData)
+  }
+
+
+
+
   return (
     <Card sx={{ backgroundColor: "#111827" }} variant="outlined">
       <Grid
@@ -18,14 +87,9 @@ export function Profile(props) {
             width: "min-content",
           }}
         >
-          <Avatar
-            src={
-              props.user.profilePictureID !== "No photo"
-                ? props.profile
-                : avatar
-            }
-            sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
-          ></Avatar>
+          <ProfilePicture data={props.data} user={props.user} />
+          <input type="file" onChange={fileOnChange} />
+          <Button onClick={upload}>Upload</Button>
         </Grid>
         <Grid
           md={6}

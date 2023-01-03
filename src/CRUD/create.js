@@ -100,11 +100,13 @@ const createAccount = async (account) => {
     });
 };
 
-const createImage = async (imageForm) => {
+const createImage = async (form) => {
+
+
 
   fetch(`${env.baseUrl}/api/images`, {
     method: "POST",
-    body: imageForm
+    body: form
   })
     .then(res => res.text())
     .then(resBody => console.log(resBody))
@@ -140,8 +142,7 @@ const createContract = async (contract) => {
 
 const createPaymentHistory = async (paymentHistory) => {
   const createDetails = {
-    userID: paymentHistory.userID,
-    accountID: paymentHistory.accountID,
+    username: paymentHistory.username,
     date: paymentHistory.date,
     ammount: paymentHistory.ammount,
     paymentType: paymentHistory.paymentType,

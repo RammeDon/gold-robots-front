@@ -149,7 +149,7 @@ const createPaymentHistory = async (paymentHistory) => {
     paymentSystem: paymentHistory.paymentSystem,
     status: paymentHistory.status,
   };
-  fetch(`${env.baseUrl}/api/paymenthistories/`, {
+  fetch(`${env.baseUrl}/api/paymentHistories/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

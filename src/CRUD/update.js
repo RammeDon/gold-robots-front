@@ -3,20 +3,7 @@ import { env } from "../environment/environment";
 
 const updateUser = async (updateDetails, id) => {
     const userDetails = {
-        title: updateDetails.title,
-        userID: updateDetails.userID,
-        username: updateDetails.username,
-        firstname: updateDetails.firstname,
-        lastname: updateDetails.lastname,
-        birthDay: updateDetails.birthDay,
-        phone: updateDetails.phone,
-        email: updateDetails.email,
-        country: updateDetails.country,
-        language: updateDetails.language,
-        accoutID: updateDetails.accountID,
-        contractID: updateDetails.contractID,
-        personalSettings: updateDetails.personalSettings,
-        profilePictureID: updateDetails.profilePictureID
+        profilePictureID: updateDetails
     };
 
     fetch(`${env.baseUrl}/api/users/${id}`, {

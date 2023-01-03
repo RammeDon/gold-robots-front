@@ -3,13 +3,15 @@ import avatar from "../../assets/icons/account.png";
 import { dollar } from "../../utils/dollar";
 import create from "../../CRUD/create.js"
 import read from "../../CRUD/read.js"
+import update from "../../CRUD/update.js"
 import {useState, useEffect } from "react";
+
 
 
 function ProfilePicture (props){
   // const {data} = props.data.file
-  // console.log(data)
-  console.log(process.env.PUBLIC_URL)
+  // console.log(props.data.file)
+  // console.log(process.env.PUBLIC_URL)
 
   if (props.user.profilePictureID === "No photo") {
     return (
@@ -66,6 +68,8 @@ export function Profile(props) {
 
 
   const upload = () => {
+
+    update.updateUser("Photo", props.account.username)
 
     let formData = new FormData()
     formData.append("filename", image)

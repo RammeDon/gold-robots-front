@@ -184,7 +184,7 @@ export default function Body() {
         </div>
       </>
     );
-  } else if (userAccount) {
+  } else if (contracts) {
     return (
       <>
         <DashboardToolbar

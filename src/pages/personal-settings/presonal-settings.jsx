@@ -23,7 +23,7 @@ export function PersonalSetting(props) {
 
   const handelSubmission = () => {
     update
-      .updateContract(
+    .updateContract(
         { ...selectedContract, personalSettings: settings },
         selectedContract._id
       )

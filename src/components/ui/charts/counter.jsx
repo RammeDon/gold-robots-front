@@ -1,6 +1,6 @@
 import Chart from "react-apexcharts";
 
-export function CounterChart() {
+export function CounterChart(props) {
   const options = {
     series: [45],
     colors: ["#20E647"],
@@ -20,18 +20,7 @@ export function CounterChart() {
             opacity: 0.15,
           },
         },
-        dataLabels: {
-          name: {
-            offsetY: -10,
-            color: "#fff",
-            fontSize: "13px",
-          },
-          value: {
-            color: "#fff",
-            fontSize: "30px",
-            show: true,
-          },
-        },
+
       },
     },
     fill: {
@@ -46,14 +35,30 @@ export function CounterChart() {
     stroke: {
       lineCap: "round",
     },
-    labels: ["Days"],
+    labels: [`${props.account.days} Days`],
+    dataLabels: {
+      formatter: function (val) {
+        const percent = (val/1);
+        return percent.toFixed(0)
+      },
+      name: {
+        offsetY: -10,
+        color: "#fff",
+        fontSize: "13px",
+      },
+      value: {
+        color: "#fff",
+        fontSize: "30px",
+        show: false,
+      },
+    },
   };
 
   return (
     <Chart
       options={options}
       type="radialBar"
-      series={[45]}
+      series={[props.account.days]}
       height={350}
     ></Chart>
   );

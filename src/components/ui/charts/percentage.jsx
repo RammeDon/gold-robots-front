@@ -1,7 +1,7 @@
 import { useTheme } from "@mui/material/styles";
 import Chart from "react-apexcharts";
 
-export function PercentageChart() {
+export function PercentageChart(props) {
   const theme = useTheme();
 
   const chartOptions = {
@@ -45,7 +45,7 @@ export function PercentageChart() {
     },
   };
 
-  const chartSeries = [83];
+  const chartSeries = [props.account.percentageInTrades];
 
   return (
     <Chart

@@ -31,7 +31,7 @@ export function ContactUS() {
           sx={{
             backgroundColor: "#111827",
             p: 2,
-            mb: "12px",
+            // mb: "12px",
             color: "white",
             mb: "30px",
           }}

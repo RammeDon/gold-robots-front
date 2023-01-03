@@ -15,8 +15,8 @@ export default function DashboardHome(props) {
     return (
       <div className="">
         <Balance account={props.account} user={props.loggedUser}></Balance>
-        <Charts></Charts>
-        <Trades></Trades>
+        <Charts account={props.account}></Charts>
+        <Trades account={props.account}></Trades>
       </div>
     );
   }
@@ -174,7 +174,7 @@ const Balance = (props) => (
   </Box>
 );
 
-const Charts = () => (
+const Charts = (props) => (
   <div className="w-full mt-12 pb-12 px-5">
     <Grid container sx={{ justifyContent: "space-between", rowGap: 5 }}>
       <Grid md={4} sm={12}>
@@ -188,7 +188,7 @@ const Charts = () => (
           }}
         >
           <Typography sx={{ color: "white" }}>Balance overview</Typography>
-          <PerformanceChart></PerformanceChart>
+          <PerformanceChart account={props.account}></PerformanceChart>
         </Card>
       </Grid>
       <Grid md={4} sm={12}>
@@ -202,7 +202,7 @@ const Charts = () => (
           }}
         >
           <Typography sx={{ color: "white" }}>Percentage in trade</Typography>
-          <PercentageChart></PercentageChart>
+          <PercentageChart account={props.account}></PercentageChart>
         </Card>
       </Grid>
       <Grid md={3} sm={12}>
@@ -218,14 +218,14 @@ const Charts = () => (
           }}
         >
           <Typography sx={{ color: "white" }}>Remaning days</Typography>
-          <CounterChart></CounterChart>
+          <CounterChart account={props.account}></CounterChart>
         </Card>
       </Grid>
     </Grid>
   </div>
 );
 
-const Trades = () => (
+const Trades = (props) => (
   <Card
     sx={{
       width: "100%",
@@ -237,6 +237,6 @@ const Trades = () => (
     <Typography sx={{ color: "white", paddingTop: "20px" }}>
       Active Trades
     </Typography>
-    <BarChart></BarChart>
+    <BarChart account={props.account}></BarChart>
   </Card>
 );

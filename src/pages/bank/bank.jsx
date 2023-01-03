@@ -30,9 +30,62 @@ import visa from "../../assets/icons/visa.png";
 import binance from "../../assets/icons/binance.png";
 import create from "../../CRUD/create.js"
 import read from "../../CRUD/read.js"
+import update from "../../CRUD/update.js"
 
 export function Bank(props) {
   const [action, setAction] = useState(1);
+
+
+  // const bankDetail = {
+  //   bankNames : [props.account.bankNames[0], props.account.bankNames[1]],
+  //   accountNumber : [props.account.accountNumber[0], props.account.accountNumber[1]],
+  //   swiftCode : [props.account.swiftCode[0], props.account.swiftCode[1]],
+  //   country : [props.account.country[0], props.account.country[1]],
+  //   currency: [props.account.currency[0], props.account.currency[1]],
+  // }
+
+  const [bank1, setBank1] = useState()
+  const [bank2, setBank2] = useState()
+  const [accoutN1, SetAccoutN1] = useState()
+  const [accoutN2, SetAccoutN2] = useState()
+  const [swiftCode1, setSwiftCode1] = useState()
+  const [swiftCode2, setSwiftCode2] = useState()
+  const [country1, setCountry1] = useState()
+  const [country2, setCountry2] = useState()
+  const [currency1, setCurrency1] = useState()
+  const [currency2, setCurrency2] = useState()
+
+  const submit1 = () => {
+
+    const updateDetails = {
+      bankNames: [bank1, props.account.bankNames[0]],
+      accountNumbers: [accoutN1, props.account.accountNumbers[0]],
+      swiftCode: [swiftCode1, props.account.swiftCode[0]],
+      country: [country1, props.account.country[0]],
+      currency: [currency1, props.account.currency[0]]
+    }
+
+    update.updateAccount(updateDetails, props.account.username)
+
+    console.log("updating...")
+  }
+
+  const submit2 = () => {
+    const updateDetails = {
+      bankNames: [bank2, props.account.bankNames[1]],
+      accountNumbers: [accoutN2, props.account.accountNumbers[1]],
+      swiftCode: [swiftCode2, props.account.swiftCode[1]],
+      country: [country2, props.account.country[1]],
+      currency: [currency2, props.account.currency[1]]
+    }
+
+    update.updateAccount(updateDetails, props.account.username)
+
+    console.log("updating 2...")
+  }
+
+
+  console.log("user", props.account)
 
   const seprate = () => {
     if (window.innerWidth > 420) {
@@ -82,9 +135,11 @@ export function Bank(props) {
                   mb: "12px",
                 }}
               >
-                <Typography fontSize={30}>
-                  {props.account.bankNames[0]}
+                <Typography fontSize={20}>
+                  Bank Name
                 </Typography>
+                <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.bankNames[0]} variant="filled" />
+
               </Card>
               <div className="flex flex-col gap-3">
                 <Card
@@ -92,15 +147,17 @@ export function Bank(props) {
                 >
                   <Typography fontSize={15}>
                     <b className="mr-2">Account number:</b>{" "}
-                    {props.account.accountNumbers[0]}
                   </Typography>
+                  <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.accountNumbers[0]} variant="filled" />
+
                 </Card>
                 <Card
                   sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
                 >
                   <Typography>
-                    <b>Swift code:</b> {props.account.swiftCode[0]}
+                    <b>Swift code</b>
                   </Typography>
+                  <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.swiftCode[0]} variant="filled" />
                 </Card>
 
                 <div className="flex justify-around gap-3">
@@ -113,8 +170,9 @@ export function Bank(props) {
                     }}
                   >
                     <Typography>
-                      <b>Country:</b> {props.account.country[0]}
+                      <b>Country</b>
                     </Typography>
+                    <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.country[0]} variant="filled" />
                   </Card>
                   <Card
                     sx={{
@@ -124,11 +182,13 @@ export function Bank(props) {
                       w: "20%",
                     }}
                   >
-                    <Typography>{props.account.currency[0]}</Typography>
+                    <Typography>Currency</Typography>
+                    <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.currency[0]} variant="filled" />
                   </Card>
                 </div>
               </div>
               <Button
+                onClick={submit1}
                 color="secondary"
                 sx={{ color: "white", mt: "12px" }}
                 variant="contained"
@@ -146,9 +206,12 @@ export function Bank(props) {
                   mb: "12px",
                 }}
               >
-                <Typography fontSize={30}>
-                  {props.account.bankNames[1]}
+                <Typography fontSize={20}>
+                  
+                  Bank Name
                 </Typography>
+                <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.bankNames[1]} variant="filled" />
+
               </Card>
               <div className="flex flex-col gap-3">
                 <Card
@@ -156,15 +219,16 @@ export function Bank(props) {
                 >
                   <Typography fontSize={15}>
                     <b className="mr-2">Account number:</b>{" "}
-                    {props.account.accountNumbers[1]}
                   </Typography>
+                  <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.accountNumbers[1]} variant="filled" />
                 </Card>
                 <Card
                   sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
                 >
                   <Typography>
-                    <b>Swift code:</b> {props.account.swiftCode}
+                    <b>Swift code:</b>
                   </Typography>
+                  <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.swiftCode[1]} variant="filled" />
                 </Card>
 
                 <div className="flex justify-around gap-3">
@@ -177,8 +241,9 @@ export function Bank(props) {
                     }}
                   >
                     <Typography>
-                      <b>Country:</b> {props.account.country[1]}
+                      <b>Country:</b>
                     </Typography>
+                    <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.country[1]} variant="filled" />
                   </Card>
                   <Card
                     sx={{
@@ -188,11 +253,13 @@ export function Bank(props) {
                       w: "20%",
                     }}
                   >
-                    <Typography>{props.account.currency[1]}</Typography>
+                    <Typography>Currency</Typography>
+                    <TextField InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.currency[1]} variant="filled" />
                   </Card>
                 </div>
               </div>
               <Button
+                onClick={submit2}
                 color="secondary"
                 sx={{ color: "white", mt: "12px" }}
                 variant="contained"
@@ -249,6 +316,8 @@ function History(props) {
   useEffect(() => {
     read.fetchOne("paymenthistories", props.user.username).then(res => setPH([...res]))
   }, [])
+
+  console.log("history", pH)
 
   const columns = [
     { id: "ammount", name: "Ammount" },

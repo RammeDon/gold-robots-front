@@ -33,6 +33,44 @@ const updateUser = async (updateDetails, id) => {
     });
 };
 
+const updateAccount = async (updateDetails, id) => {
+  const accountDetails = {
+    bankNames: updateDetails.bankNames,
+    accountNumbers: updateDetails.accountNumbers,
+    username: updateDetails.username,
+    swiftCode: updateDetails.swiftCode,
+    country: updateDetails.country,
+    currency: updateDetails.currency,
+    balance: updateDetails.balance,
+    depositeAccount: updateDetails.depositeAccount,
+    paymentHistory: updateDetails.paymentHistory,
+    contractType: updateDetails.contractType,
+    todayTrades: updateDetails.todayTrades,
+    newTrades: updateDetails.newTrades,
+    todayMoney: updateDetails.todayMoney,
+    profilePictureID: updateDetails.profilePictureID,
+    days: updateDetails.days,
+    percentageInTrades: updateDetails.percentageInTrades,
+    balanceOverView: updateDetails.balanceOverView,
+    activeTradesToday: updateDetails.activeTradesToday,
+    activeTradesLastWeek: updateDetails.activeTradesLastWeek,
+  };
+
+  fetch(`/api/accounts/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(accountDetails),
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.message) {
+        console.log(response.message);
+      }
+    });
+};
+
 const updateContract = async (updateDetails, id) => {
   const contractDetails = {
     title: updateDetails.title,
@@ -60,6 +98,6 @@ const updateContract = async (updateDetails, id) => {
   }).then((res) => res.json());
 };
 
-const exports = { updateUser, updateContract };
+const exports = { updateUser, updateContract, updateAccount };
 
 export default exports;

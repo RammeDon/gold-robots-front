@@ -6,43 +6,15 @@ import {
   CounterChart,
   BarChart,
 } from "../../components/ui/charts";
-import read from "../../CRUD/read.js";
-import { useState, useEffect } from "react";
 import { dollar } from "../../utils/dollar";
-import jwt from "jwt-decode";
 
 export default function DashboardHome(props) {
-  const [account, setAccount] = useState();
 
-  useEffect(() => {
-    getData().then(() => console.log(account));
-  }, account);
 
-  const getData = async () => {
-    const token = sessionStorage.getItem("token");
-    if (!token) {
-      console.log("mmd", props.loggedUser);
-      read
-        .fetchOne("accounts", props.loggedUser.username)
-        .then((res) => setAccount({ ...res }))
-        .finally(() => {
-          console.log(account);
-        });
-    } else {
-      const loggedUser = jwt(token);
-      read
-        .fetchOne("accounts", loggedUser.username)
-        .then((res) => setAccount({ ...res }))
-        .finally(() => {
-          console.log(account);
-        });
-    }
-  };
-
-  if (account) {
+  if ( props.loggedUser && props.account) {
     return (
       <div className="">
-        <Balance account={account}></Balance>
+        <Balance account={props.account} user={props.loggedUser}></Balance>
         <Charts></Charts>
         <Trades></Trades>
       </div>
@@ -64,8 +36,8 @@ const Balance = (props) => (
               Welcome Back !
             </Typography>
             <div className="flex gap-5 justify-center text-2xl text-[#9ca3af]">
-              <span>username</span>
-              <span>ID</span>
+              <span>{props.user.username}</span>
+              <span>{props.user.userID}</span>
             </div>
         </Grid>
         <Grid

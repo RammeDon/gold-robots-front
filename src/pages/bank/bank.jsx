@@ -29,7 +29,7 @@ import perfect_money from "../../assets/icons/perfect-money.png";
 import visa from "../../assets/icons/visa.png";
 import binance from "../../assets/icons/binance.png";
 
-export function Bank() {
+export function Bank(props) {
   const [action, setAction] = useState(1);
 
   const seprate = () => {
@@ -59,166 +59,182 @@ export function Bank() {
       break;
   }
 
-  return (
-    <>
-      <Card
-        sx={{
-          width: "100%",
-          mb: 4,
-          backgroundColor: "#111827",
-          color: "white",
-        }}
-      >
-        <Grid container sx={{ justifyContent: "center" }}>
-          <Grid md={5} sm={12} sx={{ p: 3 }}>
-            <Card
-              sx={{
-                backgroundColor: "#0b0f19",
-                color: "white",
-                p: 1.5,
-                mb: "12px",
-              }}
-            >
-              <Typography fontSize={30}>Bank name</Typography>
-            </Card>
-            <div className="flex flex-col gap-3">
-              <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
-                <Typography fontSize={15}>
-                  <b className="mr-2">Account number:</b> 0000 0000 0000 0000
+  if (props.user && props.account) {
+    return (
+      <>
+        <Card
+          sx={{
+            width: "100%",
+            mb: 4,
+            backgroundColor: "#111827",
+            color: "white",
+          }}
+        >
+          <Grid container sx={{ justifyContent: "center" }}>
+            <Grid md={5} sm={12} sx={{ p: 3 }}>
+              <Card
+                sx={{
+                  backgroundColor: "#0b0f19",
+                  color: "white",
+                  p: 1.5,
+                  mb: "12px",
+                }}
+              >
+                <Typography fontSize={30}>
+                  {props.account.bankNames[0]}
                 </Typography>
               </Card>
-              <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
-                <Typography>
-                  <b>Swift code:</b> 0000 0000
-                </Typography>
-              </Card>
-
-              <div className="flex justify-around gap-3">
+              <div className="flex flex-col gap-3">
                 <Card
-                  sx={{
-                    backgroundColor: "#0b0f19",
-                    color: "white",
-                    p: 1.5,
-                    width: "80%",
-                  }}
+                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
                 >
-                  <Typography>
-                    <b>Country:</b> Turkey
+                  <Typography fontSize={15}>
+                    <b className="mr-2">Account number:</b>{" "}
+                    {props.account.accountNumbers[0]}
                   </Typography>
                 </Card>
                 <Card
-                  sx={{
-                    backgroundColor: "#0b0f19",
-                    color: "white",
-                    p: 1.5,
-                    w: "20%",
-                  }}
-                >
-                  <Typography>Currency</Typography>
-                </Card>
-              </div>
-            </div>
-            <Button
-              color="secondary"
-              sx={{ color: "white", mt: "12px" }}
-              variant="contained"
-            >
-              Submit
-            </Button>
-          </Grid>
-          {seprate()}
-          <Grid md={5} sm={12} sx={{ p: 3 }}>
-            <Card
-              sx={{
-                backgroundColor: "#0b0f19",
-                color: "white",
-                p: 1.5,
-                mb: "12px",
-              }}
-            >
-              <Typography fontSize={30}>Bank name</Typography>
-            </Card>
-            <div className="flex flex-col gap-3">
-              <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
-                <Typography fontSize={15}>
-                  <b className="mr-2">Account number:</b> 0000 0000 0000 0000
-                </Typography>
-              </Card>
-              <Card sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}>
-                <Typography>
-                  <b>Swift code:</b> 0000 0000
-                </Typography>
-              </Card>
-
-              <div className="flex justify-around gap-3">
-                <Card
-                  sx={{
-                    backgroundColor: "#0b0f19",
-                    color: "white",
-                    p: 1.5,
-                    width: "80%",
-                  }}
+                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
                 >
                   <Typography>
-                    <b>Country:</b> Turkey
+                    <b>Swift code:</b> {props.account.swiftCode[0]}
+                  </Typography>
+                </Card>
+
+                <div className="flex justify-around gap-3">
+                  <Card
+                    sx={{
+                      backgroundColor: "#0b0f19",
+                      color: "white",
+                      p: 1.5,
+                      width: "80%",
+                    }}
+                  >
+                    <Typography>
+                      <b>Country:</b> {props.account.country}
+                    </Typography>
+                  </Card>
+                  <Card
+                    sx={{
+                      backgroundColor: "#0b0f19",
+                      color: "white",
+                      p: 1.5,
+                      w: "20%",
+                    }}
+                  >
+                    <Typography>{props.account.currency[0]}</Typography>
+                  </Card>
+                </div>
+              </div>
+              <Button
+                color="secondary"
+                sx={{ color: "white", mt: "12px" }}
+                variant="contained"
+              >
+                Submit
+              </Button>
+            </Grid>
+            {seprate()}
+            <Grid md={5} sm={12} sx={{ p: 3 }}>
+              <Card
+                sx={{
+                  backgroundColor: "#0b0f19",
+                  color: "white",
+                  p: 1.5,
+                  mb: "12px",
+                }}
+              >
+                <Typography fontSize={30}>
+                  {props.account.bankNames[1]}
+                </Typography>
+              </Card>
+              <div className="flex flex-col gap-3">
+                <Card
+                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
+                >
+                  <Typography fontSize={15}>
+                    <b className="mr-2">Account number:</b>{" "}
+                    {props.account.accountNumbers[1]}
                   </Typography>
                 </Card>
                 <Card
-                  sx={{
-                    backgroundColor: "#0b0f19",
-                    color: "white",
-                    p: 1.5,
-                    w: "20%",
-                  }}
+                  sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
                 >
-                  <Typography>Currency</Typography>
+                  <Typography>
+                    <b>Swift code:</b> {props.account.swiftCode}
+                  </Typography>
                 </Card>
+
+                <div className="flex justify-around gap-3">
+                  <Card
+                    sx={{
+                      backgroundColor: "#0b0f19",
+                      color: "white",
+                      p: 1.5,
+                      width: "80%",
+                    }}
+                  >
+                    <Typography>
+                      <b>Country:</b> {props.account.country[1]}
+                    </Typography>
+                  </Card>
+                  <Card
+                    sx={{
+                      backgroundColor: "#0b0f19",
+                      color: "white",
+                      p: 1.5,
+                      w: "20%",
+                    }}
+                  >
+                    <Typography>{props.account.currency[1]}</Typography>
+                  </Card>
+                </div>
               </div>
-            </div>
-            <Button
-              color="secondary"
-              sx={{ color: "white", mt: "12px" }}
-              variant="contained"
-            >
-              Submit
-            </Button>
+              <Button
+                color="secondary"
+                sx={{ color: "white", mt: "12px" }}
+                variant="contained"
+              >
+                Submit
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-      </Card>
-      <div className="mt-5 flex gap-3 justify-center mb-10">
-        <p
-          className={action === 0 ? "text-[#7582eb]" : "text-[#cbd1d7]"}
-          role="button"
-          onClick={() => {
-            setAction(0);
-          }}
-        >
-          Deposit
-        </p>
-        <div className="w-[1px] bg-[#8d94a1] h-[30px] relative bottom-1"></div>
-        <p
-          className={action === 1 ? "text-[#7582eb]" : "text-[#cbd1d7]"}
-          role="button"
-          onClick={() => {
-            setAction(1);
-          }}
-        >
-          Payment History
-        </p>
-        <div className="w-[1px] bg-[#8d94a1] h-[30px] relative bottom-1"></div>
-        <p
-          className={action === 2 ? "text-[#7582eb]" : "text-[#cbd1d7]"}
-          role="button"
-          onClick={() => {
-            setAction(2);
-          }}
-        >
-          Withdraw
-        </p>
-      </div>
-      {component}
-    </>
-  );
+        </Card>
+        <div className="mt-5 flex gap-3 justify-center mb-10">
+          <p
+            className={action === 0 ? "text-[#7582eb]" : "text-[#cbd1d7]"}
+            role="button"
+            onClick={() => {
+              setAction(0);
+            }}
+          >
+            Deposit
+          </p>
+          <div className="w-[1px] bg-[#8d94a1] h-[30px] relative bottom-1"></div>
+          <p
+            className={action === 1 ? "text-[#7582eb]" : "text-[#cbd1d7]"}
+            role="button"
+            onClick={() => {
+              setAction(1);
+            }}
+          >
+            Payment History
+          </p>
+          <div className="w-[1px] bg-[#8d94a1] h-[30px] relative bottom-1"></div>
+          <p
+            className={action === 2 ? "text-[#7582eb]" : "text-[#cbd1d7]"}
+            role="button"
+            onClick={() => {
+              setAction(2);
+            }}
+          >
+            Withdraw
+          </p>
+        </div>
+        {component}
+      </>
+    );
+  }
 }
 
 function History() {

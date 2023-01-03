@@ -16,17 +16,37 @@ import { Profile } from "../pages/profile/profile";
 import { Bank } from "../pages/bank/bank";
 import { PersonalSetting } from "../pages/personal-settings/presonal-settings";
 import { ContactUS } from "../pages/contactUS/contactUs";
+import read from "../CRUD/read";
+import jwt from "jwt-decode";
 
 export default function Body() {
   const [path, setPath] = useState();
+  const [loggedUser, setLoggedUser] = useState();
+  const [userAccount, setUserAccount] = useState();
   const { token, setToken } = useToken();
-  const [loggedUser, setLoggedUser] = useState({});
 
   const hoverButton = useRef();
 
   const handelAnimation = () => {
     hoverButton.current.classList.toggle("!scale-100");
   };
+
+  useEffect(() => {
+    if (token && !userAccount) {
+      const username = jwt(token).username;
+      read
+        .fetchOne("users", username)
+        .then((res) => setLoggedUser({ ...res }))
+        .finally(() => {
+          read
+            .fetchOne("accounts", username)
+            .then((res) => setUserAccount({ ...res }));
+        });
+    } else {
+      console.log("user", loggedUser);
+      console.log("account", userAccount);
+    }
+  }, [loggedUser, userAccount, token]);
 
   let component;
 
@@ -74,25 +94,30 @@ export default function Body() {
     // }
     switch (path) {
       default:
-        component = <Profile></Profile>;
+        component = <Profile user={loggedUser} account={userAccount}></Profile>;
         break;
       case "home":
-        component = <DashboardHome loggedUser={loggedUser}></DashboardHome>;
+        component = <DashboardHome loggedUser={loggedUser} account={userAccount}></DashboardHome>;
         break;
       case "profile":
-        component = <Profile></Profile>;
+        component = <Profile user={loggedUser} account={userAccount}></Profile>;
         break;
       case "mail":
-        component = <ContactUS></ContactUS>;
+        component = <ContactUS user={loggedUser}></ContactUS>;
         break;
       case "bank":
-        component = <Bank></Bank>;
+        component = <Bank user={loggedUser} account={userAccount}></Bank>;
         break;
       case "contracts":
-        component = <DashboardContracts></DashboardContracts>;
+        component = (
+          <DashboardContracts
+            user={loggedUser}
+            account={userAccount}
+          ></DashboardContracts>
+        );
         break;
       case "settings":
-        component = <PersonalSetting></PersonalSetting>;
+        component = <PersonalSetting user={loggedUser}></PersonalSetting>;
         break;
     }
   }
@@ -141,7 +166,7 @@ export default function Body() {
         </div>
       </>
     );
-  } else {
+  } else if(userAccount) {
     return (
       <>
         <DashboardToolbar

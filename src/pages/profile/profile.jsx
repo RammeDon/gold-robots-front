@@ -1,5 +1,6 @@
 import { Avatar, Card, Divider, Grid, Typography } from "@mui/material";
 import avatar from "../../assets/icons/account.png";
+import { dollar } from "../../utils/dollar";
 
 export function Profile(props) {
   return (
@@ -18,7 +19,11 @@ export function Profile(props) {
           }}
         >
           <Avatar
-            src={props.profile ? props.profile : avatar}
+            src={
+              props.user.profilePictureID !== "No photo"
+                ? props.profile
+                : avatar
+            }
             sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
           ></Avatar>
         </Grid>
@@ -31,7 +36,7 @@ export function Profile(props) {
           <Typography fontSize={15} sx={{ color: "#989fab" }}>
             Total Balance
           </Typography>
-          <Typography fontSize={50}>$3,452,423.00</Typography>
+          <Typography fontSize={50}>{dollar(props.account.balance)}</Typography>
         </Grid>
       </Grid>
       <Divider className="bg-[#989fab]"></Divider>
@@ -42,19 +47,21 @@ export function Profile(props) {
               backgroundColor: "#0b0f19",
               color: "white",
               width: "300px",
-              height:'px',
+              height: "px",
               mx: "auto",
             }}
           >
             <Grid container sx={{ rowGap: 2, textAlign: "left", pl: 3, py: 3 }}>
               <Grid md={5} sm={6}>
-                firstname
+                {props.user.firstname}
               </Grid>
               <Grid md={5} sm={6}>
-                sirname
+                {props.user.lastname}
               </Grid>
               <Grid md={12} sm={12}>
-                <Typography sx={{ color: "#989fab" }}>username</Typography>
+                <Typography sx={{ color: "#989fab" }}>
+                  {props.user.username}
+                </Typography>
               </Grid>
             </Grid>
           </Card>
@@ -65,7 +72,7 @@ export function Profile(props) {
               backgroundColor: "#0b0f19",
               color: "white",
               width: "300px",
-              height:'72px',
+              height: "72px",
 
               p: 3,
               justifySelf: "center",
@@ -73,7 +80,7 @@ export function Profile(props) {
             }}
           >
             <Typography>
-              <b>AccountID:</b> 000
+              <b>AccountID:</b> {props.user.accountID}
             </Typography>
           </Card>
         </Grid>
@@ -83,14 +90,14 @@ export function Profile(props) {
               backgroundColor: "#0b0f19",
               color: "white",
               width: "300px",
-              height:'72px',
+              height: "72px",
               p: 3,
               justifySelf: "center",
               mx: "auto",
             }}
           >
             <Typography>
-              <b>Date of Birth:</b> yyy/mmm/ddd
+              <b>Date of Birth:</b> {props.user.birthDay}
             </Typography>
           </Card>
         </Grid>
@@ -100,7 +107,7 @@ export function Profile(props) {
               backgroundColor: "#0b0f19",
               color: "white",
               width: "300px",
-              height:'72px',
+              height: "72px",
 
               p: 3,
               justifySelf: "center",
@@ -108,7 +115,7 @@ export function Profile(props) {
             }}
           >
             <Typography fontSize={13}>
-              <b>Date of Registeration:</b> yyy/mmm/ddd
+              <b>Date of Registeration:</b> {props.user.openAccountDate}
             </Typography>
           </Card>
         </Grid>
@@ -118,7 +125,7 @@ export function Profile(props) {
               backgroundColor: "#0b0f19",
               color: "white",
               width: "300px",
-              height:'72px',
+              height: "72px",
 
               p: 3,
               justifySelf: "center",
@@ -126,7 +133,7 @@ export function Profile(props) {
             }}
           >
             <Typography>
-              <b>E-mail:</b> email@example.com
+              <b>E-mail:</b> {props.user.email}
             </Typography>
           </Card>
         </Grid>
@@ -136,16 +143,16 @@ export function Profile(props) {
               backgroundColor: "#0b0f19",
               color: "white",
               width: "300px",
-              height:'72px',
+              height: "72px",
 
               p: 3,
               justifySelf: "center",
               mx: "auto",
-              mb:5
+              mb: 5,
             }}
           >
             <Typography>
-              <b>Phone number:</b> 000
+              <b>Phone number:</b> {props.user.phone}
             </Typography>
           </Card>
         </Grid>

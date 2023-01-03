@@ -25,9 +25,6 @@ export default function Auth(props) {
   });
   const [openAlert, setOpenAlert] = useState();
 
-  useEffect(() => {
-    console.log(1);
-  });
 
   const handelSubmission = async () => {
     if (type === "login") {

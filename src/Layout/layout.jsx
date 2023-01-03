@@ -23,8 +23,8 @@ export default function Body() {
   const [path, setPath] = useState();
   const [loggedUser, setLoggedUser] = useState();
   const [userAccount, setUserAccount] = useState();
-  const [data, setData] = useState()
   const { token, setToken } = useToken();
+  const [data, setData] = useState()
 
   const hoverButton = useRef();
 
@@ -43,9 +43,7 @@ export default function Body() {
             .fetchOne("accounts", username)
             .then((res) => setUserAccount({ ...res }))
             .finally(() => {
-              read
-                .fetchImage(username)
-                .then((res) => setData({ ...res }))
+              read.fetchImage(username).then(res => setData({...res}))
             })
             console.log("user", loggedUser);
             console.log("account", userAccount);
@@ -174,7 +172,7 @@ export default function Body() {
         </div>
       </>
     );
-  } else if(data) {
+  } else if(userAccount) {
     return (
       <>
         <DashboardToolbar

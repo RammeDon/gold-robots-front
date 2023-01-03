@@ -19,7 +19,7 @@ const fetchImage = async (username) => {
     .then((response) => response.json())
     .then((response) => data=response)
     .catch((error) => console.log(error.message));
-
+  // console.log("data", data)
   return data
 };
 

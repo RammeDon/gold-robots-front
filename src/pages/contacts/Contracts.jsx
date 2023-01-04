@@ -120,7 +120,6 @@ export default function Contracts() {
   }
 }
 
-
 export function DashboardContracts(props) {
   const [contractIndex, setContractIndex] = useState(0);
   const contract = contracts[contractIndex];
@@ -128,11 +127,15 @@ export function DashboardContracts(props) {
   const [opneAlert, setOpenAlert] = useState(false);
 
   const chooseContracts = (e) => {
-    console.log(props);
     if (props.contracts.length < 2) {
-      props.setContracts((current) => [...current, contract]);
+      props.setContracts((current) => [
+        ...current,
+        { ...contract, ...details },
+      ]);
+      console.log(props.contracts);
     } else if (props.contracts.length === 2) {
       setOpenAlert(true);
+      console.log(props.contracts);
     }
   };
 

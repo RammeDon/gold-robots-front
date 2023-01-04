@@ -143,22 +143,13 @@ const createContract = async (contract) => {
     });
 };
 
-const createEmail = async (contract) => {
+const createEmail = async (email) => {
   const createDetails = {
-    username: contract.username,
-    ammount: contract.ammount,
-    color: contract.color,
-    date: contract.date,
-    garantiePrecent: contract.garantiePrecent,
-    level: contract.level,
-    maxTradeDays: contract.maxTradeDays,
-    minProfit: contract.minProfit,
-    name: contract.name,
-    minDuration: contract.minDuration,
-    minDeposite: contract.profitSharing,
-    adminClients: contract.adminClients
-  };
-  fetch(`${env.baseUrl}/api/contracts/`, {
+    username: email.username,
+    email: email.email,
+    message: email.message
+  }
+  fetch(`${env.baseUrl}/api/emails/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

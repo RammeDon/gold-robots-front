@@ -210,6 +210,7 @@ export function Bank(props) {
                       onChange={(e) => setCountry1(e.target.value)}
                       InputLabelProps={{ style: { color: "#fff" } }}
                       InputProps={{ style: { color: "white" } }}
+                      label={props.account.country[0]}
                       id="filled-basic"
                       variant="filled"
                     />
@@ -518,6 +519,7 @@ function Action(props) {
     username: props.user.username,
     paymentSystem: "",
     ammount: "0",
+    paymentType: "Withdraw",
   });
 
   const ButtonTheme = createTheme({

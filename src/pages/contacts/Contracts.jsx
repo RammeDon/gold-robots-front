@@ -9,7 +9,6 @@ import {
   CardContent,
   Divider,
   Grid,
-  Pagination,
   Snackbar,
   TextField,
   Typography,
@@ -128,9 +127,11 @@ export function DashboardContracts(props) {
 
   const chooseContracts = (e) => {
     if (props.contracts.length < 2) {
-      props.setContracts((current) => { 
-
-        return[...current,{...contract,...details}]
+      props.setContracts((current) => {
+        return [
+          ...current,
+          { ...contract, ...details, username: props.user.username },
+        ];
       });
       console.log(props.contracts);
     } else if (props.contracts.length === 2) {

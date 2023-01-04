@@ -104,12 +104,6 @@ export default function Body() {
     switch (path) {
       default:
         component = <Profile user={loggedUser} account={userAccount}></Profile>;
-        // component = (
-        //   <DashboardHome
-        //     loggedUser={loggedUser}
-        //     account={userAccount}
-        //   ></DashboardHome>
-        // );
         break;
       case "home":
         component = (

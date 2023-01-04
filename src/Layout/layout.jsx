@@ -198,6 +198,7 @@ export default function Body() {
             setPath(path);
           }}
           path={path}
+          user={loggedUser}
         ></DashboardToolbar>
         <div className="bg-[#0b0f19] min-h-[100vh] max-h-max pt-12 text-white">
           {component}

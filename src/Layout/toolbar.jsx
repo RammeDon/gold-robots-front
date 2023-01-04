@@ -319,10 +319,10 @@ export function DashboardToolbar(props) {
                 </IconButton>
                 <div className="flex flex-col justify-around">
                   <p className="font-smibold text-lg text-[#e5eaf0]">
-                    firstname sirname
+                    {props.user.firstname} {props.user.lastname}
                   </p>
                   <p className="font-smibold text-sm text-[#9ca3af]">
-                    username
+                    {props.user.username}
                   </p>
                 </div>
               </div>

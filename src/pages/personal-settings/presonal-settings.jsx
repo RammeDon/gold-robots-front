@@ -1,5 +1,6 @@
 import {
   Alert,
+  AlertTitle,
   Button,
   Card,
   FormControl,
@@ -12,6 +13,7 @@ import {
 import { useState } from "react";
 import update from "../../CRUD/update";
 import create from "../../CRUD/create";
+import read from "../../CRUD/read";
 
 export function PersonalSetting(props) {
   const [selectedContract, setSelectedContract] = useState();
@@ -22,30 +24,50 @@ export function PersonalSetting(props) {
     extraDays: "",
     maxUsage: "",
   });
-  const [openAlert, setOpenAlert] = useState(false);
+  const [openError, setOpenAlert] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
 
   const handelSubmission = async () => {
     const newContract = { ...selectedContract, ...settings };
 
-    if (props.contract.length < 2) {
-      await create.createContract(newContract).then(() => {
-        console.log(newContract);
-      });
-    } else {
-      setOpenAlert(true);
-    }
+    await read.fetchOne("contracts", props.user.username).then((res) => {
+      console.log("fetched contracts", res);
+      if (res.length < 2) {
+        create.createContract(newContract).then(() => {
+          console.log("created new contract");
+          setOpenSuccess(true);
+        });
+      } else {
+        setOpenAlert(true);
+      }
+    });
   };
 
   return (
     <>
       <Snackbar
+        autoHideDuration={400}
+        open={openSuccess}
+        onClose={() => {
+          setOpenSuccess(false);
+        }}
+      >
+        <Alert severity="success">
+          <AlertTitle>Success</AlertTitle>
+          contract submited
+        </Alert>
+      </Snackbar>
+      <Snackbar
         autoHideDuration={4000}
         onClose={() => {
           setOpenAlert(false);
         }}
-        open={openAlert}
+        open={openError}
       >
-        <Alert severity="error">cannot add more then two contracts</Alert>
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          cannot add more then two contracts
+        </Alert>
       </Snackbar>
       <Grid container sx={{ justifyContent: "start", gap: "12px" }}>
         <Grid md={6} sm={12}>
@@ -225,7 +247,7 @@ export function PersonalSetting(props) {
                   variant="contained"
                   onClick={handelSubmission}
                 >
-                  Submit
+                  Submit contract
                 </Button>
               </Grid>
             </Grid>

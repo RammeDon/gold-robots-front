@@ -287,7 +287,7 @@ export function DashboardContracts(props) {
           </Alert>
         </Snackbar>
         <Snackbar
-          open={opneRejection}
+          open={opneSuccess}
           autoHideDuration={2000}
           onClose={() => {
             setOpenRejection(false);

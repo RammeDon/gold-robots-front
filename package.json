@@ -1,6 +1,7 @@
 {
   "name": "front-end",
   "version": "0.1.0",
+  "homepage": "https://bulima.co",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",

@@ -128,10 +128,10 @@ export function DashboardContracts(props) {
 
   const chooseContracts = (e) => {
     if (props.contracts.length < 2) {
-      props.setContracts((current) => [
-        ...current,
-        { ...contract, ...details },
-      ]);
+      props.setContracts((current) => { 
+
+        return[...current,{...contract,...details}]
+      });
       console.log(props.contracts);
     } else if (props.contracts.length === 2) {
       setOpenAlert(true);

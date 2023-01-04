@@ -21,7 +21,10 @@ export function PersonalSetting(props) {
   });
 
   const handelSubmission = async () => {
-    await create.createContract(selectedContract).then(() => {
+    const newContract = { ...selectedContract, ...settings };
+
+
+    await create.createContract(newContract).then(() => {
       console.log("contract posted to database");
     });
   };
@@ -90,10 +93,10 @@ export function PersonalSetting(props) {
                     }));
                   }}
                 >
-                  <MenuItem value={0}>1:100</MenuItem>
-                  <MenuItem value={1}>1:200</MenuItem>
-                  <MenuItem value={2}>1:500</MenuItem>
-                  <MenuItem value={3}>1:1000</MenuItem>
+                  <MenuItem value={"1:100"}>1:100</MenuItem>
+                  <MenuItem value={"1:200"}>1:200</MenuItem>
+                  <MenuItem value={"1:300"}>1:500</MenuItem>
+                  <MenuItem value={"1:400"}>1:1000</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -115,10 +118,10 @@ export function PersonalSetting(props) {
                     }));
                   }}
                 >
-                  <MenuItem value={0}>5 Days</MenuItem>
-                  <MenuItem value={1}>10 Days</MenuItem>
-                  <MenuItem value={2}>25 Days</MenuItem>
-                  <MenuItem value={3}>50 Days</MenuItem>
+                  <MenuItem value={"5 Days"}>5 Days</MenuItem>
+                  <MenuItem value={"10 Days"}>10 Days</MenuItem>
+                  <MenuItem value={"25 Days"}>25 Days</MenuItem>
+                  <MenuItem value={"50 Days"}>50 Days</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -140,12 +143,12 @@ export function PersonalSetting(props) {
                     }));
                   }}
                 >
-                  <MenuItem value={0}>1 min</MenuItem>
-                  <MenuItem value={1}>5 min</MenuItem>
-                  <MenuItem value={2}>15 min</MenuItem>
-                  <MenuItem value={3}>1 hour</MenuItem>
-                  <MenuItem value={4}>1 day</MenuItem>
-                  <MenuItem value={5}>All</MenuItem>
+                  <MenuItem value={"1 min"}>1 min</MenuItem>
+                  <MenuItem value={"5 min"}>5 min</MenuItem>
+                  <MenuItem value={"15 min"}>15 min</MenuItem>
+                  <MenuItem value={"1 hour"}>1 hour</MenuItem>
+                  <MenuItem value={"1 day"}>1 day</MenuItem>
+                  <MenuItem value={"all"}>All</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -191,10 +194,10 @@ export function PersonalSetting(props) {
                     }));
                   }}
                 >
-                  <MenuItem value={0}>35 %</MenuItem>
-                  <MenuItem value={1}>50 %</MenuItem>
-                  <MenuItem value={2}>85 %</MenuItem>
-                  <MenuItem value={3}>100 %</MenuItem>
+                  <MenuItem value={'35 %'}>35 %</MenuItem>
+                  <MenuItem value={'50 %'}>50 %</MenuItem>
+                  <MenuItem value={'85 %'}>85 %</MenuItem>
+                  <MenuItem value={'100 %'}>100 %</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

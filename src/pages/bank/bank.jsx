@@ -1,5 +1,6 @@
 import { Label } from "@mui/icons-material";
 import {
+  Alert,
   Button,
   Card,
   FormControl,
@@ -7,6 +8,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -28,15 +30,14 @@ import skrill from "../../assets/icons/skrill.png";
 import perfect_money from "../../assets/icons/perfect-money.png";
 import visa from "../../assets/icons/visa.png";
 import binance from "../../assets/icons/binance.png";
-import create from "../../CRUD/create.js"
-import read from "../../CRUD/read.js"
-import update from "../../CRUD/update.js"
+import create from "../../CRUD/create.js";
+import read from "../../CRUD/read.js";
+import update from "../../CRUD/update.js";
 
 export function Bank(props) {
   const [action, setAction] = useState(1);
 
-  console.log(props.account)
-
+  console.log(props.account);
 
   // const bankDetail = {
   //   bankNames : [props.account.bankNames[0], props.account.bankNames[1]],
@@ -46,50 +47,50 @@ export function Bank(props) {
   //   currency: [props.account.currency[0], props.account.currency[1]],
   // }
 
-  const [bank1, setBank1] = useState(props.account.bankNames[0])
-  const [bank2, setBank2] = useState(props.account.bankNames[1])
-  const [accoutN1, setAccoutN1] = useState(props.account.accountNumbers[0])
-  const [accoutN2, setAccoutN2] = useState(props.account.accountNumbers[1])
-  const [swiftCode1, setSwiftCode1] = useState(props.account.swiftCode[0])
-  const [swiftCode2, setSwiftCode2] = useState(props.account.swiftCode[1])
-  const [country1, setCountry1] = useState(props.account.country[0])
-  const [country2, setCountry2] = useState(props.account.country[1])
-  const [currency1, setCurrency1] = useState(props.account.currency[0])
-  const [currency2, setCurrency2] = useState(props.account.currency[1])
+  const [bank1, setBank1] = useState(props.account.bankNames[0]);
+  const [bank2, setBank2] = useState(props.account.bankNames[1]);
+  const [accoutN1, setAccoutN1] = useState(props.account.accountNumbers[0]);
+  const [accoutN2, setAccoutN2] = useState(props.account.accountNumbers[1]);
+  const [swiftCode1, setSwiftCode1] = useState(props.account.swiftCode[0]);
+  const [swiftCode2, setSwiftCode2] = useState(props.account.swiftCode[1]);
+  const [country1, setCountry1] = useState(props.account.country[0]);
+  const [country2, setCountry2] = useState(props.account.country[1]);
+  const [currency1, setCurrency1] = useState(props.account.currency[0]);
+  const [currency2, setCurrency2] = useState(props.account.currency[1]);
+
+  const [openAlert, setOpenAlert] = useState(false);
 
   const submit1 = () => {
-
     const updateDetails = {
-      bankNames: [bank1, props.account.bankNames[1]] ,
+      bankNames: [bank1, props.account.bankNames[1]],
       accountNumbers: [accoutN1, props.account.accountNumbers[1]],
       swiftCode: [swiftCode1, props.account.swiftCode[1]],
-      country: [ country1,  props.account.country[1]],
-      currency: [currency1,  props.account.currency[1] ]
-    }
+      country: [country1, props.account.country[1]],
+      currency: [currency1, props.account.currency[1]],
+    };
 
-    update.updateAccount(updateDetails, props.account.username)
+    update.updateAccount(updateDetails, props.account.username).then(() => {
+      setOpenAlert(true);
+    });
 
-    console.log("updating...", updateDetails)
-  }
-
-  useEffect(()=>console.log(props.account))
+    console.log("updating...", updateDetails);
+  };
 
   const submit2 = () => {
     const updateDetails = {
       bankNames: [props.account.bankNames[0], bank2],
       accountNumbers: [props.account.accountNumbers[0], accoutN2],
-      swiftCode: [props.account.swiftCode[0],  swiftCode2],
+      swiftCode: [props.account.swiftCode[0], swiftCode2],
       country: [props.account.country[0], country2],
-      currency: [props.account.currency[0], currency2]
-    }
+      currency: [props.account.currency[0], currency2],
+    };
 
-    update.updateAccount(updateDetails, props.account.username)
+    update.updateAccount(updateDetails, props.account.username).then(() => {
+      setOpenAlert(true);
+    });
 
-    console.log("updating 2..." , props.account.username)
-  }
-
-
-  console.log("user", props.account)
+    console.log("updating 2...", props.account.username);
+  };
 
   const seprate = () => {
     if (window.innerWidth > 420) {
@@ -108,12 +109,24 @@ export function Bank(props) {
       break;
     case 0:
       component = (
-        <Action user={props.user} action={action} color="success" variant="filled"></Action>
+        <Action
+          user={props.user}
+          action={action}
+          color="success"
+          variant="filled"
+          setOpen={setOpenAlert}
+        ></Action>
       );
       break;
     case 2:
       component = (
-        <Action user={props.user} action={action} color="error" variant="outlined"></Action>
+        <Action
+          user={props.user}
+          action={action}
+          color="error"
+          variant="outlined"
+          setOpen={setOpenAlert}
+        ></Action>
       );
       break;
   }
@@ -139,11 +152,15 @@ export function Bank(props) {
                   mb: "12px",
                 }}
               >
-                <Typography fontSize={20}>
-                  Bank Name
-                </Typography>
-                <TextField onChange={e => setBank1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.bankNames[0]} variant="filled" />
-
+                <Typography fontSize={20}>Bank Name</Typography>
+                <TextField
+                  onChange={(e) => setBank1(e.target.value)}
+                  InputLabelProps={{ style: { color: "#fff" } }}
+                  InputProps={{ style: { color: "white" } }}
+                  id="filled-basic"
+                  label={props.account.bankNames[0]}
+                  variant="filled"
+                />
               </Card>
               <div className="flex flex-col gap-3">
                 <Card
@@ -152,8 +169,14 @@ export function Bank(props) {
                   <Typography fontSize={15}>
                     <b className="mr-2">Account number:</b>{" "}
                   </Typography>
-                  <TextField onChange={e => setAccoutN1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.accountNumbers[0]} variant="filled" />
-
+                  <TextField
+                    onChange={(e) => setAccoutN1(e.target.value)}
+                    InputLabelProps={{ style: { color: "#fff" } }}
+                    InputProps={{ style: { color: "white" } }}
+                    id="filled-basic"
+                    label={props.account.accountNumbers[0]}
+                    variant="filled"
+                  />
                 </Card>
                 <Card
                   sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
@@ -161,7 +184,14 @@ export function Bank(props) {
                   <Typography>
                     <b>Swift code</b>
                   </Typography>
-                  <TextField onChange={e => setSwiftCode1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.swiftCode[0]} variant="filled" />
+                  <TextField
+                    onChange={(e) => setSwiftCode1(e.target.value)}
+                    InputLabelProps={{ style: { color: "#fff" } }}
+                    InputProps={{ style: { color: "white" } }}
+                    id="filled-basic"
+                    label={props.account.swiftCode[0]}
+                    variant="filled"
+                  />
                 </Card>
 
                 <div className="flex justify-around gap-3">
@@ -176,7 +206,13 @@ export function Bank(props) {
                     <Typography>
                       <b>Country</b>
                     </Typography>
-                    <TextField onChange={e => setCountry1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.country[0]} variant="filled" />
+                    <TextField
+                      onChange={(e) => setCountry1(e.target.value)}
+                      InputLabelProps={{ style: { color: "#fff" } }}
+                      InputProps={{ style: { color: "white" } }}
+                      id="filled-basic"
+                      variant="filled"
+                    />
                   </Card>
                   <Card
                     sx={{
@@ -187,7 +223,14 @@ export function Bank(props) {
                     }}
                   >
                     <Typography>Currency</Typography>
-                    <TextField onChange={e => setCurrency1(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.currency[0]} variant="filled" />
+                    <TextField
+                      onChange={(e) => setCurrency1(e.target.value)}
+                      InputLabelProps={{ style: { color: "#fff" } }}
+                      InputProps={{ style: { color: "white" } }}
+                      id="filled-basic"
+                      label={props.account.currency[0]}
+                      variant="filled"
+                    />
                   </Card>
                 </div>
               </div>
@@ -210,12 +253,15 @@ export function Bank(props) {
                   mb: "12px",
                 }}
               >
-                <Typography fontSize={20}>
-                  
-                  Bank Name
-                </Typography>
-                <TextField onChange={e => setBank2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.bankNames[1]} variant="filled" />
-
+                <Typography fontSize={20}>Bank Name</Typography>
+                <TextField
+                  onChange={(e) => setBank2(e.target.value)}
+                  InputLabelProps={{ style: { color: "#fff" } }}
+                  InputProps={{ style: { color: "white" } }}
+                  id="filled-basic"
+                  label={props.account.bankNames[1]}
+                  variant="filled"
+                />
               </Card>
               <div className="flex flex-col gap-3">
                 <Card
@@ -224,7 +270,14 @@ export function Bank(props) {
                   <Typography fontSize={15}>
                     <b className="mr-2">Account number:</b>{" "}
                   </Typography>
-                  <TextField onChange={e => setAccoutN2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.accountNumbers[1]} variant="filled" />
+                  <TextField
+                    onChange={(e) => setAccoutN2(e.target.value)}
+                    InputLabelProps={{ style: { color: "#fff" } }}
+                    InputProps={{ style: { color: "white" } }}
+                    id="filled-basic"
+                    label={props.account.accountNumbers[1]}
+                    variant="filled"
+                  />
                 </Card>
                 <Card
                   sx={{ backgroundColor: "#0b0f19", color: "white", p: 1.5 }}
@@ -232,7 +285,14 @@ export function Bank(props) {
                   <Typography>
                     <b>Swift code:</b>
                   </Typography>
-                  <TextField onChange={e => setSwiftCode2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.swiftCode[1]} variant="filled" />
+                  <TextField
+                    onChange={(e) => setSwiftCode2(e.target.value)}
+                    InputLabelProps={{ style: { color: "#fff" } }}
+                    InputProps={{ style: { color: "white" } }}
+                    id="filled-basic"
+                    label={props.account.swiftCode[1]}
+                    variant="filled"
+                  />
                 </Card>
 
                 <div className="flex justify-around gap-3">
@@ -247,7 +307,14 @@ export function Bank(props) {
                     <Typography>
                       <b>Country:</b>
                     </Typography>
-                    <TextField onChange={e => setCountry2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.country[1]} variant="filled" />
+                    <TextField
+                      onChange={(e) => setCountry2(e.target.value)}
+                      InputLabelProps={{ style: { color: "#fff" } }}
+                      InputProps={{ style: { color: "white" } }}
+                      id="filled-basic"
+                      label={props.account.country[1]}
+                      variant="filled"
+                    />
                   </Card>
                   <Card
                     sx={{
@@ -258,7 +325,14 @@ export function Bank(props) {
                     }}
                   >
                     <Typography>Currency</Typography>
-                    <TextField onChange={e => setCurrency2(e.target.value)} InputLabelProps={{style: { color: '#fff' },}} id="filled-basic" label={props.account.currency[1]} variant="filled" />
+                    <TextField
+                      onChange={(e) => setCurrency2(e.target.value)}
+                      InputLabelProps={{ style: { color: "#fff" } }}
+                      InputProps={{ style: { color: "white" } }}
+                      id="filled-basic"
+                      label={props.account.currency[1]}
+                      variant="filled"
+                    />
                   </Card>
                 </div>
               </div>
@@ -305,6 +379,15 @@ export function Bank(props) {
           </p>
         </div>
         {component}
+        <Snackbar
+          autoHideDuration={4000}
+          onClose={() => {
+            setOpenAlert(false);
+          }}
+          open={openAlert}
+        >
+          <Alert severity="success">submission sucessful</Alert>
+        </Snackbar>
       </>
     );
   }
@@ -314,14 +397,15 @@ function History(props) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [rows, setRows] = useState([]);
-  const [pH, setPH] = useState([])
-
+  const [pH, setPH] = useState([]);
 
   useEffect(() => {
-    read.fetchOne("paymenthistories", props.user.username).then(res => setPH([...res]))
-  }, [])
+    read
+      .fetchOne("paymenthistories", props.user.username)
+      .then((res) => setPH([...res]));
+  }, []);
 
-  console.log("history", pH)
+  console.log("history", pH);
 
   const columns = [
     { id: "ammount", name: "Ammount" },
@@ -434,10 +518,8 @@ function Action(props) {
     username: props.user.username,
     paymentSystem: "",
     ammount: "0",
-    paymentType: props.action === 0 ? "Deposit" : "Withdraw"
-
-  })
-
+    paymentType: props.action === 0 ? "Deposit" : "Withdraw",
+  });
 
   const ButtonTheme = createTheme({
     components: {
@@ -453,22 +535,12 @@ function Action(props) {
   });
 
   const handleSubmit = () => {
-    // if (props.action === 0) {
-    //   setDetails((current) => ({
-    //     ...current,
-    //     paymentType: "deposite"
-    //   }))
-    // } else if (props.action === 2) {
-    //   setDetails((current) => ({
-    //     ...current,
-    //     paymentType: "withdraw"
-    //   }))
-    // }
+    props.setOpen(true);
 
-    console.log(details)
+    console.log(details);
 
-     create.createPaymentHistory(details)
-  }
+    create.createPaymentHistory(details);
+  };
 
   return (
     <ThemeProvider theme={ButtonTheme}>
@@ -483,11 +555,11 @@ function Action(props) {
             labelId="type"
             label="type"
             color="warning"
-            onChange={(e)=> {
+            onChange={(e) => {
               setDetails((current) => ({
                 ...current,
-                paymentSystem: e.target.value
-              }))
+                paymentSystem: e.target.value,
+              }));
             }}
           >
             <MenuItem value={0}>
@@ -526,14 +598,16 @@ function Action(props) {
             sx: { color: "white", borderColor: "white" },
           }}
           InputLabelProps={{ sx: { color: "white" } }}
-          onChange={(e)=> {
+          onChange={(e) => {
             setDetails((current) => ({
               ...current,
-              ammount: e.target.value
-            }))
+              ammount: e.target.value,
+            }));
           }}
         />
-        <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+        <Button variant="contained" onClick={handleSubmit}>
+          Submit
+        </Button>
       </form>
     </ThemeProvider>
   );

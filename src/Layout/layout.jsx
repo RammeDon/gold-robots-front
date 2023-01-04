@@ -23,9 +23,9 @@ export default function Body() {
   const [path, setPath] = useState();
   const [loggedUser, setLoggedUser] = useState();
   const [userAccount, setUserAccount] = useState();
-  const [contracts, setContracts] = useState();
+  const [contracts, setContracts] = useState([]);
   const { token, setToken } = useToken();
-  const [data, setData] = useState()
+  // const [data, setData] = useState();
 
   const hoverButton = useRef();
 
@@ -34,7 +34,7 @@ export default function Body() {
   };
 
   useEffect(() => {
-    if (token) {
+    if (token && !(contracts && loggedUser && userAccount)) {
       const username = jwt(token).username;
       read
         .fetchOne("users", username)
@@ -45,22 +45,17 @@ export default function Body() {
             .then((res) => setUserAccount({ ...res }))
             .finally(() => {
               read
-                .fetchImage(username)
-                .then((res) => setData({ ...res }))
-                .then((res) => setUserAccount({ ...res }))
-                .finally(() => {
-                  read
-                    .fetchOne("contracts", username)
-                    .then((res) => setContracts([...res]));
-                });
+                .fetchOne("contracts", username)
+                .then((res) => setContracts({ ...res }));
             });
-          console.log("user", loggedUser);
-          console.log("account", userAccount);
-          console.log("image", data);
+          // read
+          //   .fetchImage(username)
+          //   .then((res) => setData({ ...res }))
+          //   .finally(() => {
+          //   });
         });
-    } else {
     }
-  },[]);
+  });
 
   let component;
 
@@ -108,13 +103,13 @@ export default function Body() {
     // }
     switch (path) {
       default:
-        component = (
-          <Profile
-            user={loggedUser}
-            account={userAccount}
-            data={data}
-          ></Profile>
-        );
+        component = <Profile user={loggedUser} account={userAccount}></Profile>;
+        // component = (
+        //   <DashboardHome
+        //     loggedUser={loggedUser}
+        //     account={userAccount}
+        //   ></DashboardHome>
+        // );
         break;
       case "home":
         component = (
@@ -201,7 +196,7 @@ export default function Body() {
         </div>
       </>
     );
-  } else if(data) {
+  } else if (contracts && loggedUser && userAccount) {
     return (
       <>
         <DashboardToolbar

@@ -47,13 +47,13 @@ export function PersonalSetting(props) {
               setSelectedContract(props.contracts[e.target.value]);
             }}
           >
-            {props.contracts.map((contract, i) => {
+            {/* {props.contracts.map((contract, i) => {
               return (
                 <MenuItem value={i} key={contract._id} sx={{}}>
                   {contract.name}
                 </MenuItem>
               );
-            })}
+            })} */}
           </Select>
         </FormControl>
       </Grid>

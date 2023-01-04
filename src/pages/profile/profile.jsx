@@ -1,14 +1,11 @@
 import { Avatar, Button, Card, Divider, Grid, Typography } from "@mui/material";
 import avatar from "../../assets/icons/account.png";
 import { dollar } from "../../utils/dollar";
-import create from "../../CRUD/create.js"
-import read from "../../CRUD/read.js"
-import update from "../../CRUD/update.js"
-import {useState, useEffect } from "react";
+import create from "../../CRUD/create.js";
+import update from "../../CRUD/update.js";
+import { useState, useEffect } from "react";
 
-
-
-function ProfilePicture (props){
+function ProfilePicture(props) {
   // const {data} = props.data.file
   // console.log(props.data.file)
   // console.log(process.env.PUBLIC_URL)
@@ -16,23 +13,15 @@ function ProfilePicture (props){
   if (props.user.profilePictureID === "No photo") {
     return (
       <Avatar
-          src={
-            props.user.profilePictureID !== "No photo"
-              ? props.profile
-              : avatar
-          }
-          sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
-        ></Avatar>
-    )
-  }
-  else {
-      // console.log(data)
-      return (
-        <img
-        src={"/uploads" + props.data.file}
-        alt={"alt"}
-       />)
-        
+        src={
+          props.user.profilePictureID !== "No photo" ? props.profile : avatar
+        }
+        sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
+      ></Avatar>
+    );
+  } else {
+    // console.log(data)
+    return <img src={"/uploads" + props.data.file} alt={"alt"} />;
   }
 }
 
@@ -40,13 +29,12 @@ export function Profile(props) {
   // const [data, setData] = useState()
 
   // useEffect(() => {
-  //   read.fetchImage(props.user.username).then(res => setData({...res}))
-    
-  // })
-  // console.log("here " , data)
-  const [image, setImage] = useState({})
-  console.log(props.data)
+  // read.fetchImage(props.user.username).then(res => setData({...res}))
 
+  // },[])
+  // console.log("here " , data)
+  const [image, setImage] = useState({});
+  console.log(props.account);
 
   // useEffect( ()  => {
   //   setData(read.fetchImage(props.account.username))
@@ -54,8 +42,8 @@ export function Profile(props) {
   // },[props.account.username])
 
   const fileOnChange = (event) => {
-    setImage(event.target.files[0])
-  }
+    setImage(event.target.files[0]);
+  };
 
   // useEffect(() => {
   //   const values = Object.values(props.data)
@@ -66,24 +54,17 @@ export function Profile(props) {
 
   // }, [props.data])
 
-
   const upload = () => {
+    update.updateUser("Photo", props.account.username);
 
-    update.updateUser("Photo", props.account.username)
+    let formData = new FormData();
+    formData.append("filename", image);
+    formData.append("username", props.account.username);
+    formData.append("file", image.name);
+    console.log(image.name);
 
-    let formData = new FormData()
-    formData.append("filename", image)
-    formData.append("username", props.account.username)
-    formData.append("file", image.name)
-    console.log(image.name)
-
-    create.createImage(formData)
-
-    
-  }
-
-
-
+    create.createImage(formData);
+  };
 
   return (
     <Card sx={{ backgroundColor: "#111827" }} variant="outlined">
@@ -100,7 +81,7 @@ export function Profile(props) {
             width: "min-content",
           }}
         >
-          <ProfilePicture data={props.data} user={props.user} />
+          {/* <ProfilePicture data={props.data} user={props.user} /> */}
           <input type="file" onChange={fileOnChange} />
           <Button onClick={upload}>Upload</Button>
         </Grid>

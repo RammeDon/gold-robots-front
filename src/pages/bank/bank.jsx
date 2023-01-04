@@ -324,8 +324,8 @@ function History(props) {
   const columns = [
     { id: "ammount", name: "Ammount" },
     { id: "date", name: "Date" },
-    { id: "type", name: "Type" },
-    { id: "bank", name: "Bank" },
+    { id: "paymentType", name: "Type" },
+    { id: "paymentSystem", name: "Payment System" },
     { id: "status", name: "Status" },
   ];
 

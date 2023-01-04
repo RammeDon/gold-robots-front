@@ -35,6 +35,8 @@ import update from "../../CRUD/update.js"
 export function Bank(props) {
   const [action, setAction] = useState(1);
 
+  console.log(props.account)
+
 
   // const bankDetail = {
   //   bankNames : [props.account.bankNames[0], props.account.bankNames[1]],

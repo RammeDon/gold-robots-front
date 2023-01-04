@@ -35,6 +35,8 @@ import update from "../../CRUD/update.js"
 export function Bank(props) {
   const [action, setAction] = useState(1);
 
+  console.log(props.account)
+
 
   // const bankDetail = {
   //   bankNames : [props.account.bankNames[0], props.account.bankNames[1]],
@@ -431,7 +433,7 @@ function Action(props) {
   const [details, setDetails] = useState({
     username: props.user.username,
     paymentSystem: "",
-    amount: "0",
+    ammount: "0",
     paymentType: props.action === 0 ? "Deposit" : "Withdraw"
 
   })
@@ -527,7 +529,7 @@ function Action(props) {
           onChange={(e)=> {
             setDetails((current) => ({
               ...current,
-              amount: e.target.value
+              ammount: e.target.value
             }))
           }}
         />

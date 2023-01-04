@@ -115,15 +115,18 @@ const createImage = async (form) => {
 
 const createContract = async (contract) => {
   const createDetails = {
-    userID: contract.userID,
-    contractType: contract.contractType,
-    depositeAmmount: contract.depositeAmmount,
-    startDate: contract.startDate,
-    duration: contract.duration,
-    minProfit: contract.minProfit,
-    profitSharing: contract.profitSharing,
+    username: contract.username,
+    ammount: contract.ammount,
+    color: contract.color,
+    date: contract.date,
+    garantiePrecent: contract.garantiePrecent,
+    level: contract.level,
     maxTradeDays: contract.maxTradeDays,
-    adminClient: contract.adminClient,
+    minProfit: contract.minProfit,
+    name: contract.name,
+    minDuration: contract.minDuration,
+    minDeposite: contract.profitSharing,
+    adminClients: contract.adminClients
   };
   fetch(`${env.baseUrl}/api/contracts/`, {
     method: "POST",
@@ -140,14 +143,35 @@ const createContract = async (contract) => {
     });
 };
 
+const createEmail = async (email) => {
+  const createDetails = {
+    username: email.username,
+    email: email.email,
+    message: email.message
+  }
+  fetch(`${env.baseUrl}/api/emails/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(createDetails),
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.message) {
+        console.log(response.message);
+      }
+    });
+};
+
+
 const createPaymentHistory = async (paymentHistory) => {
   const createDetails = {
     username: paymentHistory.username,
     date: paymentHistory.date,
     ammount: paymentHistory.ammount,
     paymentType: paymentHistory.paymentType,
-    paymentSystem: paymentHistory.paymentSystem,
-    status: paymentHistory.status,
+    paymentSystem: paymentHistory.paymentSystem
   };
   fetch(`${env.baseUrl}/api/paymentHistories/`, {
     method: "POST",
@@ -171,7 +195,8 @@ const exports = {
   createContract,
   createPaymentHistory,
   loginUser,
-  createImage
+  createImage,
+  createEmail
 };
 
 export default exports;

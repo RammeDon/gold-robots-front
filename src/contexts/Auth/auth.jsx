@@ -20,11 +20,8 @@ export default function Auth(props) {
     country: 0,
     language: 0,
   });
-  const [accountState, setAccountState] = useState({
-    username: "",
-  });
-  const [openAlert, setOpenAlert] = useState();
 
+  const [openAlert, setOpenAlert] = useState();
 
   const handelSubmission = async () => {
     if (type === "login") {
@@ -47,13 +44,18 @@ export default function Auth(props) {
           console.log("mmd", loginState);
         });
     } else if (type === "register") {
-      create.createUser(registerState).then((res) => {
-        setAccountState({ username: registerState.username });
-        setOpenAlert(true);
-        console.log(res);
-      });
-
-      create.createAccount(accountState);
+      console.log(registerState);
+      create
+        .createUser(registerState)
+        .then((res) => {
+          setOpenAlert(true);
+          console.log("registerd");
+        })
+        .finally(() => {
+          create.createAccount(registerState).then(() => {
+            console.log("account created");
+          });
+        });
     }
     setOpen(false);
   };

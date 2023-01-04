@@ -47,7 +47,7 @@ export default function Body() {
               read
                 .fetchImage(username)
                 .then((res) => setData({ ...res }))
-                .then((res) => setUserAccount({ ...res }))
+                // .then((res) => setUserAccount({ ...res }))
                 .finally(() => {
                   read
                     .fetchOne("contracts", username)

@@ -17,6 +17,7 @@ import {
 import { DurationChart, MinimumProfitChart } from "../../components/ui/charts";
 import { ProfitSharingChart } from "../../components/ui/charts/pie";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import create from "../../CRUD/create.js"
 
 export default function Contracts() {
   if (window.innerWidth > 420) {
@@ -130,6 +131,7 @@ export function DashboardContracts(props) {
   const chooseContracts = (e) => {
     if (props.contracts.length < 2) {
       props.setContracts((current) => [...current, contract]);
+      // create.createContract()
     } else if (props.contracts.length === 2) {
       setOpenAlert(true);
     }

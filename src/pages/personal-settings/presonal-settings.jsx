@@ -12,6 +12,7 @@ import read from "../../CRUD/read";
 import update from "../../CRUD/update";
 
 export function PersonalSetting(props) {
+  
   const [selectedContract, setSelectedContract] = useState();
   const [settings, setSettings] = useState({
     leverage: "",
@@ -20,7 +21,7 @@ export function PersonalSetting(props) {
     extraDays: "",
     maxUsage: "",
   });
-
+  console.log(selectedContract)
   const handelSubmission = () => {
     update
     .updateContract(
@@ -50,7 +51,7 @@ export function PersonalSetting(props) {
             {props.contracts.map((contract, i) => {
               return (
                 <MenuItem value={i} key={contract._id} sx={{}}>
-                  {contract.name}
+                  {contract.contractType}
                 </MenuItem>
               );
             })}

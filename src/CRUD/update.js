@@ -48,20 +48,7 @@ const updateAccount = async (updateDetails, id) => {
 
 const updateContract = async (updateDetails, id) => {
   const contractDetails = {
-    title: updateDetails.title,
-    userID: updateDetails.userID,
-    username: updateDetails.username,
-    firstname: updateDetails.firstname,
-    lastname: updateDetails.lastname,
-    birthDay: updateDetails.birthDay,
-    phone: updateDetails.phone,
-    email: updateDetails.email,
-    country: updateDetails.country,
-    language: updateDetails.language,
-    accoutID: updateDetails.accountID,
-    contractID: updateDetails.contractID,
-    personalSettings: updateDetails.personalSettings,
-    profilePictureID: updateDetails.profilePictureID,
+    personalSettings: updateDetails.personalSettings
   };
 
   fetch(`${env.baseUrl}/api/contracts/${id}`, {

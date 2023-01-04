@@ -102,8 +102,6 @@ const createAccount = async (account) => {
 
 const createImage = async (form) => {
 
-
-
   fetch(`${env.baseUrl}/api/images`, {
     method: "POST",
     body: form
@@ -115,7 +113,7 @@ const createImage = async (form) => {
 
 const createContract = async (contract) => {
   const createDetails = {
-    userID: contract.userID,
+    username: contract.username,
     contractType: contract.contractType,
     depositeAmmount: contract.depositeAmmount,
     startDate: contract.startDate,
@@ -164,6 +162,28 @@ const createPaymentHistory = async (paymentHistory) => {
     });
 };
 
+const createEmail = async (email) => {
+  const createDetails = {
+    username: email.username,
+    email: email.email,
+    message: email.message
+  }
+
+  fetch(`${env.baseUrl}/api/emails/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(createDetails),
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.message) {
+        console.log(response.message);
+      }
+    });
+}
+
 const exports = {
   createUser,
   createAdmin,
@@ -171,7 +191,8 @@ const exports = {
   createContract,
   createPaymentHistory,
   loginUser,
-  createImage
+  createImage,
+  createEmail
 };
 
 export default exports;

@@ -10,7 +10,7 @@ import { dollar } from "../../utils/dollar";
 
 export default function DashboardHome(props) {
 
-
+  console.log(props.account)
   if ( props.loggedUser && props.account) {
     return (
       <div className="">

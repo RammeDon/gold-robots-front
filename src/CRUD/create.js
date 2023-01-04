@@ -174,7 +174,6 @@ const createEmail = async (email) => {
 const createPaymentHistory = async (paymentHistory) => {
   const createDetails = {
     username: paymentHistory.username,
-    date: paymentHistory.date,
     ammount: paymentHistory.ammount,
     paymentType: paymentHistory.paymentType,
     paymentSystem: paymentHistory.paymentSystem

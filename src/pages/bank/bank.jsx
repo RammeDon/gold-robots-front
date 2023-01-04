@@ -37,7 +37,7 @@ import update from "../../CRUD/update.js";
 export function Bank(props) {
   const [action, setAction] = useState(1);
 
-  console.log(props.account);
+  // console.log(  "here: " , props.action);
 
   // const bankDetail = {
   //   bankNames : [props.account.bankNames[0], props.account.bankNames[1]],
@@ -210,6 +210,7 @@ export function Bank(props) {
                       onChange={(e) => setCountry1(e.target.value)}
                       InputLabelProps={{ style: { color: "#fff" } }}
                       InputProps={{ style: { color: "white" } }}
+                      label={props.account.country[0]}
                       id="filled-basic"
                       variant="filled"
                     />
@@ -518,6 +519,7 @@ function Action(props) {
     username: props.user.username,
     paymentSystem: "",
     ammount: "0",
+    paymentType: props.action === 0 ? "Deposit" : "Withdraw",
   });
 
   const ButtonTheme = createTheme({

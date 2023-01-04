@@ -46,7 +46,7 @@ export function PersonalSetting(props) {
   return (
     <>
       <Snackbar
-        autoHideDuration={400}
+        autoHideDuration={4000}
         open={openSuccess}
         onClose={() => {
           setOpenSuccess(false);

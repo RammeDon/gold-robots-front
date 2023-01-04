@@ -115,15 +115,18 @@ const createImage = async (form) => {
 
 const createContract = async (contract) => {
   const createDetails = {
-    userID: contract.userID,
-    contractType: contract.contractType,
-    depositeAmmount: contract.depositeAmmount,
-    startDate: contract.startDate,
-    duration: contract.duration,
-    minProfit: contract.minProfit,
-    profitSharing: contract.profitSharing,
+    username: contract.username,
+    ammount: contract.ammount,
+    color: contract.color,
+    date: contract.date,
+    garantiePrecent: contract.garantiePrecent,
+    level: contract.level,
     maxTradeDays: contract.maxTradeDays,
-    adminClient: contract.adminClient,
+    minProfit: contract.minProfit,
+    name: contract.name,
+    minDuration: contract.minDuration,
+    minDeposite: contract.profitSharing,
+    adminClients: contract.adminClients
   };
   fetch(`${env.baseUrl}/api/contracts/`, {
     method: "POST",
@@ -139,6 +142,37 @@ const createContract = async (contract) => {
       }
     });
 };
+
+const createEmail = async (contract) => {
+  const createDetails = {
+    username: contract.username,
+    ammount: contract.ammount,
+    color: contract.color,
+    date: contract.date,
+    garantiePrecent: contract.garantiePrecent,
+    level: contract.level,
+    maxTradeDays: contract.maxTradeDays,
+    minProfit: contract.minProfit,
+    name: contract.name,
+    minDuration: contract.minDuration,
+    minDeposite: contract.profitSharing,
+    adminClients: contract.adminClients
+  };
+  fetch(`${env.baseUrl}/api/contracts/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(createDetails),
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.message) {
+        console.log(response.message);
+      }
+    });
+};
+
 
 const createPaymentHistory = async (paymentHistory) => {
   const createDetails = {
@@ -171,7 +205,8 @@ const exports = {
   createContract,
   createPaymentHistory,
   loginUser,
-  createImage
+  createImage,
+  createEmail
 };
 
 export default exports;

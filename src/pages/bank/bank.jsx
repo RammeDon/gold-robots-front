@@ -70,6 +70,8 @@ export function Bank(props) {
     console.log("updating...", updateDetails)
   }
 
+  useEffect(()=>console.log(props.account))
+
   const submit2 = () => {
     const updateDetails = {
       bankNames: [props.account.bankNames[0], bank2],

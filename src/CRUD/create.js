@@ -126,7 +126,13 @@ const createContract = async (contract) => {
     name: contract.name,
     minDuration: contract.minDuration,
     minDeposite: contract.profitSharing,
-    adminClients: contract.adminClients
+    adminClients: contract.adminClients,
+    profitSharing: contract.profitSharing,
+    extraDays: contract.extraDays,
+    timeframe: contract.timeframe,
+    leverage: contract.leverage,
+    timerange: contract.timerange,
+    maxUsage: contract.maxUsage
   };
   fetch(`${env.baseUrl}/api/contracts/`, {
     method: "POST",

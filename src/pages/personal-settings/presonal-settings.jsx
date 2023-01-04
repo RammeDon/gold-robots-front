@@ -25,7 +25,7 @@ export function PersonalSetting(props) {
 
 
     await create.createContract(newContract).then(() => {
-      console.log("contract posted to database");
+      console.log(newContract);
     });
   };
 

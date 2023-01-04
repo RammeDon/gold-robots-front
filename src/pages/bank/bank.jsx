@@ -519,7 +519,7 @@ function Action(props) {
     username: props.user.username,
     paymentSystem: "",
     ammount: "0",
-    paymentType: props.action === 0 ? "Deposit" : "Withdraw",
+    paymentType: "Withdraw",
   });
 
   const ButtonTheme = createTheme({

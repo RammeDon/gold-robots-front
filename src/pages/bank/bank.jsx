@@ -431,7 +431,7 @@ function Action(props) {
   const [details, setDetails] = useState({
     username: props.user.username,
     paymentSystem: "",
-    amount: "0",
+    ammount: "0",
     paymentType: props.action === 0 ? "Deposit" : "Withdraw"
 
   })
@@ -527,7 +527,7 @@ function Action(props) {
           onChange={(e)=> {
             setDetails((current) => ({
               ...current,
-              amount: e.target.value
+              ammount: e.target.value
             }))
           }}
         />

@@ -22,12 +22,14 @@ export function PersonalSetting(props) {
   });
 
   const handelSubmission = () => {
-    update
-    .updateContract(
-        { ...selectedContract, personalSettings: settings },
-        selectedContract._id
-      )
-      .then(console.log("personal settings", selectedContract));
+    console.log(props.contracts);
+
+    // update
+    // .updateContract(
+    //     { ...selectedContract, personalSettings: settings },
+    //     selectedContract._id
+    //   )
+    //   .then(console.log("personal settings", selectedContract));
   };
 
   return (
@@ -47,13 +49,13 @@ export function PersonalSetting(props) {
               setSelectedContract(props.contracts[e.target.value]);
             }}
           >
-            {/* {props.contracts.map((contract, i) => {
+            {props.contracts.map((contract, i) => {
               return (
                 <MenuItem value={i} key={contract._id} sx={{}}>
                   {contract.name}
                 </MenuItem>
               );
-            })} */}
+            })}
           </Select>
         </FormControl>
       </Grid>

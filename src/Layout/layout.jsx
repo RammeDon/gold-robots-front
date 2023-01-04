@@ -23,7 +23,7 @@ export default function Body() {
   const [path, setPath] = useState();
   const [loggedUser, setLoggedUser] = useState();
   const [userAccount, setUserAccount] = useState();
-  const [contracts, setContracts] = useState([]);
+  const [contracts, setContracts] = useState();
   const { token, setToken } = useToken();
   // const [data, setData] = useState();
 
@@ -46,7 +46,7 @@ export default function Body() {
             .finally(() => {
               read
                 .fetchOne("contracts", username)
-                .then((res) => setContracts({ ...res }));
+                .then((res) => setContracts([...res]));
             });
           // read
           //   .fetchImage(username)

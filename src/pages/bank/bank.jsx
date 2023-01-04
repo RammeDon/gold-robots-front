@@ -518,7 +518,6 @@ function Action(props) {
     username: props.user.username,
     paymentSystem: "",
     ammount: "0",
-    paymentType: props.action === 0 ? "Deposit" : "Withdraw",
   });
 
   const ButtonTheme = createTheme({
@@ -539,7 +538,10 @@ function Action(props) {
 
     console.log(details);
 
-    create.createPaymentHistory(details);
+    create.createPaymentHistory({
+      ...details,
+      paymentType: props.action === 0 ? "Deposit" : "Withdraw",
+    });
   };
 
   return (

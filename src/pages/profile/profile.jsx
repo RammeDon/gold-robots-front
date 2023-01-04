@@ -10,19 +10,14 @@ function ProfilePicture(props) {
   // console.log(props.data.file)
   // console.log(process.env.PUBLIC_URL)
 
-  if (props.user.profilePictureID === "No photo") {
     return (
-      <Avatar
-        src={
-          props.user.profilePictureID !== "No photo" ? props.profile : avatar
-        }
-        sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
-      ></Avatar>
-    );
-  } else {
-    // console.log(data)
-    return <img src={"/uploads" + props.data.file} alt={"alt"} />;
-  }
+    <Avatar
+      src={
+        props.user.profilePictureID !== "No photo" ? props.profile : avatar
+      }
+      sx={{ width: 80, height: 80, alignSelf: "center", m: "auto" }}
+    ></Avatar>
+    )
 }
 
 export function Profile(props) {
@@ -81,9 +76,9 @@ export function Profile(props) {
             width: "min-content",
           }}
         >
-          {/* <ProfilePicture data={props.data} user={props.user} /> */}
-          <input type="file" onChange={fileOnChange} />
-          <Button onClick={upload}>Upload</Button>
+          <ProfilePicture data={props.data} user={props.user} />
+          {/* <input type="file" onChange={fileOnChange} />
+          <Button onClick={upload}>Upload</Button> */}
         </Grid>
         <Grid
           md={6}

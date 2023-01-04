@@ -46,11 +46,11 @@ export const navButtons = [
 ];
 
 export const hoverButtons = [
-  { name: "call", icon: <LocalPhone></LocalPhone>, onClick: () => {} },
+  { name: "call", icon: <LocalPhone></LocalPhone>, onClick: () => {window.open('tel:+9714687735') } },
   {
     name: "E-mail",
     icon: <EmailOutlined></EmailOutlined>,
-    onClick: () => {},
+    onClick: () => {window.open("https://www.google.com/gmail/about/");},
   },
   {
     name: "whatsapp",

@@ -7,9 +7,8 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import read from "../../CRUD/read";
-import update from "../../CRUD/update";
+import { useState } from "react";
+import create from "../../CRUD/create";
 
 export function PersonalSetting(props) {
   const [selectedContract, setSelectedContract] = useState();
@@ -21,15 +20,10 @@ export function PersonalSetting(props) {
     maxUsage: "",
   });
 
-  const handelSubmission = () => {
-    console.log(props.contracts);
-
-    // update
-    // .updateContract(
-    //     { ...selectedContract, personalSettings: settings },
-    //     selectedContract._id
-    //   )
-    //   .then(console.log("personal settings", selectedContract));
+  const handelSubmission = async () => {
+    await create.createContract(selectedContract).then(() => {
+      console.log("contract posted to database");
+    });
   };
 
   return (
